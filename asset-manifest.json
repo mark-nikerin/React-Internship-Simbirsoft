@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/React-Internship-Simbirsoft/static/css/main.5f361e03.chunk.css",
+    "main.js": "/React-Internship-Simbirsoft/static/js/main.da4efcd7.chunk.js",
+    "main.js.map": "/React-Internship-Simbirsoft/static/js/main.da4efcd7.chunk.js.map",
+    "runtime-main.js": "/React-Internship-Simbirsoft/static/js/runtime-main.c5805abd.js",
+    "runtime-main.js.map": "/React-Internship-Simbirsoft/static/js/runtime-main.c5805abd.js.map",
+    "static/js/2.bcabc12f.chunk.js": "/React-Internship-Simbirsoft/static/js/2.bcabc12f.chunk.js",
+    "static/js/2.bcabc12f.chunk.js.map": "/React-Internship-Simbirsoft/static/js/2.bcabc12f.chunk.js.map",
+    "index.html": "/React-Internship-Simbirsoft/index.html",
+    "precache-manifest.9166d3b12e59eb42f958ea12168f8611.js": "/React-Internship-Simbirsoft/precache-manifest.9166d3b12e59eb42f958ea12168f8611.js",
+    "service-worker.js": "/React-Internship-Simbirsoft/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/React-Internship-Simbirsoft/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.bcabc12f.chunk.js.LICENSE.txt": "/React-Internship-Simbirsoft/static/js/2.bcabc12f.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/React-Internship-Simbirsoft/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c5805abd.js",
+    "static/js/2.bcabc12f.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.da4efcd7.chunk.js"
+  ]
+}
