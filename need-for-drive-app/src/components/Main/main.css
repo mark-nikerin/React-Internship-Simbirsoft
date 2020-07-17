@@ -1,12 +1,18 @@
 .main {
+  width: 50%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   padding-left: 64px;
-  padding-right: 64px; 
+  padding-right: 64px;
   margin-top: 32px;
   margin-bottom: 32px;
+}
+
+.main h1,h2,h3 { 
+  margin: 0;
 }
 
 .main__header {
@@ -16,22 +22,132 @@
   align-items: center;
 }
 
+.main__header h1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #0ec261;
+}
+
 .main__content {
-  width: 50%;
-  height: 100vh;
   display: flex;
+  width: 100%;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
 }
 
-.main h1,h2 {
-   margin: 0;
-} 
+.main__content h1 { 
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 66px; 
+  color: #121212;
+  margin-bottom: 4px;
+}
 
+.main__content h2 { 
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 66px; 
+  color: #0EC261;
+  margin-bottom: 32px;
+}
+
+.main__content h3 { 
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 30px; 
+  color: #999999; 
+}
+
+.button {
+  cursor: pointer;
+  width: 250px;
+  height: 50px;
+  background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+  margin-top: 60px;
+  border-style: none;
+  outline-style: none;
+}
+
+.button span { 
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center; 
+  color: #FFFFFF;
+}
+
+.button:hover { 
+  background: linear-gradient(90deg, #0B934A 2.61%, #026E47 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+}
+
+.button:active{ 
+  background: linear-gradient(90deg, #076432 2.61%, #013C27 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+}
+ 
 .main__footer {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.main__footer span { 
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px; 
+  color: #999999;
+}
+
+.main__footer a { 
+  cursor: pointer;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px; 
+  color: #999999;
+}
+
+.main__footer:hover a {  
+  color: #0ec261;
+}
+
+.location {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.location__icon {
+  stroke: #999999;
+}
+
+.location:hover span {
+  color: #0ec261;
+}
+
+.location:hover .location__icon {
+  stroke: #0ec261;
+}
+
+.location span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
+  margin-left: 7px;
 }

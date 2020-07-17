@@ -1,24 +1,30 @@
 import React from 'react'
 import "./main.css"
+import icons from "../../assets/icons.svg"
 
 const Main = () => {
   return(
     <div className="main">
       <div className="main__header">
-        <h2>Need for drive</h2>
-        <span>Ульяновск</span>
+        <h1 className="unselectable">Need for drive</h1>
+        <div className="location">
+          <svg className="location__icon" width="18" height="20">
+            <use xlinkHref={`${icons}#location`}></use>
+          </svg>
+          <span>Ульяновск</span>
+        </div> 
       </div>
       <div className="main__content">
-        <h1>Каршеринг</h1>
-        <h1>Need for drive</h1>
-        <h2>Поминутная аренда авто твоего города</h2>
-        <button className="main__button">
+        <h1 className="unselectable">Каршеринг</h1>
+        <h2 className="unselectable" >Need for drive</h2>
+        <h3 className="unselectable" >Поминутная аренда авто твоего города</h3>
+        <button className="button">
           <span>Забронировать</span>
         </button>
       </div>
       <div className="main__footer">
         <span>© 2016-2019 «Need for drive»</span>
-        <span>8 (495) 234-22-44</span>
+        <a href="tel:84952342244">8 (495) 234-22-44</a>
       </div>
     </div>
   );
