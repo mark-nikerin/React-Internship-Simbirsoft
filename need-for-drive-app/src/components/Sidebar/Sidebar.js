@@ -1,5 +1,6 @@
 import React from "react";
 import Hamburger from "../Sidebar/Hamburger/Hamburger";
+import "./sidebar.css"
 
 const Sidebar = () => {
   return (
