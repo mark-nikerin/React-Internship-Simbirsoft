@@ -1,7 +1,7 @@
 import React from "react"
 import Sidebar from "../components/Sidebar"
 import Slider from "../components/Slider"
-import Main from "../components/Main"
+import Main from "../components/Main" 
 import "./start.css"
  
 const StartPage = () => {

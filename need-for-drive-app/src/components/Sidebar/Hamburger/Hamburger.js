@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./hamburger.css";
 
-const Hamburger = () => {
+const Hamburger = ({openMenu}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClick = (event) => {
     event.preventDefault();
-    setIsOpen(!isOpen);
+    openMenu(!isOpen);
+    setIsOpen(!isOpen); 
   };
 
   return (
