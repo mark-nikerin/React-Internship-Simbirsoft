@@ -70,10 +70,35 @@
 
 .menu__social-icon {
   cursor: pointer;
-  margin-right: 24px;
-  stroke: white;
-}
+  margin-right: 24px; 
+  fill: white;
+} 
 
 .menu__social-icon:hover { 
-  stroke: #0ec261;
+  fill: #0ec261;
+}
+
+@media (max-width: 1023px) {
+  .transparent-menu {
+    width: 0%;
+  }
+  .menu {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .transparent-menu {
+    width: 0%;
+  }
+  .menu {
+    width: 100%;
+  }
+  .menu__list { 
+    margin-left: 24px; 
+    margin-top: 80px;
+  }
+  .menu__social-icons {
+    margin-left: 24px; 
+  }
 }
