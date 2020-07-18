@@ -7,8 +7,8 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/Need-For-Drive" component={StartPage} />
-        <Route exact path="/Need-For-Drive/order" component={OrderPage} />
+        <Route exact path="/React-Internship-Simbirsoft/" component={StartPage} />
+        <Route exact path="/React-Internship-Simbirsoft/order" component={OrderPage} />
       </Switch>
     </Router>
   );

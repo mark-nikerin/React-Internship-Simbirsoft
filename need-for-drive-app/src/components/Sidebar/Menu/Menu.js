@@ -5,6 +5,7 @@ import icons from "../../../assets/icons.svg"
 const Menu = ({isMenuOpen}) => {
   console.log(isMenuOpen);
   return(
+    <>
     <div className={isMenuOpen ? "menu" : "menu_hidden"}>
       <li className="menu__list">
         <ul>ПАРКОВКА</ul>
@@ -24,6 +25,8 @@ const Menu = ({isMenuOpen}) => {
           </svg>
       </div>
     </div>
+    <div className={isMenuOpen ? "transparent-menu" : "transparent-menu_hidden"}></div>
+    </>
   );
 }
 
