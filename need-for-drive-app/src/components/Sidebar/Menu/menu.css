@@ -14,6 +14,10 @@
   padding-right: 68px;  
 }
 
+.menu_hidden .menu__list {
+  display: none;
+}
+
 .menu_hidden {
   transition: 0.3s;
   width: 0;
@@ -21,6 +25,7 @@
 }
 
 .transparent-menu {
+  cursor: pointer;
   display: flex;
   position: fixed;
   z-index: 1;
@@ -54,6 +59,7 @@
   line-height: 24px; 
   color: #FFFFFF; 
   padding-left: 0;
+  animation: fadein 1s;
 }
 
 .menu__list ul:hover {
@@ -102,7 +108,9 @@
   .menu__social-icons {
     margin-left: 24px; 
   }
-} 
+}  
 
-@media (max-width: 520px) {  
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

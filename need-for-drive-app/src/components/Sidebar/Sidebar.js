@@ -14,8 +14,8 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <Hamburger openMenu = {openMenu} /> 
-      <Menu isMenuOpen = {isMenuOpen}/>
+      <Hamburger isMenuOpen = {isMenuOpen} openMenu = {openMenu} /> 
+      <Menu isMenuOpen = {isMenuOpen} openMenu = {openMenu}/>
       <LanguageSelector />
     </div>
   );
