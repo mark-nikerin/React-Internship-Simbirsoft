@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/React-Internship-Simbirsoft/static/css/main.d1aaa78c.chunk.css",
+    "main.css": "/React-Internship-Simbirsoft/static/css/main.394d80a1.chunk.css",
     "main.js": "/React-Internship-Simbirsoft/static/js/main.ce7b10e6.chunk.js",
     "main.js.map": "/React-Internship-Simbirsoft/static/js/main.ce7b10e6.chunk.js.map",
     "runtime-main.js": "/React-Internship-Simbirsoft/static/js/runtime-main.c5805abd.js",
@@ -8,9 +8,9 @@
     "static/js/2.8c2d2537.chunk.js": "/React-Internship-Simbirsoft/static/js/2.8c2d2537.chunk.js",
     "static/js/2.8c2d2537.chunk.js.map": "/React-Internship-Simbirsoft/static/js/2.8c2d2537.chunk.js.map",
     "index.html": "/React-Internship-Simbirsoft/index.html",
-    "precache-manifest.c98a046362a61be51fb1e01276b82fe8.js": "/React-Internship-Simbirsoft/precache-manifest.c98a046362a61be51fb1e01276b82fe8.js",
+    "precache-manifest.45692ff553c0171876cd1b1e2d9b7b6e.js": "/React-Internship-Simbirsoft/precache-manifest.45692ff553c0171876cd1b1e2d9b7b6e.js",
     "service-worker.js": "/React-Internship-Simbirsoft/service-worker.js",
-    "static/css/main.d1aaa78c.chunk.css.map": "/React-Internship-Simbirsoft/static/css/main.d1aaa78c.chunk.css.map",
+    "static/css/main.394d80a1.chunk.css.map": "/React-Internship-Simbirsoft/static/css/main.394d80a1.chunk.css.map",
     "static/js/2.8c2d2537.chunk.js.LICENSE.txt": "/React-Internship-Simbirsoft/static/js/2.8c2d2537.chunk.js.LICENSE.txt",
     "static/media/index.css": "/React-Internship-Simbirsoft/static/media/Roboto-Regular.11eabca2.ttf",
     "static/media/icons.svg": "/React-Internship-Simbirsoft/static/media/icons.bb1e911f.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.c5805abd.js",
     "static/js/2.8c2d2537.chunk.js",
-    "static/css/main.d1aaa78c.chunk.css",
+    "static/css/main.394d80a1.chunk.css",
     "static/js/main.ce7b10e6.chunk.js"
   ]
 }
