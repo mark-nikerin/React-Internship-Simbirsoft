@@ -55,7 +55,7 @@
 .hamburger__inner, .hamburger__inner::before, .hamburger__inner::after {
   width: 26px;
   height: 3px;
-  background-color: #ffffff; 
+  background-color: white; 
   border-radius: 3px;
   position: absolute;
   transition-property: transform;
@@ -74,3 +74,22 @@
   bottom: -8px;
   transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }  
+
+@media (max-width: 520px) {
+  .hamburger, .hamburger_is-open {
+    position: absolute;
+    left: 64px;
+    margin-left: 0px;
+    margin-top: 20px;
+  } 
+
+  .hamburger .hamburger__inner, .hamburger__inner::before, .hamburger__inner::after {
+    width: 24px;
+    background-color: black;
+  }
+
+  .hamburger_is-open .hamburger__inner, .hamburger_is-open .hamburger__inner::before, .hamburger_is-open .hamburger__inner::after {
+    width: 24px;
+    background-color: white;
+  }
+}

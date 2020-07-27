@@ -17,6 +17,7 @@
 .menu_hidden {
   transition: 0.3s;
   width: 0;
+  z-index: -1;
 }
 
 .transparent-menu {
@@ -78,7 +79,7 @@
   fill: #0ec261;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1220px) {
   .transparent-menu {
     width: 0%;
   }
@@ -101,4 +102,7 @@
   .menu__social-icons {
     margin-left: 24px; 
   }
+} 
+
+@media (max-width: 520px) {  
 }
