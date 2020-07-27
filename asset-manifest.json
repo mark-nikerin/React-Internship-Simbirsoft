@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/React-Internship-Simbirsoft/static/css/main.394d80a1.chunk.css",
-    "main.js": "/React-Internship-Simbirsoft/static/js/main.ce7b10e6.chunk.js",
-    "main.js.map": "/React-Internship-Simbirsoft/static/js/main.ce7b10e6.chunk.js.map",
+    "main.css": "/React-Internship-Simbirsoft/static/css/main.a8a76bca.chunk.css",
+    "main.js": "/React-Internship-Simbirsoft/static/js/main.cde4ad2d.chunk.js",
+    "main.js.map": "/React-Internship-Simbirsoft/static/js/main.cde4ad2d.chunk.js.map",
     "runtime-main.js": "/React-Internship-Simbirsoft/static/js/runtime-main.c5805abd.js",
     "runtime-main.js.map": "/React-Internship-Simbirsoft/static/js/runtime-main.c5805abd.js.map",
-    "static/js/2.8c2d2537.chunk.js": "/React-Internship-Simbirsoft/static/js/2.8c2d2537.chunk.js",
-    "static/js/2.8c2d2537.chunk.js.map": "/React-Internship-Simbirsoft/static/js/2.8c2d2537.chunk.js.map",
+    "static/js/2.a3ecdb1f.chunk.js": "/React-Internship-Simbirsoft/static/js/2.a3ecdb1f.chunk.js",
+    "static/js/2.a3ecdb1f.chunk.js.map": "/React-Internship-Simbirsoft/static/js/2.a3ecdb1f.chunk.js.map",
     "index.html": "/React-Internship-Simbirsoft/index.html",
-    "precache-manifest.45692ff553c0171876cd1b1e2d9b7b6e.js": "/React-Internship-Simbirsoft/precache-manifest.45692ff553c0171876cd1b1e2d9b7b6e.js",
+    "precache-manifest.2ab30821f31455e7c0b53db0d15ee06f.js": "/React-Internship-Simbirsoft/precache-manifest.2ab30821f31455e7c0b53db0d15ee06f.js",
     "service-worker.js": "/React-Internship-Simbirsoft/service-worker.js",
-    "static/css/main.394d80a1.chunk.css.map": "/React-Internship-Simbirsoft/static/css/main.394d80a1.chunk.css.map",
-    "static/js/2.8c2d2537.chunk.js.LICENSE.txt": "/React-Internship-Simbirsoft/static/js/2.8c2d2537.chunk.js.LICENSE.txt",
+    "static/css/main.a8a76bca.chunk.css.map": "/React-Internship-Simbirsoft/static/css/main.a8a76bca.chunk.css.map",
+    "static/js/2.a3ecdb1f.chunk.js.LICENSE.txt": "/React-Internship-Simbirsoft/static/js/2.a3ecdb1f.chunk.js.LICENSE.txt",
     "static/media/index.css": "/React-Internship-Simbirsoft/static/media/Roboto-Regular.11eabca2.ttf",
     "static/media/icons.svg": "/React-Internship-Simbirsoft/static/media/icons.bb1e911f.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.c5805abd.js",
-    "static/js/2.8c2d2537.chunk.js",
-    "static/css/main.394d80a1.chunk.css",
-    "static/js/main.ce7b10e6.chunk.js"
+    "static/js/2.a3ecdb1f.chunk.js",
+    "static/css/main.a8a76bca.chunk.css",
+    "static/js/main.cde4ad2d.chunk.js"
   ]
 }
