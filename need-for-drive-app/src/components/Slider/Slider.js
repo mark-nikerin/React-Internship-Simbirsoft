@@ -1,10 +1,11 @@
 import React from "react";
 import "./slider.css";
 import icons from "../../assets/icons.svg";
+import slide1 from "../../assets/slides/4.png"
 
 const Slider = () => {
   return (
-    <div className="slider">
+    <div className="slider" style={{backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${slide1})`}}>
       <button className="slider__arrow">
         <svg className="slider__arrow-icon" width="10" height="20">
           <use xlinkHref={`${icons}#arrow-left`}></use>
