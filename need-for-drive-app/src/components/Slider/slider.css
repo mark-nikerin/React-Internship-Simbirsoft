@@ -25,7 +25,7 @@
 }
 
 .slider__content_item {
-  margin-top: auto;
+  margin-top: 240px;
   margin-bottom: auto;
 } 
 
@@ -63,7 +63,7 @@
   background: rgba(14, 194, 97, 0.2);  
 } 
 
-.slider__button-1 {
+.slider__button-0 {
   cursor: pointer;
   width: 164px;
   height: 48px;
@@ -74,19 +74,19 @@
   color: #EEEEEE;
 }
 
-.slider__button-1:hover { 
+.slider__button-0:hover { 
   background: linear-gradient(90deg, #003026 2.61%, #006202 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-1:active{ 
+.slider__button-0:active{ 
   background: linear-gradient(90deg, #00160C 2.61%, #004800  112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 } 
 
-.slider__button-2 {
+.slider__button-1 {
   cursor: pointer;
   width: 164px;
   height: 48px;
@@ -97,19 +97,19 @@
   color: #EEEEEE;
 }
 
-.slider__button-2:hover { 
+.slider__button-1:hover { 
   background: linear-gradient(90deg, #001030 2.61%, #00624E 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-2:active{ 
+.slider__button-1:active{ 
   background: linear-gradient(90deg, #000016 2.61%, #004834  112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 } 
 
-.slider__button-3 {
+.slider__button-2 {
   cursor: pointer;
   width: 164px;
   height: 48px;
@@ -120,19 +120,19 @@
   color: #EEEEEE;
 }
 
-.slider__button-3:hover { 
+.slider__button-2:hover { 
   background: linear-gradient(90deg, #301700 2.61%, #620022 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-3:active{ 
+.slider__button-2:active{ 
   background: linear-gradient(90deg, #160000 2.61%, #480008  112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 } 
 
-.slider__button-4 {
+.slider__button-3 {
   cursor: pointer;
   width: 164px;
   height: 48px;
@@ -143,13 +143,13 @@
   color: #EEEEEE;
 }
 
-.slider__button-4:hover { 
+.slider__button-3:hover { 
   background: linear-gradient(90deg, #0F0030 2.61%, #590062 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-4:active{ 
+.slider__button-3:active{ 
   background: linear-gradient(90deg, #000016 2.61%, #3F0048  112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
