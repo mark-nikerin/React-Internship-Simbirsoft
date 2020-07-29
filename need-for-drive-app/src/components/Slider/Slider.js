@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./slider.css";
 import icons from "../../assets/icons.svg";
 import slide1 from "../../assets/slides/1.png";
@@ -41,11 +42,9 @@ const Slider = () => {
   };
 
   const onNextArrowClick = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
-    const index = slideIndex + 1 > slides.length - 1
-      ? 0 
-      : slideIndex + 1;
+    const index = slideIndex + 1 > slides.length - 1 ? 0 : slideIndex + 1;
 
     setSlide(slides[index]);
     setSlideIndex(index);
@@ -54,60 +53,69 @@ const Slider = () => {
   const onPrevArrowClick = (event) => {
     event.preventDefault();
 
-    const index = slideIndex - 1 < 0 
-      ? slides.length - 1
-      : slideIndex - 1;
+    const index = slideIndex - 1 < 0 ? slides.length - 1 : slideIndex - 1;
 
     setSlide(slides[index]);
     setSlideIndex(index);
   };
 
   return (
-    <div
-      className="slider"
-      style={{
-        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${slide.image})`,
-      }}
-    >
-      <button
-        className="slider__arrow"
-        onClick={(event) => onPrevArrowClick(event)}
-      >
-        <svg className="slider__arrow-icon" width="10" height="20">
-          <use xlinkHref={`${icons}#arrow-left`}></use>
-        </svg>
-      </button>
-      <div className="slider__content">
-        <div className="slider__content_item">
-          <h1>{slide.title}</h1>
-          <h3>{slide.text}</h3>
-          <button className={`slider__button-${slideIndex}`}>
-            <span>Подробнее</span>
-          </button>
-        </div>
-        <div className="slider__dots">
-          {slides.map((item, index) => {
-            return index == slideIndex ? (
-              <div className="slider__dot_active"></div>
-            ) : (
-              <div
-                className="slider__dot"
-                onClick={(event) => {
-                  onDotClick(event, index);
-                }}
-              ></div>
-            );
-          })}
-        </div>
-      </div>
-      <button
-        className="slider__arrow"
-        onClick={(event) => onNextArrowClick(event)}
-      >
-        <svg className="slider__arrow-icon" width="10" height="20">
-          <use xlinkHref={`${icons}#arrow-right`}></use>
-        </svg>
-      </button>
+    <div className="slider">
+      <TransitionGroup>
+        <CSSTransition
+          classNames="slide-animation"
+          timeout={{ enter: 600, exit: 600 }}
+          key={slideIndex}
+        >
+          <div
+            className="slide"
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${slide.image})`,
+            }}
+          >
+            <button
+              className="slide__arrow"
+              onClick={(event) => onPrevArrowClick(event)}
+            >
+              <svg className="slide__arrow-icon" width="10" height="20">
+                <use xlinkHref={`${icons}#arrow-left`}></use>
+              </svg>
+            </button>
+
+            <div className="slide__content">
+              <div className="slide__content_item">
+                <h1>{slide.title}</h1>
+                <h3>{slide.text}</h3>
+                <button className={`slide__button-${slideIndex}`}>
+                  <span>Подробнее</span>
+                </button>
+              </div>
+              <div className="slide__dots">
+                {slides.map((item, index) => {
+                  return index === slideIndex ? (
+                    <div className="slide__dot_active"></div>
+                  ) : (
+                    <div
+                      className="slide__dot"
+                      onClick={(event) => {
+                        onDotClick(event, index);
+                      }}
+                    ></div>
+                  );
+                })}
+              </div>
+            </div>
+            <button
+              className="slide__arrow"
+              onClick={(event) => onNextArrowClick(event)}
+            >
+              <svg className="slide__arrow-icon" width="10" height="20">
+                <use xlinkHref={`${icons}#arrow-right`}></use>
+              </svg>
+            </button>
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 };
