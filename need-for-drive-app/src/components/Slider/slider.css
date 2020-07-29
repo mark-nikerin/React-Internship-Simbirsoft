@@ -1,18 +1,44 @@
 .slider {
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+.slide {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;  
-  box-sizing: border-box; 
-  background: gray;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: black;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.slider h1,h3 {
+.slide-animation-enter {
+  opacity: 0.5;
+}
+.slide-animation-enter-active {
+  opacity: 1;
+  transition: opacity 600ms ease-in-out;
+}
+.slide-animation-exit {
+  opacity: 0.5;
+}
+.slide-animation-exit-active {
+  opacity: 1;
+  transition: opacity 600ms ease-in-out;
+}
+
+.slider h1,
+h3 {
   margin: 0;
 }
 
-.slider__content {
+.slide__content {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -23,139 +49,138 @@
   margin-right: 32px;
 }
 
-.slider__content_item {
-  margin-top: auto;
+.slide__content_item {
+  margin-top: 240px;
   margin-bottom: auto;
-} 
+}
 
-.slider__content_item h1 {
+.slide__content_item h1 {
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
-  line-height: 47px; 
-  color: #FFFFFF;
+  line-height: 47px;
+  color: #ffffff;
   margin-bottom: 8px;
 }
 
-.slider__content_item h3 {
+.slide__content_item h3 {
   font-style: normal;
   font-weight: 300;
   font-size: 24px;
-  line-height: 90%; 
-  color: #EEEEEE;
+  color: #eeeeee;
   margin-bottom: 32px;
 }
 
-.slider__arrow {
+.slide__arrow {
   cursor: pointer;
   height: 100vh;
   width: 64px;
   border-style: none;
-  outline: none; 
+  outline: none;
   background: none;
-} 
-
-.slider__arrow-icon {
-  stroke: #EEEEEE;  
 }
 
-.slider__arrow:hover {
-  background: rgba(14, 194, 97, 0.2);  
-} 
+.slide__arrow-icon {
+  stroke: #eeeeee;
+}
 
-.slider__button-1 {
+.slide__arrow:hover {
+  background: rgba(14, 194, 97, 0.2);
+}
+
+.slide__button-0 {
   cursor: pointer;
   width: 164px;
   height: 48px;
-  background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
+  background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
   border-radius: 4px;
   border-style: none;
-  outline: none; 
-  color: #EEEEEE;
+  outline: none;
+  color: #eeeeee;
 }
 
-.slider__button-1:hover { 
+.slide__button-0:hover {
   background: linear-gradient(90deg, #003026 2.61%, #006202 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-1:active{ 
-  background: linear-gradient(90deg, #00160C 2.61%, #004800  112.6%);
+.slide__button-0:active {
+  background: linear-gradient(90deg, #00160c 2.61%, #004800 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
-} 
+}
 
-.slider__button-2 {
+.slide__button-1 {
   cursor: pointer;
   width: 164px;
   height: 48px;
-  background: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
+  background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
   border-radius: 4px;
   border-style: none;
-  outline: none; 
-  color: #EEEEEE;
+  outline: none;
+  color: #eeeeee;
 }
 
-.slider__button-2:hover { 
-  background: linear-gradient(90deg, #001030 2.61%, #00624E 112.6%);
+.slide__button-1:hover {
+  background: linear-gradient(90deg, #001030 2.61%, #00624e 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-2:active{ 
-  background: linear-gradient(90deg, #000016 2.61%, #004834  112.6%);
+.slide__button-1:active {
+  background: linear-gradient(90deg, #000016 2.61%, #004834 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
-} 
+}
 
-.slider__button-3 {
+.slide__button-2 {
   cursor: pointer;
   width: 164px;
   height: 48px;
-  background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+  background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
   border-radius: 4px;
   border-style: none;
-  outline: none; 
-  color: #EEEEEE;
+  outline: none;
+  color: #eeeeee;
 }
 
-.slider__button-3:hover { 
+.slide__button-2:hover {
   background: linear-gradient(90deg, #301700 2.61%, #620022 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-3:active{ 
-  background: linear-gradient(90deg, #160000 2.61%, #480008  112.6%);
+.slide__button-2:active {
+  background: linear-gradient(90deg, #160000 2.61%, #480008 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
-} 
+}
 
-.slider__button-4 {
+.slide__button-3 {
   cursor: pointer;
   width: 164px;
   height: 48px;
-  background: linear-gradient(90deg, #281349 0%, #720C7B 100%);
+  background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
   border-radius: 4px;
   border-style: none;
-  outline: none; 
-  color: #EEEEEE;
+  outline: none;
+  color: #eeeeee;
 }
 
-.slider__button-4:hover { 
-  background: linear-gradient(90deg, #0F0030 2.61%, #590062 112.6%);
+.slide__button-3:hover {
+  background: linear-gradient(90deg, #0f0030 2.61%, #590062 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
 }
 
-.slider__button-4:active{ 
-  background: linear-gradient(90deg, #000016 2.61%, #3F0048  112.6%);
+.slide__button-3:active {
+  background: linear-gradient(90deg, #000016 2.61%, #3f0048 112.6%);
   background-blend-mode: darken;
   border-radius: 4px;
-} 
+}
 
-.slider__dots {
+.slide__dots {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -165,22 +190,22 @@
   margin-bottom: 32px;
 }
 
-.slider__dot {
+.slide__dot {
   cursor: pointer;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #EEEEEE;
+  background: #eeeeee;
   margin-right: 4px;
   margin-left: 4px;
 }
 
-.slider__dot_active {
+.slide__dot_active {
   cursor: pointer;
   width: 8px;
   height: 8px;
-  border-radius: 50%; 
-  background: #0EC261;
+  border-radius: 50%;
+  background: #0ec261;
   margin-right: 4px;
   margin-left: 4px;
 }
@@ -190,4 +215,3 @@
     display: none;
   }
 }
-
