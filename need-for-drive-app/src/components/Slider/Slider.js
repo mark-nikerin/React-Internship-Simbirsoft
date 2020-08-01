@@ -33,7 +33,7 @@ const slides = [
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
-  const [slide, setSlide] = useState(slides[slideIndex]);
+  const [slide, setSlide] = useState(slides[slideIndex]); 
 
   const onDotClick = (event, index) => {
     event.preventDefault();

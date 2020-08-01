@@ -198,9 +198,9 @@
   }
  
   .button, .button:hover {
-    width: 100%;
-    margin-top: 64px;
+    width: 100vw; 
     border-radius: 0px;
+    margin-bottom: 10px;
   }
 
   .main__footer
