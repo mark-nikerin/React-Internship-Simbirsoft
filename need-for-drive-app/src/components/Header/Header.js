@@ -5,7 +5,7 @@ import icons from "../../assets/icons.svg";
 const Header = () => {
   return(
     <div className="header">
-        <h1 className="unselectable">Need for drive</h1>
+        <a href="/React-Internship-Simbirsoft">Need for drive</a>
         <div className="location">
           <svg className="location__icon" width="18" height="20">
             <use xlinkHref={`${icons}#location`}></use>

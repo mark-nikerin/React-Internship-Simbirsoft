@@ -5,12 +5,13 @@
   align-items: center;
 }
 
-.header h1 {
+.header a {
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
   line-height: 35px;
   color: #0ec261;
+  text-decoration: none;
 }
 
 .location {

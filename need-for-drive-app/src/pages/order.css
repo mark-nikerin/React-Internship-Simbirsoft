@@ -1,0 +1,23 @@
+.order-page {  
+  width: 100%;
+  display: flex;
+  flex-direction: column;  
+}
+
+.order-page h1 {
+  margin: 0;
+}
+
+.order-page .header { 
+  margin: 32px 0px;
+  padding-left: 64px;
+  padding-right: 64px; 
+  box-sizing: border-box;
+}
+
+.order-page::after{
+  display: block;
+  content: "";
+  height: 1px;
+  background-color: #EEEEEE;
+}
