@@ -12,7 +12,7 @@ const Main = () => {
           <svg className="location__icon" width="18" height="20">
             <use xlinkHref={`${icons}#location`}></use>
           </svg>
-          <span>Ульяновск</span>
+          <span><a href="https://yandex.ru/maps/?ll=48.482301,54.300849&z=12&l=map">Ульяновск</a></span>
         </div>
       </div>
       <div className="main__content">
