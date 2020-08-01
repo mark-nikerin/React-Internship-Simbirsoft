@@ -1,20 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../Header"
 import "./main.css";
-import icons from "../../assets/icons.svg";
 
 const Main = () => {
   return (
     <div className="main">
-      <div className="main__header">
-        <h1 className="unselectable">Need for drive</h1>
-        <div className="location">
-          <svg className="location__icon" width="18" height="20">
-            <use xlinkHref={`${icons}#location`}></use>
-          </svg>
-          <span><a href="https://yandex.ru/maps/?ll=48.482301,54.300849&z=12&l=map">Ульяновск</a></span>
-        </div>
-      </div>
+      <Header />
       <div className="main__content">
         <h1 className="unselectable">Каршеринг</h1>
         <h2 className="unselectable">Need for drive</h2>

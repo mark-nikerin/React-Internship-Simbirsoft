@@ -5,7 +5,7 @@ import "./start.css"
  
 const StartPage = () => {
   return (
-    <div className="start"> 
+    <div className="start-page"> 
       <Main /> 
       <Slider />
     </div>
