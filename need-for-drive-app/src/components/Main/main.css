@@ -130,13 +130,13 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-}
+} 
 
 .location__icon {
   stroke: #999999;
 }
 
-.location:hover span {
+.location:hover a {
   color: #0ec261;
 }
 
@@ -144,13 +144,14 @@
   stroke: #0ec261;
 }
 
-.location span {
+.location a {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
   color: #999999;
   margin-left: 7px;
+  text-decoration: none;
 }  
 
 @media (max-width: 520px) {
