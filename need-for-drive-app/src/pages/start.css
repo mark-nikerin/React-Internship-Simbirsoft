@@ -2,4 +2,11 @@
   width: 100vw;
   display: flex;
   flex-direction: row;  
+  margin-left: 64px;
+}
+
+@media (max-width: 520px) {
+  .start-page {  
+    margin-left: 0;
+  }
 }

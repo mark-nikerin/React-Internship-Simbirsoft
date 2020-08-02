@@ -1,15 +1,16 @@
 .order-page {  
   width: 100%;  
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;   
+  padding-left: 64px; 
+  box-sizing: border-box;
 }
 
 .order-page h1 {
   margin: 0;
 }
 
-.order-page .header {
-  width: 100%;  
+.order-page .header { 
   padding: 32px 64px; 
   box-sizing: border-box;
   border-bottom: solid 1px #EEEEEE;
@@ -21,4 +22,14 @@
   align-content: center;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 520px) {
+  .order-page {  
+    padding-left: 0;
+  }
+
+  .order-page .header { 
+    padding: 0;
+  }
 }
