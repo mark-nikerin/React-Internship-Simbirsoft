@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "eddaaf461e04a7087047b5c983342523",
+    "revision": "7c08f8d2906e8ce9ee7ea2b9764eb625",
     "url": "/React-Internship-Simbirsoft/index.html"
   },
   {
-    "revision": "49bcf227ed97aca9d1a1",
-    "url": "/React-Internship-Simbirsoft/static/css/main.02264cf1.chunk.css"
+    "revision": "3c130504e502f5cfae7a",
+    "url": "/React-Internship-Simbirsoft/static/css/main.a1365780.chunk.css"
   },
   {
-    "revision": "ffa3707cfe1300b79dec",
-    "url": "/React-Internship-Simbirsoft/static/js/2.e5444adf.chunk.js"
+    "revision": "5811f10a709ff64fee55",
+    "url": "/React-Internship-Simbirsoft/static/js/2.84e535d1.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/React-Internship-Simbirsoft/static/js/2.e5444adf.chunk.js.LICENSE.txt"
+    "url": "/React-Internship-Simbirsoft/static/js/2.84e535d1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "49bcf227ed97aca9d1a1",
-    "url": "/React-Internship-Simbirsoft/static/js/main.cf6fab99.chunk.js"
+    "revision": "3c130504e502f5cfae7a",
+    "url": "/React-Internship-Simbirsoft/static/js/main.355cccd6.chunk.js"
   },
   {
     "revision": "29ecc82f54760c54c53e",
@@ -54,5 +54,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "bb1e911ff6629b507ff91db65c37801a",
     "url": "/React-Internship-Simbirsoft/static/media/icons.bb1e911f.svg"
+  },
+  {
+    "revision": "b9950c479d526029cb7cdfeb8d584c59",
+    "url": "/React-Internship-Simbirsoft/static/media/map.b9950c47.png"
   }
 ]);
