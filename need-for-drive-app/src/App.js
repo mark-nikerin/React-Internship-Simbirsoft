@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import StartPage from "./pages/start";
 import OrderPage from "./pages/order";
-import "./app.css"
+import "./App.css"
 
 const App = () => {
   return (

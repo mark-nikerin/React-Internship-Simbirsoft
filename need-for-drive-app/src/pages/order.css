@@ -1,5 +1,5 @@
 .order-page {  
-  width: 100%;
+  width: 100%;  
   display: flex;
   flex-direction: column;  
 }
@@ -8,16 +8,9 @@
   margin: 0;
 }
 
-.order-page .header { 
-  margin: 32px 0px;
-  padding-left: 64px;
-  padding-right: 64px; 
+.order-page .header {
+  width: 100%;  
+  padding: 32px 64px; 
   box-sizing: border-box;
-}
-
-.order-page::after{
-  display: block;
-  content: "";
-  height: 1px;
-  background-color: #EEEEEE;
-}
+  border-bottom: solid 1px #EEEEEE;
+}   
