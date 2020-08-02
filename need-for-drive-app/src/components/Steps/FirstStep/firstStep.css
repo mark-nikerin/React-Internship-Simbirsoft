@@ -1,0 +1,93 @@
+.first-step { 
+  display: flex;
+  padding: 32px 64px;
+  flex-direction: column;
+  width: 90%; 
+}
+
+.search {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+  margin-bottom: 48px;
+}
+
+.search__city { 
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  margin-bottom: 16px;
+}
+
+.search__city h3 { 
+  width: 93px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #121212;   
+  text-align: right;
+}
+
+.search__city input { 
+  width: 224px; 
+  outline: none;
+  border-style: none;
+  border-bottom: 1px solid #999999;
+  margin-left: 8px; 
+  padding-left: 8px; 
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #121212;
+}
+
+.search__city input::placeholder {  
+  color: #999999;
+}
+
+.search__point { 
+  display: flex;
+  flex-direction: row;  
+  align-items: center;  
+}
+
+.search__point h3 { 
+  width: 93px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #121212;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.search__point input { 
+  width: 224px;
+  outline: none;
+  border-style: none;
+  border-bottom: 1px solid #999999;
+  margin-left: 8px;  
+  padding-left: 8px; 
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #121212;
+}
+
+.search__point input::placeholder { 
+  color: #999999;
+}
+
+.map {  
+  max-width: 736px;
+  height: auto;
+}
+
+.map-title {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #121212;
+  margin-bottom: 16px;
+}
