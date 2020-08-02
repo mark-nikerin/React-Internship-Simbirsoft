@@ -1,0 +1,91 @@
+.order-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 32px 32px;
+  padding-right: 64px;
+  min-width: 384px;
+  border-left: solid 1px #EEEEEE;
+} 
+
+.order-info button { 
+  width: 100%;  
+}
+
+.order-info button.inactive {
+  cursor: default;
+  background: #EEEEEE;
+}
+
+.order-info h1 {
+  text-align: end; 
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right; 
+  color: #121212; 
+}
+
+.info {
+  list-style: none;
+  margin: 32px 0px;
+  padding: 0;
+} 
+
+.info__item {
+  display: flex;
+  flex-direction: row;  
+  align-items: flex-end;
+  justify-content: space-between;  
+  overflow: hidden;
+}
+
+.info__item h4 { 
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #121212;    
+  white-space: nowrap;
+  overflow: hidden;
+}  
+
+.info__item h4::after {  
+  content: '...................................................................................................................................................';  
+  color: #999999;
+  margin-left: 12px; 
+}
+
+.info__item span { 
+  margin: 0; 
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px; 
+  color: #999999;  
+  text-align: right; 
+  white-space: nowrap;
+  margin-left: 12px; 
+}  
+
+.price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 32px;
+}
+
+.price h3 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px; 
+  color: #121212;
+}
+
+.price span {
+  margin-left: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;  
+  color: #121212;
+}
