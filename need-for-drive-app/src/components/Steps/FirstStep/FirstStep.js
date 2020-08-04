@@ -1,10 +1,11 @@
 import React from "react";
 import "./firstStep.css";
+import "../step.css"
 import map from "../../../assets/map.png";
 
 const FirstStep = () => {
   return(
-    <div className="first-step">
+    <div className="step">
       <div className="search">
         <div className="search__city">
           <h3>Город</h3>

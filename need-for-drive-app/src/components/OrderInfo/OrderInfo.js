@@ -13,7 +13,7 @@ const OrderInfo = () => {
       </ul> 
       <div className="price">
         <h3>Цена:</h3>
-        <span>От 8000 до 12000 Р</span>
+        <span>От 8000 до 12000 ₽</span>
       </div>
       <button className="button inactive"><span>Выбрать модель</span></button>
     </div>
