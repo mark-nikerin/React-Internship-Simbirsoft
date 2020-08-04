@@ -1,0 +1,48 @@
+.steps-menu {
+  margin: 0;
+  padding: 8px 64px;
+  box-sizing: border-box;
+  border-bottom: solid 1px #EEEEEE;
+}  
+
+.steps-menu li {  
+  cursor: default;
+  display: inline; 
+  margin-right: 16px;  
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999; 
+  margin-right: 11px;
+} 
+
+.steps-menu li:first-child {
+  margin-left: 0;
+}
+
+.steps-menu li::after {    
+  display: inline-block; 
+  content: ""; 
+  border: 4px solid transparent; 
+  border-left: 6px solid #999999; 
+  margin-left: 16px;
+} 
+  
+.steps-menu li:last-child::after {   
+  display: none; 
+} 
+
+.steps-menu li.active {    
+  cursor: pointer;
+  color: #121212;
+}
+
+.steps-menu li.current {   
+  cursor: pointer;
+  color: #0EC261;
+}
+
+.steps-menu li.active:hover {
+  color: #0EC261;
+} 
+ 

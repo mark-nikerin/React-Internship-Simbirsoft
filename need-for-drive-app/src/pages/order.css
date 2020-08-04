@@ -1,0 +1,35 @@
+.order-page {  
+  width: 100%;  
+  display: flex;
+  flex-direction: column;   
+  padding-left: 64px; 
+  box-sizing: border-box;
+}
+
+.order-page h1 {
+  margin: 0;
+}
+
+.order-page .header { 
+  padding: 32px 64px; 
+  box-sizing: border-box;
+  border-bottom: solid 1px #EEEEEE;
+}   
+
+.steps-body {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 520px) {
+  .order-page {  
+    padding-left: 0;
+  }
+
+  .order-page .header { 
+    padding: 0;
+  }
+}
