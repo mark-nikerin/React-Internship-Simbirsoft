@@ -13,13 +13,13 @@ const SecondStep = () => {
     <div className="step">
       <div className="filters">
         <label className="checked">
-          <input type="radio" name="filter" defaultChecked="true"></input>Все модели
+          <input type="radio" name="model" defaultChecked="true"></input>Все модели
         </label>
         <label>
-          <input type="radio" name="filter"></input>Эконом
+          <input type="radio" name="model"></input>Эконом
         </label>
         <label>
-          <input type="radio" name="filter"></input>Премиум
+          <input type="radio" name="model"></input>Премиум
         </label>
       </div>
       <div className="cars">

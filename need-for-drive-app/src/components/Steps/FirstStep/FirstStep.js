@@ -7,11 +7,11 @@ const FirstStep = () => {
   return(
     <div className="step">
       <div className="search">
-        <div className="search__city">
+        <div className="search__item">
           <h3>Город</h3>
           <input type="search" placeholder="Начните вводить город ..."></input>
         </div> 
-        <div className="search__point">
+        <div className="search__item">
           <h3>Пункт выдачи</h3>
           <input type="search" placeholder="Начните вводить пункт ..."></input>
         </div>
