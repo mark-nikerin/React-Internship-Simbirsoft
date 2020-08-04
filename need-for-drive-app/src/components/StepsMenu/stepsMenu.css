@@ -1,8 +1,7 @@
 .steps-menu {
   margin: 0;
-  padding: 8px 64px;
-  box-sizing: border-box;
-  border-bottom: solid 1px #EEEEEE;
+  padding: 8px 64px; 
+  border-top: solid 1px #EEEEEE;
 }  
 
 .steps-menu li {  
@@ -45,4 +44,14 @@
 .steps-menu li.active:hover {
   color: #0EC261;
 } 
+ 
+.menu-order-number {
+  margin: 8px 0;
+  margin-left: 64px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;  
+  color: #121212; 
+  display: none;
+}
  
