@@ -1,6 +1,7 @@
 .step { 
   display: flex;
-  padding: 32px 64px;
+  padding: 32px 64px; 
+  padding-right: 200px;
   flex-direction: column;
   width: 90%;  
   min-width: 50%;
