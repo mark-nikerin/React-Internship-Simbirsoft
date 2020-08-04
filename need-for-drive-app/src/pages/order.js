@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import StepsMenu from "../components/StepsMenu";
 import OrderInfo from "../components/OrderInfo";
-import { FirstStep, SecondStep, ThirdStep } from "../components/Steps"
+import { FirstStep, SecondStep, ThirdStep, FourthStep } from "../components/Steps"
 import "./order.css";
 
 const OrderPage = () => {
@@ -10,8 +10,8 @@ const OrderPage = () => {
     <div className="order-page">
       <Header />
       <StepsMenu />
-      <div className="steps-body">  
-        <ThirdStep /> 
+      <div className="steps-body">   
+        <FourthStep /> 
         <OrderInfo />
       </div> 
     </div>
