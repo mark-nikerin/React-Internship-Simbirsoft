@@ -17,22 +17,22 @@
   height: auto;
 }
 
-.info__title { 
-  margin: 0; 
+.info__title {
+  margin: 0;
   font-weight: normal;
   font-size: 20px;
-  line-height: 23px; 
+  line-height: 23px;
   color: #121212;
 }
 
 .info__number {
   padding: 4px 8px;
   width: 100px;
-  border: 1px solid #999999; 
+  border: 1px solid #999999;
   border-radius: 4px;
-  text-align: center; 
+  text-align: center;
   font-size: 14px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #121212;
   margin: 12px 0;
 }
@@ -42,21 +42,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
 }
 
 .info__item h3 {
-  margin: 0; 
+  margin: 0;
   font-weight: bold;
   font-size: 14px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #121212;
   margin-right: 5px;
 }
 
 .info__item span {
-  margin: 0; 
+  margin: 0;
   font-size: 14px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #121212;
 }

@@ -1,8 +1,8 @@
-.order-page {  
-  width: 100%;  
+.order-page {
+  width: 100%;
   display: flex;
-  flex-direction: column;   
-  padding-left: 64px; 
+  flex-direction: column;
+  padding-left: 64px;
   box-sizing: border-box;
 }
 
@@ -10,10 +10,10 @@
   margin: 0;
 }
 
-.order-page .header { 
-  padding: 32px 64px; 
+.order-page .header {
+  padding: 32px 64px;
   box-sizing: border-box;
-}   
+}
 
 .steps-body {
   display: flex;
@@ -24,11 +24,11 @@
 }
 
 @media (max-width: 520px) {
-  .order-page {  
+  .order-page {
     padding-left: 0;
   }
 
-  .order-page .header { 
+  .order-page .header {
     padding: 0;
   }
 }

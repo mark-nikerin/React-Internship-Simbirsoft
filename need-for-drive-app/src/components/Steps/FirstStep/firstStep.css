@@ -1,4 +1,4 @@
-.map {  
+.map {
   max-width: 736px;
   height: auto;
 }
@@ -6,7 +6,7 @@
 .map-title {
   font-weight: 400;
   font-size: 14px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #121212;
   margin-bottom: 16px;
   margin-top: 48px;

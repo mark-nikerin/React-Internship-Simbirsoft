@@ -2,7 +2,7 @@ import React from "react";
 import ConfirmOrder from "./ConfirmOrder";
 import "./fourthStep.css";
 import "../step.css";
-import carImage from "../../../assets/cars/6.png"
+import carImage from "../../../assets/cars/6.png";
 
 const FourthStep = () => {
   return (
@@ -21,7 +21,11 @@ const FourthStep = () => {
             <span>12.06.2019 12:00</span>
           </div>
         </div>
-        <img className="selected-car__image" src={`${carImage}`} alt="car"></img> 
+        <img
+          className="selected-car__image"
+          src={`${carImage}`}
+          alt="car"
+        ></img>
       </div>
     </div>
   );
