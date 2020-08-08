@@ -1,5 +1,5 @@
 .map {
-  max-width: 736px;
+  max-width: 500px;
   height: auto;
 }
 
@@ -10,4 +10,10 @@
   color: #121212;
   margin-bottom: 16px;
   margin-top: 48px;
+}
+
+@media (max-width: 520px) {
+  .map-title {
+    margin-top: 16px;
+  }
 }

@@ -4,10 +4,9 @@
   justify-content: flex-start;
   padding: 32px 32px;
   padding-right: 64px;
-  min-width: 400px;
+  width: 35%;
   box-sizing: border-box;
   border-left: solid 1px #eeeeee;
-  border-top: solid 1px #eeeeee;
 }
 
 .order-info button {
@@ -65,8 +64,8 @@
   line-height: 16px;
   color: #999999;
   text-align: right;
-  white-space: nowrap;
-  margin-left: 12px;
+  white-space: pre-wrap;
+  padding-left: 12px;
 }
 
 .price {
@@ -90,4 +89,27 @@
   font-size: 16px;
   line-height: 16px;
   color: #121212;
+}
+
+@media (max-width: 520px) {
+  .order-info { 
+    width: 100%;
+    padding: 32px 32px;
+    border-top: solid 1px #eeeeee;
+    border-left: none;
+  }
+
+  .order-info button.inactive {
+    width: 100vw;
+    margin-left: -32px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .order-info { 
+    width: 100%; 
+    border-top: solid 1px #eeeeee;
+    border-left: none;
+  } 
 }

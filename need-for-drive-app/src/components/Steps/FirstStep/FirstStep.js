@@ -1,6 +1,6 @@
 import React from "react";
 import "./firstStep.css";
-import "../step.css";
+import "../steps.css";
 import map from "../../../assets/map.png";
 
 const FirstStep = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import "../step.css";
+import "../steps.css";
 import "./secondStep.css";
 import firstCar from "../../../assets/cars/1.png";
 import secondCar from "../../../assets/cars/2.png";
