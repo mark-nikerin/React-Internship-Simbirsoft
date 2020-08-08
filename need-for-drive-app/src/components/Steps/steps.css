@@ -1,12 +1,8 @@
 .step {
   display: flex;
-  padding: 32px 64px;
-  padding-right: 200px;
-  flex-direction: column;
-  width: 90%;
-  min-width: 50%;
-  overflow: hidden;
-  border-top: solid 1px #eeeeee;
+  padding: 32px 64px; 
+  flex-direction: column; 
+  overflow: hidden; 
 }
 
 .filters {
@@ -158,6 +154,14 @@
   color: #121212;
 }
 
+.search__item input:focus {
+  border-bottom: 1px solid #0ec261;
+}
+
+.search__item input:focus::placeholder {
+  visibility: hidden;
+}
+
 .search__item input::placeholder {
   color: #999999;
 }
@@ -193,4 +197,29 @@
 
 .search__point input::placeholder {
   color: #999999;
+}
+
+@media (max-width: 520px) {
+  .step {
+    padding: 32px 32px;
+  }
+
+  .search {
+    margin-right: 0;
+    margin-left: 0;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .search__item {
+    flex-direction: column;
+    align-items: flex-start; 
+    width: 100%;
+  }
+
+  .search__item input { 
+     margin-top: 8px;
+     margin-left: 0; 
+     width: 100%;
+  }
 }

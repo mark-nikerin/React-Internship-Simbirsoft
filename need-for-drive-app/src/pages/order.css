@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: row;
   align-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 }
@@ -29,6 +30,13 @@
   }
 
   .order-page .header {
-    padding: 0;
+    padding: 0px 16px;
+    padding-bottom: 16px;
+  }
+} 
+
+@media (max-width: 1040px) {
+  .steps-body {
+    flex-direction: column;
   }
 }
