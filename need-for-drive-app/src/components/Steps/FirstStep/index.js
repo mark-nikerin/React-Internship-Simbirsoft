@@ -1,3 +1,3 @@
-import FirstStep from "./FirstStep"
+import FirstStep from "./FirstStep";
 
 export default FirstStep;

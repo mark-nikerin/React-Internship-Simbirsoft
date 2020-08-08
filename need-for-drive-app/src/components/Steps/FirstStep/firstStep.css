@@ -1,13 +1,19 @@
-.map {  
-  max-width: 736px;
+.map {
+  max-width: 500px;
   height: auto;
 }
 
 .map-title {
   font-weight: 400;
   font-size: 14px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #121212;
   margin-bottom: 16px;
   margin-top: 48px;
+}
+
+@media (max-width: 520px) {
+  .map-title {
+    margin-top: 16px;
+  }
 }
