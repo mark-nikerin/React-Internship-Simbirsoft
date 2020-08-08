@@ -2,7 +2,7 @@
   margin: 0;
   padding: 8px 64px; 
   border-top: solid 1px #eeeeee;
-  border-bottom: solid 1px #eeeeee;
+  border-bottom: solid 1px #eeeeee; 
 }
 
 .steps-menu li {
@@ -52,8 +52,8 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  color: #121212;
-  display: none;
+  color: #121212; 
+  visibility: hidden;
 }
 
 @media ( max-width:510px )
@@ -61,6 +61,11 @@
   .steps-menu {
     padding: 8px 32px;
   } 
+
+  .menu-order-number {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 @media ( max-width: 499px )
