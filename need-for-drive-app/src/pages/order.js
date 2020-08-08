@@ -16,7 +16,7 @@ const OrderPage = () => {
       <Header />
       <StepsMenu />
       <div className="steps-body">
-        <SecondStep /> 
+        <ThirdStep /> 
         <OrderInfo />
       </div>
     </div>
