@@ -1,3 +1,3 @@
-import StepsMenu from './StepsMenu';
+import StepsMenu from "./StepsMenu";
 
 export default StepsMenu;

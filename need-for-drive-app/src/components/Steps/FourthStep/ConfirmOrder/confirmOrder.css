@@ -1,35 +1,37 @@
 .modal {
-  position: fixed; 
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 100;
-  visibility: hidden;
-} 
+  max-height: 100vh;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 100; 
+}
 
-.modal.visible {    
+.modal.visible {
   visibility: visible;
 }
 
-.confirm-order {   
-  display: flex; 
-  flex-direction: column; 
+.buttons {
+}
+
+.confirm-order {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;  
-  width: 100%;   
-  margin-top: -40px;  
+  height: 100%;
+  width: 100%;
+  margin-top: -40px;
 }
 
 .confirm-order h2 {
   font-weight: normal;
   font-size: 24px;
-  line-height: 28px; 
-  text-align: center; 
+  line-height: 28px;
+  text-align: center;
   color: #121212;
   margin-bottom: 32px;
 }
@@ -54,4 +56,17 @@
 .confirm-order .button.red:active {
   background: linear-gradient(90deg, #160000 2.61%, #480008 112.6%);
   background-blend-mode: darken;
+}
+
+@media (max-width:520px) {
+  .buttons { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+
+  .buttons .button { 
+    width: 100vw;
+  }
 }

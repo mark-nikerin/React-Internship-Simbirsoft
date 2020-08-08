@@ -1,8 +1,8 @@
-.order-page {  
-  width: 100%;  
+.order-page {
+  width: 100%;
   display: flex;
-  flex-direction: column;   
-  padding-left: 64px; 
+  flex-direction: column;
+  padding-left: 64px;
   box-sizing: border-box;
 }
 
@@ -10,25 +10,33 @@
   margin: 0;
 }
 
-.order-page .header { 
-  padding: 32px 64px; 
+.order-page .header {
+  padding: 32px 64px;
   box-sizing: border-box;
-}   
+}
 
 .steps-body {
   display: flex;
   flex-direction: row;
   align-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 }
 
 @media (max-width: 520px) {
-  .order-page {  
+  .order-page {
     padding-left: 0;
   }
 
-  .order-page .header { 
-    padding: 0;
+  .order-page .header {
+    padding: 0px 16px;
+    padding-bottom: 16px;
+  }
+} 
+
+@media (max-width: 1040px) {
+  .steps-body {
+    flex-direction: column;
   }
 }

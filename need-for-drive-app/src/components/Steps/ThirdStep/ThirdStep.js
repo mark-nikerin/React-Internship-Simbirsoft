@@ -1,5 +1,5 @@
 import React from "react";
-import "../step.css";
+import "../steps.css";
 import "./thirdStep.css";
 
 const ThirdStep = () => {

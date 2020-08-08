@@ -1,73 +1,72 @@
-.order-info { 
-  display: flex; 
+.order-info {
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 32px 32px;
   padding-right: 64px;
-  min-width: 400px; 
+  width: 35%;
   box-sizing: border-box;
-  border-left: solid 1px #EEEEEE;   
-  border-top: solid 1px #EEEEEE;
-} 
+  border-left: solid 1px #eeeeee;
+}
 
-.order-info button { 
-  width: 100%;  
+.order-info button {
+  width: 100%;
 }
 
 .order-info button.inactive {
   cursor: default;
-  background: #EEEEEE;
+  background: #eeeeee;
 }
 
 .order-info h1 {
-  text-align: end; 
+  text-align: end;
   font-weight: 600;
   font-size: 18px;
   line-height: 21px;
-  text-align: right; 
-  color: #121212; 
+  text-align: right;
+  color: #121212;
 }
 
 .info {
   list-style: none;
   margin: 32px 0px;
   padding: 0;
-} 
+}
 
 .info__item {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   align-items: flex-end;
-  justify-content: space-between;  
+  justify-content: space-between;
   overflow: hidden;
 }
 
-.info__item h4 { 
+.info__item h4 {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
-  line-height: 16px; 
-  color: #121212;    
+  line-height: 16px;
+  color: #121212;
   white-space: nowrap;
   overflow: hidden;
-}  
-
-.info__item h4::after {  
-  content: '...................................................................................................................................................';  
-  color: #999999;
-  margin-left: 12px; 
 }
 
-.info__item span { 
-  margin: 0; 
+.info__item h4::after {
+  content: "...................................................................................................................................................";
+  color: #999999;
+  margin-left: 12px;
+}
+
+.info__item span {
+  margin: 0;
   font-weight: 400;
   font-size: 14px;
-  line-height: 16px; 
-  color: #999999;  
-  text-align: right; 
-  white-space: nowrap;
-  margin-left: 12px; 
-}  
+  line-height: 16px;
+  color: #999999;
+  text-align: right;
+  white-space: pre-wrap;
+  padding-left: 12px;
+}
 
 .price {
   display: flex;
@@ -80,7 +79,7 @@
 .price h3 {
   font-weight: bold;
   font-size: 16px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #121212;
 }
 
@@ -88,6 +87,29 @@
   margin-left: 8px;
   font-weight: 500;
   font-size: 16px;
-  line-height: 16px;  
+  line-height: 16px;
   color: #121212;
+}
+
+@media (max-width: 520px) {
+  .order-info { 
+    width: 100%;
+    padding: 32px 32px;
+    border-top: solid 1px #eeeeee;
+    border-left: none;
+  }
+
+  .order-info button.inactive {
+    width: 100vw;
+    margin-left: -32px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .order-info { 
+    width: 100%; 
+    border-top: solid 1px #eeeeee;
+    border-left: none;
+  } 
 }

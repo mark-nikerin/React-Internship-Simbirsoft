@@ -1,5 +1,5 @@
 import React from "react";
-import "../step.css";
+import "../steps.css";
 import "./secondStep.css";
 import firstCar from "../../../assets/cars/1.png";
 import secondCar from "../../../assets/cars/2.png";
@@ -13,7 +13,8 @@ const SecondStep = () => {
     <div className="step">
       <div className="filters">
         <label className="checked">
-          <input type="radio" name="model" defaultChecked="true"></input>Все модели
+          <input type="radio" name="model" defaultChecked="true"></input>Все
+          модели
         </label>
         <label>
           <input type="radio" name="model"></input>Эконом
@@ -26,43 +27,43 @@ const SecondStep = () => {
         <div className="cars__item">
           <div className="title">
             <h3>ELANTRA</h3>
-            <span>12 000 - 25 000 ₽</span> 
-          </div> 
+            <span>12 000 - 25 000 ₽</span>
+          </div>
           <img src={`${firstCar}`} alt="firstCar"></img>
         </div>
         <div className="cars__item">
           <div className="title">
             <h3>i30 N</h3>
-            <span>10 000 - 32 000 ₽</span> 
-          </div> 
+            <span>10 000 - 32 000 ₽</span>
+          </div>
           <img src={`${secondCar}`} alt="secondCar"></img>
         </div>
         <div className="cars__item">
           <div className="title">
             <h3>CRETA</h3>
-            <span>12 000 - 25 000 ₽</span> 
-          </div> 
+            <span>12 000 - 25 000 ₽</span>
+          </div>
           <img src={`${thirdCar}`} alt="thirdCar"></img>
         </div>
         <div className="cars__item selected">
           <div className="title">
             <h3>SONATA</h3>
-            <span>10 000 - 32 000 ₽</span> 
-          </div> 
+            <span>10 000 - 32 000 ₽</span>
+          </div>
           <img src={`${fourthCar}`} alt="fourthCar"></img>
         </div>
         <div className="cars__item">
           <div className="title">
             <h3>i30 N</h3>
-            <span>10 000 - 32 000 ₽</span> 
-          </div> 
+            <span>10 000 - 32 000 ₽</span>
+          </div>
           <img src={`${fifthCar}`} alt="fifthCar"></img>
         </div>
         <div className="cars__item">
           <div className="title">
             <h3>ELANTRA</h3>
-            <span>12 000 - 25 000 ₽</span> 
-          </div> 
+            <span>12 000 - 25 000 ₽</span>
+          </div>
           <img src={`${sixthCar}`} alt="sixthCar"></img>
         </div>
       </div>
