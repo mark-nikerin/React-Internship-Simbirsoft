@@ -2,57 +2,76 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items:center;
+  align-items: center;
   justify-content: flex-start;
   margin-bottom: 30px;
   margin-top: 50px;
 }
 
 .cars__item {
-  cursor: pointer;  
+  cursor: pointer;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #EEEEEE;
+  border: 1px solid #eeeeee;
   padding: 16px;
   min-height: 224px;
   min-width: 368px;
   height: 224px;
   width: 368px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   margin-left: -1px;
   margin-bottom: -1px;
   z-index: 0;
 }
 
-.cars__item:hover { 
-  border-color: #0EC261;
+.cars__item:hover {
+  border-color: #0ec261;
   z-index: 2;
 }
 
-.cars__item:active, .cars__item.selected{
-  border-color:#999999;
+.cars__item:active,
+.cars__item.selected {
+  border-color: #999999;
   z-index: 1;
-} 
+}
 
-.cars__item img { 
+.cars__item img {
   margin-left: auto;
   width: 256px;
-  height: auto; 
+  height: auto;
 }
 
 .title h3 {
-  margin: 0; 
+  margin: 0;
   font-weight: normal;
   font-size: 18px;
-  line-height: 21px; 
+  line-height: 21px;
   color: #121212;
 }
 
-.title span { 
+.title span {
   font-weight: normal;
   font-size: 14px;
-  line-height: 16px; 
+  line-height: 16px;
   color: #999999;
 }
 
+@media (max-width: 520px) {
+  .cars {
+    margin-top: 32px; 
+  }
+
+  .cars__item {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: unset;
+    min-height: 200px;
+    height: 200px;
+  }
+
+  .cars__item img {
+    width: 80%;
+    max-width: 80%; 
+  }
+}

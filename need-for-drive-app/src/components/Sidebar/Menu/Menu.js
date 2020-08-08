@@ -2,11 +2,10 @@ import React from "react";
 import "./menu.css";
 import icons from "../../../assets/icons.svg";
 
-const Menu = ({ isMenuOpen, openMenu }) => { 
-
+const Menu = ({ isMenuOpen, openMenu }) => {
   const onClick = (event) => {
     event.preventDefault();
-    openMenu(!isMenuOpen); 
+    openMenu(!isMenuOpen);
   };
 
   return (
@@ -31,7 +30,7 @@ const Menu = ({ isMenuOpen, openMenu }) => {
         </div>
       </div>
       <div
-        className={isMenuOpen ? "transparent-menu" : "transparent-menu_hidden"} 
+        className={isMenuOpen ? "transparent-menu" : "transparent-menu_hidden"}
         onClick={(event) => onClick(event)}
       ></div>
     </>

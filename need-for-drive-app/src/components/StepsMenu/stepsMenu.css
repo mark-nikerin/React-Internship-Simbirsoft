@@ -1,48 +1,83 @@
-.steps-menu {
+.steps-menu { 
   margin: 0;
-  padding: 8px 64px;
-  box-sizing: border-box;
-  border-bottom: solid 1px #EEEEEE;
-}  
+  padding: 8px 64px; 
+  border-top: solid 1px #eeeeee;
+  border-bottom: solid 1px #eeeeee;
+}
 
-.steps-menu li {  
+.steps-menu li {
   cursor: default;
-  display: inline; 
-  margin-right: 16px;  
+  display: inline;
+  margin-right: 16px;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  color: #999999; 
-  margin-right: 11px;
-} 
+  color: #999999;
+  margin-right: 11px;  
+}
 
 .steps-menu li:first-child {
   margin-left: 0;
 }
 
-.steps-menu li::after {    
-  display: inline-block; 
-  content: ""; 
-  border: 4px solid transparent; 
-  border-left: 6px solid #999999; 
+.steps-menu li::after {
+  display: inline-block;
+  content: "";
+  border: 4px solid transparent;
+  border-left: 6px solid #999999;
   margin-left: 16px;
-} 
-  
-.steps-menu li:last-child::after {   
-  display: none; 
-} 
+}
 
-.steps-menu li.active {    
+.steps-menu li:last-child::after {
+  display: none;
+}
+
+.steps-menu li.active {
   cursor: pointer;
   color: #121212;
 }
 
-.steps-menu li.current {   
+.steps-menu li.current {
   cursor: pointer;
-  color: #0EC261;
+  color: #0ec261;
 }
 
 .steps-menu li.active:hover {
-  color: #0EC261;
-} 
- 
+  color: #0ec261;
+}
+
+.menu-order-number {
+  margin: 8px 0;
+  margin-left: 64px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+  display: none;
+}
+
+@media ( max-width:510px )
+{
+  .steps-menu {
+    padding: 8px 32px;
+  } 
+}
+
+@media ( max-width: 499px )
+{
+  .steps-menu {
+    padding: 8px 32px; 
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: scroll; 
+  } 
+}
+
+
+@media ( max-width:1040px )
+{
+  .steps-menu {
+    white-space: nowrap; 
+    padding-right: 0px;
+  }
+}
