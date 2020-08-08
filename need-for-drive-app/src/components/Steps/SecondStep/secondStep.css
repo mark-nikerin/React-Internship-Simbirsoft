@@ -65,5 +65,13 @@
   .cars__item {
     margin-left: auto;
     margin-right: auto;
+    min-width: unset;
+    min-height: 200px;
+    height: 200px;
+  }
+
+  .cars__item img {
+    width: 80%;
+    max-width: 80%; 
   }
 }
