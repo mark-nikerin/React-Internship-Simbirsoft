@@ -1,5 +1,5 @@
 .main-body {
-  display: flex; 
+  display: flex;
   min-height: 100vh;
   flex-direction: row;
 }

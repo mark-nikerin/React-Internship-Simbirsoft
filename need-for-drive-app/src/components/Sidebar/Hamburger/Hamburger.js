@@ -1,16 +1,15 @@
 import React from "react";
 import "./hamburger.css";
 
-const Hamburger = ({openMenu, isMenuOpen}) => { 
-
+const Hamburger = ({ openMenu, isMenuOpen }) => {
   const onClick = (event) => {
     event.preventDefault();
-    openMenu(!isMenuOpen); 
+    openMenu(!isMenuOpen);
   };
 
   return (
     <button
-      className={isMenuOpen ?  "hamburger_is-open" : "hamburger"}
+      className={isMenuOpen ? "hamburger_is-open" : "hamburger"}
       onClick={(event) => onClick(event)}
     >
       <div className="hamburger__box">

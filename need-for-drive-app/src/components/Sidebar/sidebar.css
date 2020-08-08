@@ -5,8 +5,9 @@
   justify-content: space-between;
   background-color: #111518;
   width: 64px;
-  height: 100vh; 
+  height: 100vh;
   position: fixed;
+  z-index: 99;
 }
 
 @media (max-width: 520px) {
