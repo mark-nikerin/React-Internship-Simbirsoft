@@ -6,7 +6,7 @@ const ConfirmOrder = () => {
     <div className="modal">
       <div className="confirm-order">
         <h2>Подтвердить заказ</h2>
-        <div>
+        <div className="buttons">
           <button className="button">
             <span>Подтвердить</span>
           </button>
