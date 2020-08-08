@@ -1,0 +1,13 @@
+.step__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.step__title:first-child {
+  margin-top: 0;
+}

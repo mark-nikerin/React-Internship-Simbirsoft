@@ -1,8 +1,0 @@
-.step { 
-  display: flex;
-  padding: 32px 64px;
-  flex-direction: column;
-  width: 90%;  
-  min-width: 50%;
-  overflow: hidden;
-}

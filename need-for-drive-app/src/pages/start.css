@@ -1,12 +1,12 @@
-.start-page {  
+.start-page {
   width: 100vw;
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   margin-left: 64px;
 }
 
 @media (max-width: 520px) {
-  .start-page {  
+  .start-page {
     margin-left: 0;
   }
 }
