@@ -1,7 +1,7 @@
 import React from "react";
 import ConfirmOrder from "./ConfirmOrder";
 import "./fourthStep.css";
-import "../step.css";
+import "../steps.css";
 import carImage from "../../../assets/cars/6.png";
 
 const FourthStep = () => {

@@ -1,7 +1,8 @@
-.steps-menu {
+.steps-menu { 
   margin: 0;
-  padding: 8px 64px;
+  padding: 8px 64px; 
   border-top: solid 1px #eeeeee;
+  border-bottom: solid 1px #eeeeee; 
 }
 
 .steps-menu li {
@@ -12,7 +13,7 @@
   font-size: 14px;
   line-height: 16px;
   color: #999999;
-  margin-right: 11px;
+  margin-right: 11px;  
 }
 
 .steps-menu li:first-child {
@@ -51,6 +52,37 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  color: #121212;
-  display: none;
+  color: #121212; 
+  visibility: hidden;
+}
+
+@media ( max-width:510px )
+{
+  .steps-menu {
+    padding: 8px 32px;
+  } 
+
+  .menu-order-number {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media ( max-width: 499px )
+{
+  .steps-menu {
+    padding: 8px 32px; 
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: scroll; 
+  } 
+}
+
+
+@media ( max-width:1040px )
+{
+  .steps-menu {
+    white-space: nowrap; 
+    padding-right: 0px;
+  }
 }

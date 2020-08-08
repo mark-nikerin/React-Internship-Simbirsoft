@@ -60,3 +60,14 @@
   line-height: 16px;
   color: #121212;
 }
+
+@media (max-width: 520px) {
+   .selected-car {
+     flex-direction: column;
+   }
+
+   .selected-car__image {
+     margin-right: auto;
+     margin-left: auto;
+   }
+}
