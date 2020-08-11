@@ -18,17 +18,8 @@ const StepsMenu = (props) => {
           if (id === props.currentStep - 1)
             return <li className="current">{menuItem}</li>;
           if (id < props.currentStep - 1)
-            return (
-              <li
-                className="active"
-                onClick={(event) => onMenuClick(event, id + 1)}
-              >
-                {menuItem}
-              </li>
-            );
-          return (
-            <li onClick={(event) => onMenuClick(event, id + 1)}>{menuItem}</li>
-          );
+            return <li className="active" onClick={(event) => onMenuClick(event, id + 1)}>{menuItem}</li>;
+          return <li>{menuItem}</li>;
         })}
       </ul>
       <span className="menu-order-number">Заказ номер RU58491823</span>
