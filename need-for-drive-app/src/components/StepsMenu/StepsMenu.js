@@ -8,21 +8,31 @@ const StepsMenu = (props) => {
 
   const onMenuClick = (event, id) => {
     event.preventDefault();
-    props.setPrevStep(id);
+    props.setStep(id);
   };
 
   return (
     <React.Fragment>
-      <ul className="steps-menu">
-        {menuItems.map((menuItem, id) => {
-          if (id === props.currentStep - 1)
-            return <li className="current">{menuItem}</li>;
-          if (id < props.currentStep - 1)
-            return <li className="active" onClick={(event) => onMenuClick(event, id + 1)}>{menuItem}</li>;
-          return <li>{menuItem}</li>;
-        })}
-      </ul>
-      <span className="menu-order-number">Заказ номер RU58491823</span>
+      {props.currentStep === 6 ? (
+        <span className="menu-order-number">Заказ номер RU58491823</span>
+      ) : (
+        <ul className="steps-menu">
+          {menuItems.map((menuItem, id) => {
+            if (id === props.currentStep - 1)
+              return <li className="current">{menuItem}</li>;
+            if (id < props.currentStep - 1)
+              return (
+                <li
+                  className="active"
+                  onClick={(event) => onMenuClick(event, id + 1)}
+                >
+                  {menuItem}
+                </li>
+              );
+            return <li>{menuItem}</li>;
+          })}
+        </ul>
+      )}
     </React.Fragment>
   );
 };

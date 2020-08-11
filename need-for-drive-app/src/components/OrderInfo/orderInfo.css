@@ -99,7 +99,10 @@
     border-left: none;
   }
 
-  .order-info button.inactive {
+  .order-info button,
+  .order-info button:hover,
+  .order-info button.inactive,
+  .order-info button.inactive:hover {
     width: 100vw;
     margin-left: -32px;
     margin-bottom: 48px;

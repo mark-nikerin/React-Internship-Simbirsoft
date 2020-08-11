@@ -1,13 +1,11 @@
 import React from "react";
-import ConfirmOrder from "./ConfirmOrder";
 import "./fourthStep.css";
 import "../steps.css";
 import carImage from "../../../assets/cars/6.png";
 
 const FourthStep = () => {
   return (
-    <div className="step">
-      <ConfirmOrder />
+    <div className="step"> 
       <div className="selected-car">
         <div className="selected-car__info">
           <h1 className="info__title">Hyndai, i30 N</h1>

@@ -5,7 +5,7 @@ import OrderInfo from "../components/OrderInfo";
 import Steps from "../components/Steps";
 
 import { connect } from "react-redux"; 
-import { setNextStep, setPrevStep } from "../store/order/actions";
+import { setNextStep, setPrevStep, setStep } from "../store/order/actions";
   
 import "./order.css";
  
@@ -14,10 +14,10 @@ const OrderPage = (props) => {
   return (
     <div className="order-page">
       <Header />
-      <StepsMenu currentStep={props.currentStep} setPrevStep={props.setPrevStep}/>
+      <StepsMenu currentStep={props.currentStep} setStep={props.setStep}/>
       <div className="steps-body">
-        <Steps currentStep={props.currentStep} />
-        <OrderInfo currentStep={props.currentStep} setNextStep={props.setNextStep} />
+        <Steps currentStep={props.currentStep} setPrevStep={props.setPrevStep} setNextStep={props.setNextStep}/>
+        <OrderInfo currentStep={props.currentStep} setNextStep={props.setNextStep} setStep={props.setStep} />
       </div>
     </div>
   );
@@ -33,6 +33,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   setNextStep,
   setPrevStep,
+  setStep,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

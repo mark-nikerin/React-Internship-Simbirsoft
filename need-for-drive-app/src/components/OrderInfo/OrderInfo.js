@@ -1,13 +1,23 @@
 import React from "react";
 import "./orderInfo.css";
 
-const buttonLabels = ["Выбрать модель", "Дополнительно", "Итого", "Заказать"];
+const buttonLabels = [
+  "Выбрать модель",
+  "Дополнительно",
+  "Итого",
+  "Заказать",
+  "Заказать",
+  "Отменить",
+];
 
 const OrderInfo = (props) => {
   const onButtonClick = (event) => {
     event.preventDefault();
-    props.setNextStep();
-  }
+    if (props.currentStep === 6) props.setStep(1);
+    else {
+      props.setNextStep();
+    }
+  };
 
   return (
     <div className="order-info">
@@ -22,8 +32,8 @@ const OrderInfo = (props) => {
         <h3>Цена:</h3>
         <span>От 8000 до 12000 ₽</span>
       </div>
-      <button className="button" onClick={(event) => onButtonClick(event)}>
-        <span>{buttonLabels[props.currentStep-1]}</span>
+      <button className={props.currentStep === 6 ? "button red" : "button"} onClick={(event) => onButtonClick(event)}>
+        <span>{buttonLabels[props.currentStep - 1]}</span>
       </button>
     </div>
   );

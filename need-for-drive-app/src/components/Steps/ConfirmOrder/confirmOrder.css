@@ -14,10 +14,7 @@
 .modal.visible {
   visibility: visible;
 }
-
-.buttons {
-}
-
+  
 .confirm-order {
   display: flex;
   flex-direction: column;
@@ -44,17 +41,17 @@
   margin-right: 8px;
 }
 
-.confirm-order .button.red {
+.button.red {
   background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
   background-blend-mode: darken;
 }
 
-.confirm-order .button.red:hover {
+.button.red:hover {
   background: linear-gradient(90deg, #301700 2.61%, #620022 112.6%);
   background-blend-mode: darken;
 }
 
-.confirm-order .button.red:active {
+.button.red:active {
   background: linear-gradient(90deg, #160000 2.61%, #480008 112.6%);
   background-blend-mode: darken;
 }
