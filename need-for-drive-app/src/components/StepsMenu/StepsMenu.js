@@ -20,7 +20,7 @@ const StepsMenu = (props) => {
           {menuItems.map((menuItem, id) => {
             if (id === props.currentStep - 1)
               return <li className="current">{menuItem}</li>;
-            if (id < props.currentStep - 1)
+            if (id <= props.currentStep)
               return (
                 <li
                   className="active"
