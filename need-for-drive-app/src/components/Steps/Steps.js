@@ -4,12 +4,10 @@ import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 import FourthStep from "./FourthStep";
 
-const Steps = () => {
-   
+const Steps = (props) => {
     
-  const switchSteps = () => {
-    console.log(2);
-    switch(2) {
+  const switchSteps = (currentStep) => { 
+    switch(currentStep) {
       case 1:
         return <FirstStep/>;
       case 2:
@@ -24,7 +22,7 @@ const Steps = () => {
   }
 
   return(   
-    switchSteps(2) 
+    switchSteps(props.currentStep) 
   );
 }
 

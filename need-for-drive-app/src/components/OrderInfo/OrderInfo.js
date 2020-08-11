@@ -1,7 +1,12 @@
 import React from "react";
 import "./orderInfo.css";
 
-const OrderInfo = () => {
+const OrderInfo = (props) => {
+  const onButtonClick = (event) => {
+    event.preventDefault();
+    props.setNextStep();
+  }
+
   return (
     <div className="order-info">
       <h1>Ваш заказ:</h1>
@@ -15,7 +20,7 @@ const OrderInfo = () => {
         <h3>Цена:</h3>
         <span>От 8000 до 12000 ₽</span>
       </div>
-      <button className="button inactive">
+      <button className="button inactive" onClick={(event) => onButtonClick(event)}>
         <span>Выбрать модель</span>
       </button>
     </div>
