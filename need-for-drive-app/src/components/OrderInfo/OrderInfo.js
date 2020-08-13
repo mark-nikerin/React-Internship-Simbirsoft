@@ -13,6 +13,7 @@ const buttonLabels = [
 const OrderInfo = (props) => {
   const onButtonClick = (event) => {
     event.preventDefault();
+    window.scrollTo(0, 0);
     if (props.currentStep === 6) props.setStep(1);
     else {
       props.setNextStep();
@@ -31,10 +32,10 @@ const OrderInfo = (props) => {
       <div className="price">
         <h3>Цена:</h3>
         <span>От 8000 до 12000 ₽</span>
-      </div>
+      </div> 
       <button className={props.currentStep === 6 ? "button red" : "button"} onClick={(event) => onButtonClick(event)}>
         <span>{buttonLabels[props.currentStep - 1]}</span>
-      </button>
+      </button> 
     </div>
   );
 };
