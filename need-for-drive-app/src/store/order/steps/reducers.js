@@ -5,8 +5,7 @@ const defaultState = {
   filledSteps: [],
 };
 
-export const orderReducer = (state = defaultState, action) => {
-  console.log(state);
+export const stepsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case MOVE_TO_NEXT_STEP: {
       const step = state.currentStep + 1;

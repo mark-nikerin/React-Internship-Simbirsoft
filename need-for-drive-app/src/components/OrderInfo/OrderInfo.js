@@ -24,18 +24,25 @@ const OrderInfo = (props) => {
     <div className="order-info">
       <h1>Ваш заказ:</h1>
       <ul className="info">
-        <li className="info__item">
-          <h4>Пункт выдачи</h4>
-          <span>Ульяновск, Нариманова 42</span>
-        </li>
+        {props.infoItems.map((infoItem, id) => {
+          return (
+            <li className="info__item" key={id}>
+              <h4>{infoItem.title}</h4>
+              <span>{infoItem.value}</span>
+            </li>
+          );
+        })}
       </ul>
       <div className="price">
         <h3>Цена:</h3>
         <span>От 8000 до 12000 ₽</span>
-      </div> 
-      <button className={props.currentStep === 6 ? "button red" : "button"} onClick={(event) => onButtonClick(event)}>
+      </div>
+      <button
+        className={props.currentStep === 6 ? "button red" : "button"}
+        onClick={(event) => onButtonClick(event)}
+      >
         <span>{buttonLabels[props.currentStep - 1]}</span>
-      </button> 
+      </button>
     </div>
   );
 };

@@ -9,13 +9,13 @@ const Steps = (props) => {
   const switchSteps = (currentStep) => {
     switch (currentStep) {
       case 1:
-        return <FirstStep />;
+        return <FirstStep addInfoItem={props.addInfoItem} removeInfoItem={props.removeInfoItem}/>;
       case 2:
-        return <SecondStep />;
+        return <SecondStep addInfoItem={props.addInfoItem} removeInfoItem={props.removeInfoItem}/>;
       case 3:
-        return <ThirdStep />;
+        return <ThirdStep addInfoItem={props.addInfoItem} removeInfoItem={props.removeInfoItem}/>;
       case 4:
-        return <FourthStep />;
+        return <FourthStep addInfoItem={props.addInfoItem} removeInfoItem={props.removeInfoItem}/>;
       case 5:
         return (
           <>
@@ -24,9 +24,9 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return <FourthStep />
+        return <FourthStep addInfoItem={props.addInfoItem} removeInfoItem={props.removeInfoItem}/>
       default:
-        return <FirstStep />;
+        return <FirstStep addInfoItem={props.addInfoItem} removeInfoItem={props.removeInfoItem}/>;
     }
   };
 

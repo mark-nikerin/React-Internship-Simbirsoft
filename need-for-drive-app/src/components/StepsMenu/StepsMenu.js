@@ -3,8 +3,7 @@ import "./stepsMenu.css";
 
 const menuItems = ["Местоположение", "Модель", "Дополнительно", "Итого"];
 
-const StepsMenu = (props) => {
-  console.log(props);
+const StepsMenu = (props) => { 
 
   const onMenuClick = (event, id) => {
     event.preventDefault();
@@ -19,17 +18,22 @@ const StepsMenu = (props) => {
         <ul className="steps-menu">
           {menuItems.map((menuItem, id) => {
             if (id === props.currentStep - 1)
-              return <li className="current">{menuItem}</li>;
+              return (
+                <li className="current" key={id}>
+                  {menuItem}
+                </li>
+              );
             if (id <= props.currentStep)
               return (
                 <li
                   className="active"
+                  key={id}
                   onClick={(event) => onMenuClick(event, id + 1)}
                 >
                   {menuItem}
                 </li>
               );
-            return <li>{menuItem}</li>;
+            return <li key={id}>{menuItem}</li>;
           })}
         </ul>
       )}
