@@ -9,6 +9,7 @@ import {
   setNextStep,
   setPrevStep,
   setStep,
+  setField
 } from "../store/order/steps/actions";
 import { addInfoItem, removeInfoItem } from "../store/order/orderInfo/actions";
 
@@ -26,6 +27,8 @@ const OrderPage = (props) => {
           setNextStep={props.setNextStep}
           addInfoItem={props.addInfoItem}
           removeInfoItem={props.removeInfoItem}
+          setField={props.setField}
+          fieldValues={props.fieldValues}
         />
         <OrderInfo
           currentStep={props.currentStep}
@@ -42,6 +45,7 @@ const mapStateToProps = (state) => {
   return {
     currentStep: state.steps.currentStep,
     filledSteps: state.steps.filledSteps,
+    fieldValues: state.steps.fieldValues,
     infoItems: state.orderInfo.infoItems,
   };
 };
@@ -51,7 +55,8 @@ const mapDispatchToProps = {
   setPrevStep,
   setStep,
   addInfoItem,
-  removeInfoItem
+  removeInfoItem,
+  setField
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

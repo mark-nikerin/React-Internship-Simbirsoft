@@ -2,16 +2,7 @@ import { ADD_INFO_ITEM, REMOVE_INFO_ITEM } from "./actions";
 import _ from "lodash";
 
 const defaultState = {
-  infoItems: [
-    {
-      title: "title",
-      value: "value",
-    },
-    {
-      title: "12",
-      value: "22",
-    },
-  ],
+  infoItems: [],
 };
 
 export const orderInfoReducer = (state = defaultState, action) => {

@@ -39,6 +39,7 @@
   align-items: flex-end;
   justify-content: space-between;
   overflow: hidden;
+  margin: 8px 0px;
 }
 
 .info__item h4 {
