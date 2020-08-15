@@ -13,7 +13,7 @@ const defaultState = {
     { field: "city", value: "" },
     { field: "point", value: "" },
     { field: "modelFilter", value: 0 },
-    { field: "cars", value: 0 },
+    { field: "cars", value: null },
     { field: "colorFilter", value: 0 },
     { field: "dateStart", value: "23-04-2020" },
     { field: "dateEnd", value: "24-04-2020" },

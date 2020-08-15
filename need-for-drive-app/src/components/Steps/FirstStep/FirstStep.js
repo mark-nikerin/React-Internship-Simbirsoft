@@ -42,6 +42,9 @@ const FirstStep = (props) => {
     }
   };
 
+  const cityValue = _.find(props.fieldValues,  {field: "city"}).value;
+  const pointValue = _.find(props.fieldValues, {field: "point"}).value;
+
   return (
     <div className="step">
       <div className="search">
@@ -52,8 +55,7 @@ const FirstStep = (props) => {
             placeholder="Начните вводить город ..."
             onBlur={(event) => onCityBlur(event, event.target.value)} 
             onChange={(event) => onCityChange(event, event.target.value)}
-            value={_.find(props.fieldValues,  {field: "city"}).value} 
-          ></input>
+            value={cityValue}></input>
         </div>
         <div className="search__item">
           <h3>Пункт выдачи</h3>
@@ -62,7 +64,7 @@ const FirstStep = (props) => {
             placeholder="Начните вводить пункт ..."
             onBlur={(event) => onPointBlur(event, event.target.value)} 
             onChange={(event) => onPointChange(event, event.target.value)}
-            value={_.find(props.fieldValues, {field: "point"}).value} 
+            value={pointValue} 
           ></input>
         </div>
       </div>
