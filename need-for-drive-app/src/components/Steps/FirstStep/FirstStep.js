@@ -33,7 +33,7 @@ const FirstStep = (props) => {
       props.removeInfoItem(locationInfo.title);
     } else {
       inputInfo.point = value;
-      let newLocationInfoValue = inputInfo.city + "," + inputInfo.point;
+      let newLocationInfoValue = inputInfo.city + ", " + inputInfo.point;
 
       if (locationInfo.value !== newLocationInfoValue) {
         locationInfo.value = newLocationInfoValue;

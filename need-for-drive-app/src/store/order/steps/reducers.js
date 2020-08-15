@@ -15,10 +15,10 @@ const defaultState = {
     { field: "modelFilter", value: 0 },
     { field: "cars", value: null },
     { field: "colorFilter", value: 0 },
-    { field: "dateStart", value: "23-04-2020" },
-    { field: "dateEnd", value: "24-04-2020" },
+    { field: "dateStart", value: "" },
+    { field: "dateEnd", value: "" },
     { field: "plan", value: 0 },
-    { field: "additional", value: [] },
+    { field: "additionals", value: [] },
   ],
 };
 

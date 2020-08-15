@@ -9,7 +9,7 @@ import fifthCar from "../../../assets/cars/5.png";
 import sixthCar from "../../../assets/cars/6.png";
 import _ from "lodash";
 
-const filters = ["Все модели", "Эконом", "Премиум"];
+const modelFilters = ["Все модели", "Эконом", "Премиум"];
 const cars = [
   {
     model: "ELANTRA",
@@ -62,7 +62,7 @@ const SecondStep = (props) => {
   return (
     <div className="step">
       <div className="filters">
-        {filters.map((filter, id) => {
+        {modelFilters.map((filter, id) => {
           if (id === checkedFilterId) {
             return (
               <label
