@@ -35,6 +35,7 @@ const OrderInfo = (props) => {
           return (
             <li className="info__item" key={id}>
               <h4>{infoItem.title}</h4>
+              <div className="dots"></div>
               <span>{infoItem.value}</span>
             </li>
           );

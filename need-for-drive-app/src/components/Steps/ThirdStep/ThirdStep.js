@@ -26,9 +26,9 @@ const getDateDiff = (dateStart, dateEnd) => {
   const amountDays = Math.floor(amountHours / 24);
   const remainingHours = amountHours % 24;
 
-  const days = amountDays === 0 ? "" : amountDays + "д";
-  const hours = remainingHours === 0 ? "" : remainingHours + "ч";
-  const minutes = remainingMinutes === 0 ? "" : remainingMinutes + "м";
+  const days = amountDays === 0 ? "" : amountDays + "д ";
+  const hours = remainingHours === 0 ? "" : remainingHours + "ч ";
+  const minutes = remainingMinutes === 0 ? "" : remainingMinutes + "м ";
 
   return days + hours + minutes;
 };
