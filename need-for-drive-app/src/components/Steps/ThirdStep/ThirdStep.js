@@ -15,8 +15,6 @@ const additionals = [
   { title: "Правый руль", price: "1600₽" },
 ];
 
-let dateBorders = { min: null, max: null };
-
 const getDateDiff = (dateStart, dateEnd) => {
   const amountMinutes = Math.abs(
     moment(dateStart).diff(moment(dateEnd), "minutes")
@@ -36,12 +34,11 @@ const getDateDiff = (dateStart, dateEnd) => {
 };
 
 const ThirdStep = (props) => {
-  const checkedColorId = _.find(props.fieldValues, { field: "colorFilter" })
-    .value;
+  const checkedColorId = _.find(props.fieldValues, { field: "colorFilter" }).value;
   const selectedPlanId = _.find(props.fieldValues, { field: "plan" }).value;
-  const checkedAdditionalIds = _.find(props.fieldValues, {
-    field: "additionals",
-  }).value;
+  const checkedAdditionalIds = _.find(props.fieldValues, { field: "additionals" }).value;
+  const startDate = _.find(props.fieldValues, { field: "dateStart" }).value;
+  const endDate = _.find(props.fieldValues, { field: "dateEnd" }).value;
 
   const onColorCheck = (event, id) => {
     event.preventDefault();
@@ -70,13 +67,21 @@ const ThirdStep = (props) => {
     props.setField("additionals", additionalsIds);
   };
 
-  const onDateSelect = (event) => {
-    props.setField("dateStart", dateBorders.min);
-    props.setField("dateEnd", dateBorders.max);
-    props.addInfoItem({
-      title: "Длительность аренды",
-      value: getDateDiff(dateBorders.min, dateBorders.max),
-    });
+  const onDateSelect = (start, end) => {
+    if (start !== null) {
+      props.setField("dateStart", start);
+    }
+
+    if (end !== null) {
+      props.setField("dateEnd", end);
+    }
+
+    if (start !== null && end !== null) {
+      props.addInfoItem({
+        title: "Длительность аренды",
+        value: getDateDiff(start, end),
+      });
+    }
   };
 
   return (
@@ -110,40 +115,51 @@ const ThirdStep = (props) => {
         <div className="search__item">
           <h3>C</h3>
           <input
-            type="text"
+            type={startDate == null ? "text" : "datetime-local"}
             placeholder="Введите дату и время"
             min={moment(new Date()).format("YYYY-MM-DDTHH:mm")}
+            defaultValue={
+              startDate == null
+                ? null
+                : moment(new Date(startDate)).format("YYYY-MM-DDTHH:mm")
+            }
             onFocus={(event) => {
               event.preventDefault();
               event.target.type = "datetime-local";
-              event.target.max = dateBorders.max;
+              event.target.max = endDate;
             }}
             onBlur={(event) => {
               event.preventDefault();
               event.target.type = "datetime-local";
-              dateBorders.min = moment(event.target.value).format(
+              const startDate = moment(event.target.value).format(
                 "YYYY-MM-DDTHH:mm"
               );
+              onDateSelect(startDate, endDate);
             }}
           ></input>
         </div>
         <div className="search__item">
           <h3>По</h3>
           <input
-            type="text"
+            type={endDate == null ? "text" : "datetime-local"}
             placeholder="Введите дату и время"
+            defaultValue={
+              endDate == null
+                ? null
+                : moment(new Date(endDate)).format("YYYY-MM-DDTHH:mm")
+            }
             onFocus={(event) => {
               event.preventDefault();
               event.target.type = "datetime-local";
-              event.target.min = dateBorders.min;
+              event.target.min = startDate;
             }}
             onBlur={(event) => {
               event.preventDefault();
               event.target.type = "datetime-local";
-              dateBorders.max = moment(event.target.value).format(
+              const endDate = moment(event.target.value).format(
                 "YYYY-MM-DDTHH:mm"
               );
-              onDateSelect(event);
+              onDateSelect(startDate, endDate);
             }}
           ></input>
         </div>
