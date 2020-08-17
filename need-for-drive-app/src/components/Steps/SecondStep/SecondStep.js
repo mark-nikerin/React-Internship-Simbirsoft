@@ -7,65 +7,101 @@ import thirdCar from "../../../assets/cars/3.png";
 import fourthCar from "../../../assets/cars/4.png";
 import fifthCar from "../../../assets/cars/5.png";
 import sixthCar from "../../../assets/cars/6.png";
+import _ from "lodash";
 
-const SecondStep = () => {
+const modelFilters = ["Все модели", "Эконом", "Премиум"];
+const cars = [
+  {
+    model: "ELANTRA",
+    price: "12 000 - 25 000 ₽",
+    img: `${firstCar}`,
+  },
+  {
+    model: "i30 N",
+    price: "10 000 - 32 000 ₽",
+    img: `${secondCar}`,
+  },
+  {
+    model: "CRETA",
+    price: "12 000 - 25 000 ₽",
+    img: `${thirdCar}`,
+  },
+  {
+    model: "SONATA",
+    price: "10 000 - 32 000 ₽",
+    img: `${fourthCar}`,
+  },
+  {
+    model: "i30 N",
+    price: "10 000 - 32 000 ₽",
+    img: `${fifthCar}`,
+  },
+  {
+    model: "SONATA",
+    price: "10 000 - 32 000 ₽",
+    img: `${sixthCar}`,
+  },
+];
+
+const SecondStep = (props) => {
+  const checkedFilterId = _.find(props.fieldValues, { field: "modelFilter" })
+    .value;
+  const selectedCarId = _.find(props.fieldValues, { field: "cars" }).value;
+
+  const onFilterCheck = (event, id) => {
+    event.preventDefault();
+    props.setField("modelFilter", id);
+  };
+
+  const onCarSelect = (event, id, model) => {
+    event.preventDefault();
+    props.setField("cars", id);
+    props.addInfoItem({ title: "Модель", value: model });
+  };
+
   return (
     <div className="step">
       <div className="filters">
-        <label className="checked">
-          <input type="radio" name="model" defaultChecked="true"></input>Все
-          модели
-        </label>
-        <label>
-          <input type="radio" name="model"></input>Эконом
-        </label>
-        <label>
-          <input type="radio" name="model"></input>Премиум
-        </label>
+        {modelFilters.map((filter, id) => {
+          if (id === checkedFilterId) {
+            return (
+              <label
+                className="checked"
+                key={id}
+                onClick={(event) => onFilterCheck(event, id)}
+              >
+                <input type="radio" defaultChecked={true}></input>
+                {filter}
+              </label>
+            );
+          } else {
+            return (
+              <label key={id} onClick={(event) => onFilterCheck(event, id)}>
+                <input type="radio"></input>
+                {filter}
+              </label>
+            );
+          }
+        })}
       </div>
       <div className="cars">
-        <div className="cars__item">
-          <div className="title">
-            <h3>ELANTRA</h3>
-            <span>12 000 - 25 000 ₽</span>
-          </div>
-          <img src={`${firstCar}`} alt="firstCar"></img>
-        </div>
-        <div className="cars__item">
-          <div className="title">
-            <h3>i30 N</h3>
-            <span>10 000 - 32 000 ₽</span>
-          </div>
-          <img src={`${secondCar}`} alt="secondCar"></img>
-        </div>
-        <div className="cars__item">
-          <div className="title">
-            <h3>CRETA</h3>
-            <span>12 000 - 25 000 ₽</span>
-          </div>
-          <img src={`${thirdCar}`} alt="thirdCar"></img>
-        </div>
-        <div className="cars__item selected">
-          <div className="title">
-            <h3>SONATA</h3>
-            <span>10 000 - 32 000 ₽</span>
-          </div>
-          <img src={`${fourthCar}`} alt="fourthCar"></img>
-        </div>
-        <div className="cars__item">
-          <div className="title">
-            <h3>i30 N</h3>
-            <span>10 000 - 32 000 ₽</span>
-          </div>
-          <img src={`${fifthCar}`} alt="fifthCar"></img>
-        </div>
-        <div className="cars__item">
-          <div className="title">
-            <h3>ELANTRA</h3>
-            <span>12 000 - 25 000 ₽</span>
-          </div>
-          <img src={`${sixthCar}`} alt="sixthCar"></img>
-        </div>
+        {cars.map((car, id) => {
+          return (
+            <div
+              className={
+                id === selectedCarId ? "cars__item selected" : "cars__item"
+              }
+              key={id}
+              onClick={(event) => onCarSelect(event, id, car.model)}
+            >
+              <div className="title">
+                <h3>{car.model}</h3>
+                <span>{car.price}</span>
+              </div>
+              <img src={car.img} alt={car.model}></img>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

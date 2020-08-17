@@ -39,6 +39,7 @@
   align-items: flex-end;
   justify-content: space-between;
   overflow: hidden;
+  margin: 8px 0px;
 }
 
 .info__item h4 {
@@ -64,7 +65,7 @@
   line-height: 16px;
   color: #999999;
   text-align: right;
-  white-space: pre-wrap;
+  white-space: normal;
   padding-left: 12px;
 }
 
@@ -99,7 +100,10 @@
     border-left: none;
   }
 
-  .order-info button.inactive {
+  .order-info button,
+  .order-info button:hover,
+  .order-info button.inactive,
+  .order-info button.inactive:hover {
     width: 100vw;
     margin-left: -32px;
     margin-bottom: 48px;

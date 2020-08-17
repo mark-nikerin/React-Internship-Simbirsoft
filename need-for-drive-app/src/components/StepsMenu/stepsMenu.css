@@ -47,14 +47,15 @@
 }
 
 .menu-order-number {
-  margin: 8px 0;
-  margin-left: 64px;
+  margin: 8px 0; 
+  padding: 8px 64px;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  color: #121212; 
-  visibility: hidden;
-}
+  color: #121212;  
+  border-top: solid 1px #eeeeee;
+  border-bottom: solid 1px #eeeeee; 
+} 
 
 @media ( max-width:510px )
 {

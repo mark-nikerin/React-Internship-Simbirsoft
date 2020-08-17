@@ -1,6 +1,3 @@
-import FirstStep from "./FirstStep";
-import SecondStep from "./SecondStep";
-import ThirdStep from "./ThirdStep";
-import FourthStep from "./FourthStep";
+import Steps from "./Steps"
 
-export { FirstStep, SecondStep, ThirdStep, FourthStep };
+export default Steps;

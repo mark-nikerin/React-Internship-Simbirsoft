@@ -26,13 +26,13 @@
 }
 
 .cars__item:hover {
-  border-color: #0ec261;
+  border-color: #999999;
   z-index: 2;
 }
 
 .cars__item:active,
-.cars__item.selected {
-  border-color: #999999;
+.cars__item.selected { 
+  border-color: #0ec261;
   z-index: 1;
 }
 

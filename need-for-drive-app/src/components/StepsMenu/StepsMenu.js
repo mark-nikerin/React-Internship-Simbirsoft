@@ -1,16 +1,42 @@
 import React from "react";
 import "./stepsMenu.css";
 
-const StepsMenu = () => {
+const menuItems = ["Местоположение", "Модель", "Дополнительно", "Итого"];
+
+const StepsMenu = (props) => { 
+
+  const onMenuClick = (event, id) => {
+    event.preventDefault();
+    props.setStep(id);
+  };
+
   return (
     <React.Fragment>
-      <ul className="steps-menu">
-        <li className="current">Местоположение</li>
-        <li>Модель</li>
-        <li>Дополнительно</li>
-        <li>Итого</li>
-      </ul>
-      <span className="menu-order-number">Заказ номер RU58491823</span>
+      {props.currentStep === 6 ? (
+        <span className="menu-order-number">Заказ номер RU58491823</span>
+      ) : (
+        <ul className="steps-menu">
+          {menuItems.map((menuItem, id) => {
+            if (id === props.currentStep - 1)
+              return (
+                <li className="current" key={id}>
+                  {menuItem}
+                </li>
+              );
+            if (id <= props.currentStep)
+              return (
+                <li
+                  className="active"
+                  key={id}
+                  onClick={(event) => onMenuClick(event, id + 1)}
+                >
+                  {menuItem}
+                </li>
+              );
+            return <li key={id}>{menuItem}</li>;
+          })}
+        </ul>
+      )}
     </React.Fragment>
   );
 };

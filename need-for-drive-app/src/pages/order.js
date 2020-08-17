@@ -2,25 +2,61 @@ import React from "react";
 import Header from "../components/Header";
 import StepsMenu from "../components/StepsMenu";
 import OrderInfo from "../components/OrderInfo";
+import Steps from "../components/Steps";
+
+import { connect } from "react-redux";
 import {
-  FirstStep,
-  SecondStep,
-  ThirdStep,
-  FourthStep,
-} from "../components/Steps";
+  setNextStep,
+  setPrevStep,
+  setStep,
+  setField
+} from "../store/order/steps/actions";
+import { addInfoItem, removeInfoItem } from "../store/order/orderInfo/actions";
+
 import "./order.css";
 
-const OrderPage = () => {
+const OrderPage = (props) => {
   return (
     <div className="order-page">
       <Header />
-      <StepsMenu />
+      <StepsMenu currentStep={props.currentStep} setStep={props.setStep} />
       <div className="steps-body">
-        <FourthStep /> 
-        <OrderInfo />
+        <Steps
+          currentStep={props.currentStep}
+          setPrevStep={props.setPrevStep}
+          setNextStep={props.setNextStep}
+          addInfoItem={props.addInfoItem}
+          removeInfoItem={props.removeInfoItem}
+          setField={props.setField}
+          fieldValues={props.fieldValues}
+        />
+        <OrderInfo
+          currentStep={props.currentStep}
+          setNextStep={props.setNextStep}
+          setStep={props.setStep}
+          infoItems={props.infoItems}
+        />
       </div>
     </div>
   );
 };
 
-export default OrderPage;
+const mapStateToProps = (state) => {
+  return {
+    currentStep: state.steps.currentStep,
+    filledSteps: state.steps.filledSteps,
+    fieldValues: state.steps.fieldValues,
+    infoItems: state.orderInfo.infoItems,
+  };
+};
+
+const mapDispatchToProps = {
+  setNextStep,
+  setPrevStep,
+  setStep,
+  addInfoItem,
+  removeInfoItem,
+  setField
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);
