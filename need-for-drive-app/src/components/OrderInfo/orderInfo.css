@@ -93,7 +93,7 @@
 }
 
 @media (max-width: 520px) {
-  .order-info { 
+  .order-info {
     width: 100%;
     padding: 32px 32px;
     border-top: solid 1px #eeeeee;
@@ -111,9 +111,9 @@
 }
 
 @media (max-width: 1040px) {
-  .order-info { 
-    width: 100%; 
+  .order-info {
+    width: 100%;
     border-top: solid 1px #eeeeee;
     border-left: none;
-  } 
+  }
 }

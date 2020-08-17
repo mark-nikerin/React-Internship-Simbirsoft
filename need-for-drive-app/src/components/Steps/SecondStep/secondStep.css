@@ -31,7 +31,7 @@
 }
 
 .cars__item:active,
-.cars__item.selected { 
+.cars__item.selected {
   border-color: #0ec261;
   z-index: 1;
 }
@@ -59,7 +59,7 @@
 
 @media (max-width: 520px) {
   .cars {
-    margin-top: 32px; 
+    margin-top: 32px;
   }
 
   .cars__item {
@@ -72,6 +72,6 @@
 
   .cars__item img {
     width: 80%;
-    max-width: 80%; 
+    max-width: 80%;
   }
 }

@@ -3,7 +3,7 @@ import "./stepsMenu.css";
 
 const menuItems = ["Местоположение", "Модель", "Дополнительно", "Итого"];
 
-const StepsMenu = (props) => { 
+const StepsMenu = (props) => {
 
   const onMenuClick = (event, id) => {
     event.preventDefault();
@@ -23,7 +23,7 @@ const StepsMenu = (props) => {
                   {menuItem}
                 </li>
               );
-            if (id <= props.currentStep)
+            if (props.filledSteps.indexOf(id) !== -1 || id < props.currentStep)
               return (
                 <li
                   className="active"

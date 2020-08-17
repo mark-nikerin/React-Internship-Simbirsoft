@@ -9,9 +9,14 @@ import {
   setNextStep,
   setPrevStep,
   setStep,
-  setField
+  setField,
+  resetFields,
 } from "../store/order/steps/actions";
-import { addInfoItem, removeInfoItem } from "../store/order/orderInfo/actions";
+import {
+  addInfoItem,
+  removeInfoItem,
+  resetInfoItems,
+} from "../store/order/orderInfo/actions";
 
 import "./order.css";
 
@@ -19,7 +24,11 @@ const OrderPage = (props) => {
   return (
     <div className="order-page">
       <Header />
-      <StepsMenu currentStep={props.currentStep} setStep={props.setStep} />
+      <StepsMenu
+        currentStep={props.currentStep}
+        setStep={props.setStep}
+        filledSteps={props.filledSteps}
+      />
       <div className="steps-body">
         <Steps
           currentStep={props.currentStep}
@@ -35,6 +44,9 @@ const OrderPage = (props) => {
           setNextStep={props.setNextStep}
           setStep={props.setStep}
           infoItems={props.infoItems}
+          filledSteps={props.filledSteps}
+          resetFields={props.resetFields}
+          resetInfoItems={props.resetInfoItems}
         />
       </div>
     </div>
@@ -56,7 +68,9 @@ const mapDispatchToProps = {
   setStep,
   addInfoItem,
   removeInfoItem,
-  setField
+  setField,
+  resetFields,
+  resetInfoItems,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

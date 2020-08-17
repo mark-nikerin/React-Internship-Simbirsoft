@@ -93,10 +93,11 @@ const Slider = () => {
               <div className="slide__dots">
                 {slides.map((item, index) => {
                   return index === slideIndex ? (
-                    <div className="slide__dot_active"></div>
+                    <div className="slide__dot_active" key={index}></div>
                   ) : (
                     <div
                       className="slide__dot"
+                      key={index}
                       onClick={(event) => {
                         onDotClick(event, index);
                       }}
