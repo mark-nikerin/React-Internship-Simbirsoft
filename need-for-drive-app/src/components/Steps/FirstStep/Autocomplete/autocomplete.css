@@ -44,3 +44,15 @@
 .autocomplete_items span:first-child {
   margin-top: 8px;
 }
+
+@media (max-width: 520px) {
+  .autocomplete {
+    width: 100%;
+    overflow: hidden;
+  }
+  .autocomplete_items {
+    margin-top: 28px;
+    margin-left: 0;
+    width: 100%;
+  }
+}

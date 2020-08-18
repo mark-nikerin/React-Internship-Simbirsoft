@@ -103,6 +103,23 @@
     border-left: none;
   }
 
+  .info {
+    margin: 8px 0;
+  }
+
+  .order-info h1 {
+    font-size: 26px;
+  }
+
+  .info__item {
+    margin: 24px 0;
+  }
+
+  .info__item span {
+    white-space: pre-line;
+    word-break: keep-all;
+  }
+
   .order-info button,
   .order-info button:hover,
   .order-info button.inactive,

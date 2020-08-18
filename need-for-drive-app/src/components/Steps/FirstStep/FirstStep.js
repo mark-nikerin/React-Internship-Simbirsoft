@@ -39,6 +39,36 @@ const FirstStep = (props) => {
     }
   };
 
+  const getCities = async () => {
+    const response = await fetch(
+      "http://api-factory.simbirsoft1.com/api/db/city",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
+        },
+      }
+    );
+    const cities = await response.json();
+    console.log(cities);
+    return cities.data;
+  };
+
+  const getPoints = async () => {
+    const response = await fetch(
+      "http://api-factory.simbirsoft1.com/api/db/point",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
+        },
+      }
+    );
+    const points = await response.json();
+    console.log(points);
+    return points.data;
+  };
+
   const cityValue = _.find(props.fieldValues, { field: "city" }).value;
   const pointValue = _.find(props.fieldValues, { field: "point" }).value;
 
@@ -52,7 +82,7 @@ const FirstStep = (props) => {
             onInputBlur={onCityBlur}
             value={cityValue}
             placeholder={"Начните вводить город ..."}
-            suggestions={["Самара", "Ульяновск"]}
+            onFetchSuggestions={getCities}
           />
         </div>
         <div className="search__item">
@@ -62,7 +92,7 @@ const FirstStep = (props) => {
             onInputBlur={onPointBlur}
             value={pointValue}
             placeholder={"Начните вводить пункт ..."}
-            suggestions={[ "Первая улица", "Вторая улица", "Третья улица", "Четвертая улица"]}
+            onFetchSuggestions={getPoints}
           />
         </div>
       </div>
