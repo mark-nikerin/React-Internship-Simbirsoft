@@ -1,34 +1,31 @@
 import React from "react";
+import _ from "lodash";
+import Autocomplete from "./Autocomplete";
+import map from "../../../assets/map.png";
 import "./firstStep.css";
 import "../steps.css";
-import map from "../../../assets/map.png";
-import _ from "lodash";
+import "./Autocomplete/autocomplete.css";
 
 let inputInfo = { city: "", point: "" };
 
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
 const FirstStep = (props) => {
-
-  const onCityChange = (event, value) => {
-    event.preventDefault();
+  const onCityChange = (value) => {
     props.setField("city", value);
-  }
+  };
 
-  const onPointChange = (event, value) => {
-    event.preventDefault();
+  const onPointChange = (value) => {
     props.setField("point", value);
-  }
+  };
 
-  const onCityBlur = (event, value) => {
-    event.preventDefault();
+  const onCityBlur = (value) => {
     if (value === "") {
       props.removeInfoItem(locationInfo.title);
     } else inputInfo.city = value;
   };
 
-  const onPointBlur = (event, value) => {
-    event.preventDefault();
+  const onPointBlur = (value) => {
     if (value === "") {
       props.removeInfoItem(locationInfo.title);
     } else {
@@ -42,30 +39,31 @@ const FirstStep = (props) => {
     }
   };
 
-  const cityValue = _.find(props.fieldValues,  {field: "city"}).value;
-  const pointValue = _.find(props.fieldValues, {field: "point"}).value;
+  const cityValue = _.find(props.fieldValues, { field: "city" }).value;
+  const pointValue = _.find(props.fieldValues, { field: "point" }).value;
 
   return (
     <div className="step">
       <div className="search">
         <div className="search__item">
           <h3>Город</h3>
-          <input
-            type="search"
-            placeholder="Начните вводить город ..."
-            onBlur={(event) => onCityBlur(event, event.target.value)}
-            onChange={(event) => onCityChange(event, event.target.value)}
-            value={cityValue}></input>
+          <Autocomplete
+            onValueChange={onCityChange}
+            onInputBlur={onCityBlur}
+            value={cityValue}
+            placeholder={"Начните вводить город ..."}
+            suggestions={["Самара", "Ульяновск"]}
+          />
         </div>
         <div className="search__item">
           <h3>Пункт выдачи</h3>
-          <input
-            type="search"
-            placeholder="Начните вводить пункт ..."
-            onBlur={(event) => onPointBlur(event, event.target.value)}
-            onChange={(event) => onPointChange(event, event.target.value)}
+          <Autocomplete
+            onValueChange={onPointChange}
+            onInputBlur={onPointBlur}
             value={pointValue}
-          ></input>
+            placeholder={"Начните вводить пункт ..."}
+            suggestions={[ "Первая улица", "Вторая улица", "Третья улица", "Четвертая улица"]}
+          />
         </div>
       </div>
       <h3 className="map-title">Выбрать на карте:</h3>

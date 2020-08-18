@@ -1,8 +1,8 @@
 .step {
   display: flex;
-  padding: 32px 64px; 
-  flex-direction: column; 
-  overflow: hidden; 
+  padding: 32px 64px;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .filters {
@@ -199,6 +199,8 @@
   color: #999999;
 }
 
+
+
 @media (max-width: 520px) {
   .step {
     padding: 32px 32px;
@@ -213,22 +215,22 @@
 
   .search__item {
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 100%;
   }
 
-  .search__item input { 
+  .search__item input {
      margin-top: 8px;
-     margin-left: 0; 
+     margin-left: 0;
      width: 100%;
   }
 
-  .filters {  
+  .filters {
     align-items: flex-start;
     flex-wrap: wrap;
     margin-left: auto;
     margin-right:  auto;
-  } 
+  }
 
   .filters.vertical {
     margin-left: 0;

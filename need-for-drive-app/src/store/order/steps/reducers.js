@@ -9,7 +9,7 @@ import _ from "lodash";
 
 const defaultState = {
   currentStep: 1,
-  filledSteps: [1, 4, 5, 6],
+  filledSteps: [4, 5, 6],
   fieldValues: [
     { field: "city", value: "" },
     { field: "point", value: "" },
@@ -25,14 +25,16 @@ const defaultState = {
 
 const shouldFillStep = (step, state) => {
   switch (step) {
-    case 1:
-    case 2: {
+    case 1: {
       return (
         _.find(state.fieldValues, { field: "city" }).value !== "" &&
-        _.find(state.fieldValues, { field: "point" }).value !== "" &&
-        _.find(state.fieldValues, { field: "cars" }).value !== null
+        _.find(state.fieldValues, { field: "point" }).value !== ""
       );
     }
+    case 2: {
+      return _.find(state.fieldValues, { field: "cars" }).value !== null;
+    }
+
     case 3: {
       return (
         _.find(state.fieldValues, { field: "dateStart" }).value !== null &&
