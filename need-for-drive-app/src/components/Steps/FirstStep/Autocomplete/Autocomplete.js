@@ -35,7 +35,7 @@ const Autocomplete = (props) => {
         ></input>
         <div
           className={
-            visibility
+            visibility && value.length>=1
               ? "autocomplete_items"
               : "autocomplete_items-hidden"
           }
