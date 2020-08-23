@@ -1,34 +1,34 @@
 import React from "react";
+import _ from "lodash";
+import Autocomplete from "./Autocomplete";
+import map from "../../../assets/map.png";
 import "./firstStep.css";
 import "../steps.css";
-import map from "../../../assets/map.png";
-import _ from "lodash";
+import "./Autocomplete/autocomplete.css";
 
 let inputInfo = { city: "", point: "" };
 
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const FirstStep = (props) => {
-
-  const onCityChange = (event, value) => {
-    event.preventDefault();
+  console.log(API_KEY);
+  const onCityChange = (value) => {
     props.setField("city", value);
-  }
+  };
 
-  const onPointChange = (event, value) => {
-    event.preventDefault();
+  const onPointChange = (value) => {
     props.setField("point", value);
-  }
+  };
 
-  const onCityBlur = (event, value) => {
-    event.preventDefault();
+  const onCityBlur = (value) => {
     if (value === "") {
       props.removeInfoItem(locationInfo.title);
     } else inputInfo.city = value;
   };
 
-  const onPointBlur = (event, value) => {
-    event.preventDefault();
+  const onPointBlur = (value) => {
     if (value === "") {
       props.removeInfoItem(locationInfo.title);
     } else {
@@ -42,30 +42,69 @@ const FirstStep = (props) => {
     }
   };
 
-  const cityValue = _.find(props.fieldValues,  {field: "city"}).value;
-  const pointValue = _.find(props.fieldValues, {field: "point"}).value;
+  const getCitySuggestions = async () => {
+    const response = await fetch(
+      "http://api-factory.simbirsoft1.com/api/db/city",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": API_KEY,
+        },
+      }
+    );
+    const cities = await response.json();
+    const suggestions = cities.data.map((city) => {
+      return city.name;
+    });
+    return suggestions;
+  };
+
+  const getPointSuggestions = async () => {
+    const response = await fetch(
+      "http://api-factory.simbirsoft1.com/api/db/point",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": API_KEY,
+        },
+      }
+    );
+    const points = await response.json();
+    const suggestions = points.data
+      .filter((point) => {
+        return point.cityId.name === cityValue;
+      })
+      .map((point) => {
+        return point.name + ", " + point.address;
+      });
+    return suggestions;
+  };
+
+  const cityValue = _.find(props.fieldValues, { field: "city" }).value;
+  const pointValue = _.find(props.fieldValues, { field: "point" }).value;
 
   return (
     <div className="step">
       <div className="search">
         <div className="search__item">
           <h3>Город</h3>
-          <input
-            type="search"
-            placeholder="Начните вводить город ..."
-            onBlur={(event) => onCityBlur(event, event.target.value)}
-            onChange={(event) => onCityChange(event, event.target.value)}
-            value={cityValue}></input>
+          <Autocomplete
+            onValueChange={onCityChange}
+            onInputBlur={onCityBlur}
+            value={cityValue}
+            placeholder={"Начните вводить город ..."}
+            onFetchSuggestions={getCitySuggestions}
+          />
         </div>
         <div className="search__item">
           <h3>Пункт выдачи</h3>
-          <input
-            type="search"
-            placeholder="Начните вводить пункт ..."
-            onBlur={(event) => onPointBlur(event, event.target.value)}
-            onChange={(event) => onPointChange(event, event.target.value)}
+          <Autocomplete
+            onValueChange={onPointChange}
+            onInputBlur={onPointBlur}
             value={pointValue}
-          ></input>
+            placeholder={"Начните вводить пункт ..."}
+            onFetchSuggestions={getPointSuggestions}
+          />
         </div>
       </div>
       <h3 className="map-title">Выбрать на карте:</h3>
