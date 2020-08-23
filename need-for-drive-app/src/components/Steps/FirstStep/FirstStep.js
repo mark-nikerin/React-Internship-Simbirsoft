@@ -10,7 +10,10 @@ let inputInfo = { city: "", point: "" };
 
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const FirstStep = (props) => {
+  console.log(API_KEY);
   const onCityChange = (value) => {
     props.setField("city", value);
   };
@@ -39,34 +42,42 @@ const FirstStep = (props) => {
     }
   };
 
-  const getCities = async () => {
+  const getCitySuggestions = async () => {
     const response = await fetch(
       "http://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
+          "X-Api-Factory-Application-Id": API_KEY,
         },
       }
     );
     const cities = await response.json();
-    console.log(cities);
-    return cities.data;
+    const suggestions = cities.data.map((city) => {
+      return city.name;
+    });
+    return suggestions;
   };
 
-  const getPoints = async () => {
+  const getPointSuggestions = async () => {
     const response = await fetch(
       "http://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
+          "X-Api-Factory-Application-Id": API_KEY,
         },
       }
     );
     const points = await response.json();
-    console.log(points);
-    return points.data;
+    const suggestions = points.data
+      .filter((point) => {
+        return point.cityId.name === cityValue;
+      })
+      .map((point) => {
+        return point.name + ", " + point.address;
+      });
+    return suggestions;
   };
 
   const cityValue = _.find(props.fieldValues, { field: "city" }).value;
@@ -82,7 +93,7 @@ const FirstStep = (props) => {
             onInputBlur={onCityBlur}
             value={cityValue}
             placeholder={"Начните вводить город ..."}
-            onFetchSuggestions={getCities}
+            onFetchSuggestions={getCitySuggestions}
           />
         </div>
         <div className="search__item">
@@ -92,7 +103,7 @@ const FirstStep = (props) => {
             onInputBlur={onPointBlur}
             value={pointValue}
             placeholder={"Начните вводить пункт ..."}
-            onFetchSuggestions={getPoints}
+            onFetchSuggestions={getPointSuggestions}
           />
         </div>
       </div>

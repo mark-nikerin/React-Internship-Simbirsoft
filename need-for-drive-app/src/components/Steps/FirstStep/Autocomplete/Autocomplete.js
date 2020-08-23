@@ -13,7 +13,7 @@ const Autocomplete = (props) => {
   const onFetchSuggestions = async () => {
     const suggestions = await props.onFetchSuggestions();
     setSuggestions(suggestions);
-  }
+  };
 
   return (
     <>
@@ -35,29 +35,40 @@ const Autocomplete = (props) => {
         ></input>
         <div
           className={
-            visibility && value.length>=1
+            visibility && value.length >= 1
               ? "autocomplete_items"
               : "autocomplete_items-hidden"
           }
           key={2}
         >
-          {suggestions && suggestions.map((suggestion, id) => {
-            if (suggestion.name.toUpperCase().includes(value.toUpperCase())) {
-              return (
-                <span
-                  key={id}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    onValueChange(suggestion.name);
-                    props.onInputBlur(suggestion.name);
-                    setVisibility(false);
-                  }}
-                >
-                  {suggestion.name}
-                </span>
-              );
-            } else return <span style={{ display: "none" }} key={id}></span>;
-          })}
+          {suggestions && suggestions.length === 0 && (
+            <span
+              onClick={(event) => {
+                event.preventDefault();
+                setVisibility(false);
+              }}
+            >
+              Нет подходящих вариантов
+            </span>
+          )}
+          {suggestions &&
+            suggestions.map((suggestion, id) => {
+              if (suggestion.toUpperCase().includes(value.toUpperCase())) {
+                return (
+                  <span
+                    key={id}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      onValueChange(suggestion);
+                      props.onInputBlur(suggestion);
+                      setVisibility(false);
+                    }}
+                  >
+                    {suggestion}
+                  </span>
+                );
+              } else return <span style={{ display: "none" }} key={id}></span>;
+            })}
         </div>
       </div>
     </>
