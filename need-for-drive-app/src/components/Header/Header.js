@@ -8,7 +8,7 @@ const Header = () => {
       <a href="/React-Internship-Simbirsoft">Need for drive</a>
       <div className="location">
         <svg className="location__icon" width="18" height="20">
-          <use xlinkHref={`${icons}#location`}></use>
+          <use xlinkHref={`${icons}#location`}/>
         </svg>
         <span>
           <a href="https://yandex.ru/maps/?ll=48.482301,54.300849&z=12&l=map">

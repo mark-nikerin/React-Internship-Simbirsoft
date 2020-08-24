@@ -19,13 +19,13 @@ const Menu = ({ isMenuOpen, openMenu }) => {
         </li>
         <div className="menu__social-icons">
           <svg className="menu__social-icon" width="32" height="32">
-            <use xlinkHref={`${icons}#telegram`}></use>
+            <use xlinkHref={`${icons}#telegram`} />
           </svg>
           <svg className="menu__social-icon" width="32" height="32">
-            <use xlinkHref={`${icons}#facebook`}></use>
+            <use xlinkHref={`${icons}#facebook`} />
           </svg>
           <svg className="menu__social-icon" width="32" height="32">
-            <use xlinkHref={`${icons}#instagram`}></use>
+            <use xlinkHref={`${icons}#instagram`} />
           </svg>
         </div>
       </div>
