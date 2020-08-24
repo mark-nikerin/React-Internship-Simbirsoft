@@ -31,10 +31,7 @@ const shouldFillStep = (step, fieldValues) => {
       return fieldValues.selectedCar !== null;
     }
     case 3: {
-      return (
-        fieldValues.dateStart !== null &&
-        fieldValues.dateEnd !== null
-      );
+      return fieldValues.dateStart !== null && fieldValues.dateEnd !== null;
     }
     default:
       return true;
@@ -62,7 +59,7 @@ export const stepsReducer = (state = defaultState, action) => {
         currentStep: step,
       };
     case SET_FIELD: {
-      let newFieldValues = {...state.fieldValues};
+      let newFieldValues = { ...state.fieldValues };
       let newFilledSteps = [...state.filledSteps];
 
       const field = action.payload.field;
@@ -86,7 +83,7 @@ export const stepsReducer = (state = defaultState, action) => {
     case RESET_FIELDS: {
       return {
         ...state,
-        fieldValues: {...defaultState.fieldValues},
+        fieldValues: { ...defaultState.fieldValues },
         filledSteps: [...defaultState.filledSteps],
       };
     }
