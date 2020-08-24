@@ -84,21 +84,10 @@ export const stepsReducer = (state = defaultState, action) => {
       };
     }
     case RESET_FIELDS: {
-      let newFieldValues = {
-        city: "",
-        point: "",
-        modelFilter: 0,
-        selectedCar: null,
-        colorFilter: 0,
-        dateStart: null,
-        dateEnd: null,
-        plan: 0,
-        additionals: [],
-      };
       return {
         ...state,
-        fieldValues: newFieldValues,
-        filledSteps: [4, 5, 6],
+        fieldValues: {...defaultState.fieldValues},
+        filledSteps: [...defaultState.filledSteps],
       };
     }
     default:
