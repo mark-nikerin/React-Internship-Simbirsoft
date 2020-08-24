@@ -10,6 +10,7 @@ let inputInfo = { city: "", point: "" };
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
 const LocationStep = ({props}) => {
   const onCityChange = (value) => {
@@ -40,8 +41,10 @@ const LocationStep = ({props}) => {
     }
   };
 
+
+
   const getCitySuggestions = async () => {
-    const response = await fetch(
+    const response = await fetch(PROXY_URL +
       "http://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
@@ -58,7 +61,7 @@ const LocationStep = ({props}) => {
   };
 
   const getPointSuggestions = async () => {
-    const response = await fetch(
+    const response = await fetch(PROXY_URL +
       "http://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
