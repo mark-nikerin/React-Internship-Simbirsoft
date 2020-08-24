@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import Autocomplete from "./Autocomplete";
 import map from "../../../assets/map.png";
 import "./firstStep.css";
@@ -43,7 +42,7 @@ const FirstStep = (props) => {
 
   const getCitySuggestions = async () => {
     const response = await fetch(
-      "https://api-factory.simbirsoft1.com/api/db/city",
+      "http://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +59,7 @@ const FirstStep = (props) => {
 
   const getPointSuggestions = async () => {
     const response = await fetch(
-      "https://api-factory.simbirsoft1.com/api/db/point",
+      "http://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
           "Content-Type": "application/json",
@@ -79,8 +78,8 @@ const FirstStep = (props) => {
     return suggestions;
   };
 
-  const cityValue = _.find(props.fieldValues, { field: "city" }).value;
-  const pointValue = _.find(props.fieldValues, { field: "point" }).value;
+  const cityValue = props.fieldValues.city;
+  const pointValue = props.fieldValues.point;
 
   return (
     <div className="step">

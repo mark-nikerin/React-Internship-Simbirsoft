@@ -34,11 +34,11 @@ const getDateDiff = (dateStart, dateEnd) => {
 };
 
 const ThirdStep = (props) => {
-  const checkedColorId = _.find(props.fieldValues, { field: "colorFilter" }).value;
-  const selectedPlanId = _.find(props.fieldValues, { field: "plan" }).value;
-  const checkedAdditionalIds = _.find(props.fieldValues, { field: "additionals" }).value;
-  const startDate = _.find(props.fieldValues, { field: "dateStart" }).value;
-  const endDate = _.find(props.fieldValues, { field: "dateEnd" }).value;
+  const checkedColorId = props.fieldValues.colorFilter;
+  const selectedPlanId = props.fieldValues.plan;
+  const checkedAdditionalIds = props.fieldValues.additionals;
+  const startDate = props.fieldValues.dateStart;
+  const endDate = props.fieldValues.dateEnd;
 
   const onColorCheck = (event, id) => {
     event.preventDefault();
