@@ -11,9 +11,7 @@ const Header = () => {
           <use xlinkHref={`${icons}#location`}/>
         </svg>
         <span>
-          <a href="https://yandex.ru/maps/?ll=48.482301,54.300849&z=12&l=map">
             Ульяновск
-          </a>
         </span>
       </div>
     </div>

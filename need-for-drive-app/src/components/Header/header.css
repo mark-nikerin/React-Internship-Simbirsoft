@@ -15,7 +15,6 @@
 }
 
 .location {
-  cursor: pointer;
   display: flex;
   align-items: center;
 }
@@ -24,15 +23,7 @@
   stroke: #999999;
 }
 
-.location:hover a {
-  color: #0ec261;
-}
-
-.location:hover .location__icon {
-  stroke: #0ec261;
-}
-
-.location a {
+.location span {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
