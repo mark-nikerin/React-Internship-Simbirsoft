@@ -1,7 +1,7 @@
 import React from "react";
 import Autocomplete from "./Autocomplete";
 import map from "../../../assets/map.png";
-import "./firstStep.css";
+import "./locationStep.css";
 import "../steps.css";
 import "./Autocomplete/autocomplete.css";
 
@@ -11,7 +11,7 @@ let locationInfo = { title: "Пункт выдачи", value: "" };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const FirstStep = ({props}) => {
+const LocationStep = ({props}) => {
   const onCityChange = (value) => {
     props.setField("city", value);
   };
@@ -111,4 +111,4 @@ const FirstStep = ({props}) => {
   );
 };
 
-export default FirstStep;
+export default LocationStep;

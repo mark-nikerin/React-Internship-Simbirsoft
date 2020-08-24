@@ -1,7 +1,6 @@
 import React from "react";
 import "../steps.css";
-import "./thirdStep.css";
-import _ from "lodash";
+import "./additionalsStep.css";
 import moment from "moment";
 
 const colorFilters = ["Любой", "Красный", "Голубой"];
@@ -33,7 +32,7 @@ const getDateDiff = (dateStart, dateEnd) => {
   return days + hours + minutes;
 };
 
-const ThirdStep = ({props}) => {
+const AdditionalsStep = ({ props }) => {
   const checkedColorId = props.fieldValues.colorFilter;
   const selectedPlanId = props.fieldValues.plan;
   const checkedAdditionalIds = props.fieldValues.additionals;
@@ -191,7 +190,7 @@ const ThirdStep = ({props}) => {
       <h3 className="step__title">Доп. услуги</h3>
       <div className="filters vertical">
         {additionals.map((additional, id) => {
-          if (_.includes(checkedAdditionalIds, id)) {
+          if (checkedAdditionalIds.indexOf(id) !== -1) {
             return (
               <label
                 className="checked"
@@ -216,4 +215,4 @@ const ThirdStep = ({props}) => {
   );
 };
 
-export default ThirdStep;
+export default AdditionalsStep;

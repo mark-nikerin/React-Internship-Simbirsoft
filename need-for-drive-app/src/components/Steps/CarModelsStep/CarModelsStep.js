@@ -1,6 +1,6 @@
 import React from "react";
 import "../steps.css";
-import "./secondStep.css";
+import "./carModelsStep.css";
 import firstCar from "../../../assets/cars/1.png";
 import secondCar from "../../../assets/cars/2.png";
 import thirdCar from "../../../assets/cars/3.png";
@@ -42,7 +42,7 @@ const cars = [
   },
 ];
 
-const SecondStep = ({props}) => {
+const CarModelsStep = ({props}) => {
   const checkedFilterId = props.fieldValues.modelFilter;
   const selectedCarId = props.fieldValues.selectedCar;
 
@@ -105,4 +105,4 @@ const SecondStep = ({props}) => {
   );
 };
 
-export default SecondStep;
+export default CarModelsStep;

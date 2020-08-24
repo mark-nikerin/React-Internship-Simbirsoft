@@ -1,11 +1,11 @@
 import React from "react";
-import "./fourthStep.css";
+import "./finalStep.css";
 import "../steps.css";
 import carImage from "../../../assets/cars/6.png";
 
-const FourthStep = () => {
+const FinalStep = () => {
   return (
-    <div className="step"> 
+    <div className="step">
       <div className="selected-car">
         <div className="selected-car__info">
           <h1 className="info__title">Hyndai, i30 N</h1>
@@ -29,4 +29,4 @@ const FourthStep = () => {
   );
 };
 
-export default FourthStep;
+export default FinalStep;

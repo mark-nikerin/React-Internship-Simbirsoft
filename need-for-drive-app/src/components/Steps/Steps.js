@@ -1,8 +1,8 @@
 import React from "react";
-import FirstStep from "./FirstStep";
-import SecondStep from "./SecondStep";
-import ThirdStep from "./ThirdStep";
-import FourthStep from "./FourthStep";
+import LocationStep from "./LocationStep";
+import CarModelsStep from "./CarModelsStep";
+import AdditionalsStep from "./AdditionalsStep";
+import FinalStep from "./FinalStep";
 import ConfirmOrder from "./ConfirmOrder";
 
 const Steps = (props) => {
@@ -16,17 +16,17 @@ const Steps = (props) => {
   const switchSteps = (currentStep) => {
     switch (currentStep) {
       case 1:
-        return <FirstStep props={stepProps} />;
+        return <LocationStep props={stepProps} />;
       case 2:
-        return <SecondStep props={stepProps} />;
+        return <CarModelsStep props={stepProps} />;
       case 3:
-        return <ThirdStep props={stepProps} />;
+        return <AdditionalsStep props={stepProps} />;
       case 4:
-        return <FourthStep />;
+        return <FinalStep />;
       case 5:
         return (
           <>
-            <FourthStep />
+            <FinalStep />
             <ConfirmOrder
               setNextStep={props.setNextStep}
               setPrevStep={props.setPrevStep}
@@ -34,9 +34,9 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return <FourthStep />;
+        return <FinalStep />;
       default:
-        return <FirstStep props={stepProps} />;
+        return <LocationStep props={stepProps} />;
     }
   };
 
