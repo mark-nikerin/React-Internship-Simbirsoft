@@ -13,7 +13,6 @@ let locationInfo = { title: "Пункт выдачи", value: "" };
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const FirstStep = (props) => {
-  console.log(API_KEY);
   const onCityChange = (value) => {
     props.setField("city", value);
   };
@@ -44,7 +43,7 @@ const FirstStep = (props) => {
 
   const getCitySuggestions = async () => {
     const response = await fetch(
-      "http://api-factory.simbirsoft1.com/api/db/city",
+      "https://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +60,7 @@ const FirstStep = (props) => {
 
   const getPointSuggestions = async () => {
     const response = await fetch(
-      "http://api-factory.simbirsoft1.com/api/db/point",
+      "https://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
           "Content-Type": "application/json",
