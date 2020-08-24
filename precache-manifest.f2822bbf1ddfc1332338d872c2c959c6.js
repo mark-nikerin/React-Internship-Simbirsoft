@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8f58520f320bd1d8bcecf6a8a6185ea5",
+    "revision": "3f01c6f2037443c36b346abfcf96dfe7",
     "url": "/React-Internship-Simbirsoft/index.html"
   },
   {
-    "revision": "f75e62e0c33d95560642",
+    "revision": "0973b06fbcd25638de7b",
     "url": "/React-Internship-Simbirsoft/static/css/main.87ab3ebe.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React-Internship-Simbirsoft/static/js/2.784937bb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f75e62e0c33d95560642",
-    "url": "/React-Internship-Simbirsoft/static/js/main.d553fd96.chunk.js"
+    "revision": "0973b06fbcd25638de7b",
+    "url": "/React-Internship-Simbirsoft/static/js/main.a0f7987b.chunk.js"
   },
   {
     "revision": "29ecc82f54760c54c53e",
