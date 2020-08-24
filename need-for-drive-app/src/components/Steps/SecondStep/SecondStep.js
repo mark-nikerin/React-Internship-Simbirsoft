@@ -42,7 +42,7 @@ const cars = [
   },
 ];
 
-const SecondStep = (props) => {
+const SecondStep = ({props}) => {
   const checkedFilterId = props.fieldValues.modelFilter;
   const selectedCarId = props.fieldValues.selectedCar;
 

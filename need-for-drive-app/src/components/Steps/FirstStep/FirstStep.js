@@ -11,7 +11,7 @@ let locationInfo = { title: "Пункт выдачи", value: "" };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const FirstStep = (props) => {
+const FirstStep = ({props}) => {
   const onCityChange = (value) => {
     props.setField("city", value);
   };

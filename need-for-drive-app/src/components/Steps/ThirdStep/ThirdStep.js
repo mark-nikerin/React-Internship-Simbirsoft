@@ -33,7 +33,7 @@ const getDateDiff = (dateStart, dateEnd) => {
   return days + hours + minutes;
 };
 
-const ThirdStep = (props) => {
+const ThirdStep = ({props}) => {
   const checkedColorId = props.fieldValues.colorFilter;
   const selectedPlanId = props.fieldValues.plan;
   const checkedAdditionalIds = props.fieldValues.additionals;

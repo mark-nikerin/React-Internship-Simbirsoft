@@ -6,44 +6,23 @@ import FourthStep from "./FourthStep";
 import ConfirmOrder from "./ConfirmOrder";
 
 const Steps = (props) => {
+  const stepProps = {
+    addInfoItem: props.addInfoItem,
+    removeInfoItem: props.removeInfoItem,
+    setField: props.setField,
+    fieldValues: props.fieldValues,
+  };
+
   const switchSteps = (currentStep) => {
     switch (currentStep) {
       case 1:
-        return (
-          <FirstStep
-            addInfoItem={props.addInfoItem}
-            removeInfoItem={props.removeInfoItem}
-            setField={props.setField}
-            fieldValues={props.fieldValues}
-          />
-        );
+        return <FirstStep props={stepProps} />;
       case 2:
-        return (
-          <SecondStep
-            addInfoItem={props.addInfoItem}
-            removeInfoItem={props.removeInfoItem}
-            setField={props.setField}
-            fieldValues={props.fieldValues}
-          />
-        );
+        return <SecondStep props={stepProps} />;
       case 3:
-        return (
-          <ThirdStep
-            addInfoItem={props.addInfoItem}
-            removeInfoItem={props.removeInfoItem}
-            setField={props.setField}
-            fieldValues={props.fieldValues}
-          />
-        );
+        return <ThirdStep props={stepProps} />;
       case 4:
-        return (
-          <FourthStep
-            addInfoItem={props.addInfoItem}
-            removeInfoItem={props.removeInfoItem}
-            setField={props.setField}
-            fieldValues={props.fieldValues}
-          />
-        );
+        return <FourthStep />;
       case 5:
         return (
           <>
@@ -55,23 +34,9 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return (
-          <FourthStep
-            addInfoItem={props.addInfoItem}
-            removeInfoItem={props.removeInfoItem}
-            setField={props.setField}
-            fieldValues={props.fieldValues}
-          />
-        );
+        return <FourthStep />;
       default:
-        return (
-          <FirstStep
-            addInfoItem={props.addInfoItem}
-            removeInfoItem={props.removeInfoItem}
-            setField={props.setField}
-            fieldValues={props.fieldValues}
-          />
-        );
+        return <FirstStep props={stepProps} />;
     }
   };
 
