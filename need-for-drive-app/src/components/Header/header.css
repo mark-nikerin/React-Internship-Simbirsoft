@@ -7,6 +7,7 @@
 }
 
 .header a {
+  cursor: pointer;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;

@@ -1,18 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./header.css";
 import icons from "../../assets/icons.svg";
 
 const Header = () => {
   return (
     <div className="header">
-      <a href="/React-Internship-Simbirsoft">Need for drive</a>
+      <Link to="/"> Need for drive </Link>
       <div className="location">
         <svg className="location__icon" width="18" height="20">
-          <use xlinkHref={`${icons}#location`}/>
+          <use xlinkHref={`${icons}#location`} />
         </svg>
-        <span>
-            Ульяновск
-        </span>
+        <span>Ульяновск</span>
       </div>
     </div>
   );
