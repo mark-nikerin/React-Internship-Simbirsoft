@@ -1,13 +1,12 @@
 import React from "react";
 import "../steps.css";
-import "./secondStep.css";
+import "./carModelsStep.css";
 import firstCar from "../../../assets/cars/1.png";
 import secondCar from "../../../assets/cars/2.png";
 import thirdCar from "../../../assets/cars/3.png";
 import fourthCar from "../../../assets/cars/4.png";
 import fifthCar from "../../../assets/cars/5.png";
 import sixthCar from "../../../assets/cars/6.png";
-import _ from "lodash";
 
 const modelFilters = ["Все модели", "Эконом", "Премиум"];
 const cars = [
@@ -43,10 +42,9 @@ const cars = [
   },
 ];
 
-const SecondStep = (props) => {
-  const checkedFilterId = _.find(props.fieldValues, { field: "modelFilter" })
-    .value;
-  const selectedCarId = _.find(props.fieldValues, { field: "cars" }).value;
+const CarModelsStep = ({props}) => {
+  const checkedFilterId = props.fieldValues.modelFilter;
+  const selectedCarId = props.fieldValues.selectedCar;
 
   const onFilterCheck = (event, id) => {
     event.preventDefault();
@@ -55,7 +53,7 @@ const SecondStep = (props) => {
 
   const onCarSelect = (event, id, model) => {
     event.preventDefault();
-    props.setField("cars", id);
+    props.setField("selectedCar", id);
     props.addInfoItem({ title: "Модель", value: model });
   };
 
@@ -107,4 +105,4 @@ const SecondStep = (props) => {
   );
 };
 
-export default SecondStep;
+export default CarModelsStep;

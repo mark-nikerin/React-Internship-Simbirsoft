@@ -16,7 +16,6 @@ const OrderInfo = (props) => {
     if (props.filledSteps.indexOf(props.currentStep) !== -1) {
       window.scrollTo(0, 0);
       if (props.currentStep === 6) {
-        console.log(props.currentStep);
         props.setStep(1);
         props.resetFields();
         props.resetInfoItems();

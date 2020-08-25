@@ -3,9 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 98;
 }
 
 .header a {
+  cursor: pointer;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -15,7 +17,6 @@
 }
 
 .location {
-  cursor: pointer;
   display: flex;
   align-items: center;
 }
@@ -24,15 +25,7 @@
   stroke: #999999;
 }
 
-.location:hover a {
-  color: #0ec261;
-}
-
-.location:hover .location__icon {
-  stroke: #0ec261;
-}
-
-.location a {
+.location span {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -44,6 +37,7 @@
 
 @media (max-width: 520px) {
   .header {
+    position: fixed;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;

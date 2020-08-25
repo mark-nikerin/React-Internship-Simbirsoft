@@ -1,8 +1,7 @@
 import React from "react";
-import _ from "lodash";
 import Autocomplete from "./Autocomplete";
 import map from "../../../assets/map.png";
-import "./firstStep.css";
+import "./locationStep.css";
 import "../steps.css";
 import "./Autocomplete/autocomplete.css";
 
@@ -11,9 +10,9 @@ let inputInfo = { city: "", point: "" };
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
-const FirstStep = (props) => {
-  console.log(API_KEY);
+const LocationStep = ({props}) => {
   const onCityChange = (value) => {
     props.setField("city", value);
   };
@@ -42,8 +41,10 @@ const FirstStep = (props) => {
     }
   };
 
+
+
   const getCitySuggestions = async () => {
-    const response = await fetch(
+    const response = await fetch(PROXY_URL +
       "http://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
@@ -60,7 +61,7 @@ const FirstStep = (props) => {
   };
 
   const getPointSuggestions = async () => {
-    const response = await fetch(
+    const response = await fetch(PROXY_URL +
       "http://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
@@ -80,8 +81,8 @@ const FirstStep = (props) => {
     return suggestions;
   };
 
-  const cityValue = _.find(props.fieldValues, { field: "city" }).value;
-  const pointValue = _.find(props.fieldValues, { field: "point" }).value;
+  const cityValue = props.fieldValues.city;
+  const pointValue = props.fieldValues.point;
 
   return (
     <div className="step">
@@ -113,4 +114,4 @@ const FirstStep = (props) => {
   );
 };
 
-export default FirstStep;
+export default LocationStep;

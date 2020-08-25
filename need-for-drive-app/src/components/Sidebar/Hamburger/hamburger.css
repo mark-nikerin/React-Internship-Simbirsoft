@@ -13,7 +13,7 @@
   margin-top: 32px;
   overflow: visible;
   outline-style: none;
-  z-index: 3;
+  z-index: 99;
 }
 .hamburger:hover {
   opacity: 0.7;
@@ -84,10 +84,11 @@
 @media (max-width: 520px) {
   .hamburger,
   .hamburger_is-open {
-    position: absolute;
-    left: 64px;
+    position: fixed;
+    left: 0px;
     margin-left: 0px;
     margin-top: 20px;
+    z-index: 99;
   }
 
   .hamburger .hamburger__inner,

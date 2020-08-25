@@ -78,7 +78,7 @@ const Slider = () => {
               onClick={(event) => onPrevArrowClick(event)}
             >
               <svg className="slide__arrow-icon" width="10" height="20">
-                <use xlinkHref={`${icons}#arrow-left`}></use>
+                <use xlinkHref={`${icons}#arrow-left`} />
               </svg>
             </button>
 
@@ -111,7 +111,7 @@ const Slider = () => {
               onClick={(event) => onNextArrowClick(event)}
             >
               <svg className="slide__arrow-icon" width="10" height="20">
-                <use xlinkHref={`${icons}#arrow-right`}></use>
+                <use xlinkHref={`${icons}#arrow-right`} />
               </svg>
             </button>
           </div>
