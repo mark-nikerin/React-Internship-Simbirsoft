@@ -5,6 +5,8 @@ import "./carModelsStep.css";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
+const cache = { categories: null, cars: null };
+
 const CarModelsStep = ({ props }) => {
   const checkedFilterId = props.fieldValues.modelFilter;
   const selectedCarId = props.fieldValues.selectedCar;
@@ -35,10 +37,14 @@ const CarModelsStep = ({ props }) => {
       }
     );
     const categoryResponse = await response.json();
-    const categories = categoryResponse.data.map((category) => {
-      return category.name;
-    });
-    setCategories(["Все модели", ...categories]);
+    const categories = [
+      "Все модели",
+      ...categoryResponse.data.map((category) => {
+        return category.name;
+      }),
+    ];
+    setCategories(categories);
+    cache["categories"] = categories;
   };
 
   const fetchCars = async () => {
@@ -65,11 +71,21 @@ const CarModelsStep = ({ props }) => {
       };
     });
     setCars(cars);
+    cache["cars"] = cars;
   };
 
   useEffect(() => {
-    fetchCategories();
-    fetchCars();
+    if (cache["categories"] === null) {
+      fetchCategories();
+    } else {
+      setCategories(cache["categories"]);
+    }
+
+    if (cache["cars"] === null) {
+      fetchCars();
+    } else {
+      setCars(cache["cars"]);
+    }
   }, []);
 
   return (
@@ -100,6 +116,7 @@ const CarModelsStep = ({ props }) => {
       </div>
       <div className="cars">
         {cars &&
+          categories &&
           cars.map((car, id) => {
             return (
               <div
