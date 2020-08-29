@@ -11,6 +11,8 @@ const Steps = (props) => {
     removeInfoItem: props.removeInfoItem,
     setField: props.setField,
     fieldValues: props.fieldValues,
+    setExactFinalPrice: props.setExactFinalPrice,
+    setEstimatedFinalPrice: props.setEstimatedFinalPrice,
   };
 
   const switchSteps = (currentStep) => {
@@ -22,7 +24,12 @@ const Steps = (props) => {
       case 3:
         return <AdditionalsStep props={stepProps} />;
       case 4:
-        return <FinalStep />;
+        return (
+          <FinalStep
+            setExactFinalPrice={props.setExactFinalPrice}
+            setEstimatedFinalPrice={props.setEstimatedFinalPrice}
+          />
+        );
       case 5:
         return (
           <>

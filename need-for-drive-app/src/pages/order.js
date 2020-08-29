@@ -16,6 +16,8 @@ import {
   addInfoItem,
   removeInfoItem,
   resetInfoItems,
+  setExactFinalPrice,
+  setEstimatedFinalPrice,
 } from "../store/order/orderInfo/actions";
 
 import "./order.css";
@@ -38,6 +40,8 @@ const OrderPage = (props) => {
           removeInfoItem={props.removeInfoItem}
           setField={props.setField}
           fieldValues={props.fieldValues}
+          setExactFinalPrice={props.setExactFinalPrice}
+          setEstimatedFinalPrice={props.setEstimatedFinalPrice}
         />
         <OrderInfo
           currentStep={props.currentStep}
@@ -47,6 +51,7 @@ const OrderPage = (props) => {
           filledSteps={props.filledSteps}
           resetFields={props.resetFields}
           resetInfoItems={props.resetInfoItems}
+          finalPrice={props.finalPrice}
         />
       </div>
     </div>
@@ -59,6 +64,7 @@ const mapStateToProps = (state) => {
     filledSteps: state.steps.filledSteps,
     fieldValues: state.steps.fieldValues,
     infoItems: state.orderInfo.infoItems,
+    finalPrice: state.orderInfo.finalPrice,
   };
 };
 
@@ -71,6 +77,8 @@ const mapDispatchToProps = {
   setField,
   resetFields,
   resetInfoItems,
+  setEstimatedFinalPrice,
+  setExactFinalPrice,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

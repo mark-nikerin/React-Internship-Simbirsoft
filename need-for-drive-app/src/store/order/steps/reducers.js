@@ -13,7 +13,7 @@ const defaultState = {
     city: "",
     point: "",
     modelFilter: 0,
-    selectedCar: null,
+    selectedCar: { id: null, colors: null},
     colorFilter: 0,
     dateStart: null,
     dateEnd: null,
@@ -28,7 +28,7 @@ const shouldFillStep = (step, fieldValues) => {
       return fieldValues.city !== "" && fieldValues.point !== "";
     }
     case 2: {
-      return fieldValues.selectedCar !== null;
+      return fieldValues.selectedCar.id !== null;
     }
     case 3: {
       return fieldValues.dateStart !== null && fieldValues.dateEnd !== null;
@@ -46,7 +46,7 @@ export const stepsReducer = (state = defaultState, action) => {
         ...state,
         currentStep: step,
       };
-    }
+    };
     case MOVE_TO_STEP:
       return {
         ...state,
@@ -79,7 +79,7 @@ export const stepsReducer = (state = defaultState, action) => {
         fieldValues: newFieldValues,
         filledSteps: newFilledSteps,
       };
-    }
+    };
     case RESET_FIELDS: {
       return {
         ...state,
