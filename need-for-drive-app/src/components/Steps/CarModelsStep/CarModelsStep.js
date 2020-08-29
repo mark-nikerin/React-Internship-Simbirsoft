@@ -46,6 +46,9 @@ const CarModelsStep = ({props}) => {
   const checkedFilterId = props.fieldValues.modelFilter;
   const selectedCarId = props.fieldValues.selectedCar;
 
+  const [categories, setCategories] = useState();
+  const [cars, setCars] = useState();
+
   const onFilterCheck = (event, id) => {
     event.preventDefault();
     props.setField("modelFilter", id);
@@ -55,7 +58,53 @@ const CarModelsStep = ({props}) => {
     event.preventDefault();
     props.setField("selectedCar", id);
     props.addInfoItem({ title: "Модель", value: model });
+  const fetchCategories = async () => {
+    const response = await fetch(
+      PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/category",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": API_KEY,
+        },
+      }
+    );
+    const categoryResponse = await response.json();
+    const categories = categoryResponse.data.map((category) => {
+      return category.name;
+    });
+    setCategories(["Все модели", ...categories]);
   };
+
+  const fetchCars = async () => {
+    const response = await fetch(
+      PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/car",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": API_KEY,
+        },
+      }
+    );
+    const carResponse = await response.json();
+    const cars = carResponse.data.map((car) => {
+      return {
+        name: car.name,
+        imgUrl: "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
+        priceMin: car.priceMin,
+        priceMax: car.priceMax,
+        number: car.number,
+        colors: car.colors,
+        tank: car.tank,
+        category: car.categoryId.name,
+      };
+    });
+    setCars(cars);
+  };
+
+  useEffect(() => {
+    fetchCategories();
+    fetchCars();
+  }, []);
 
   return (
     <div className="step">
