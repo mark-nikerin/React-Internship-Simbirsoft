@@ -17,7 +17,7 @@ const defaultState = {
     colorFilter: 0,
     dateStart: null,
     dateEnd: null,
-    plan: 0,
+    rate: 0,
     additionals: [],
   },
 };

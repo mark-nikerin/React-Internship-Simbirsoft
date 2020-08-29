@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../steps.css";
 import "./additionalsStep.css";
 import moment from "moment";
 
-const colorFilters = ["Любой", "Красный", "Голубой"];
-const plans = [
-  { title: "Поминутно", price: "7₽/мин" },
-  { title: "На сутки", price: "1999₽/сутки" },
-];
+const API_KEY = process.env.REACT_APP_API_KEY;
+const PROXY_URL = process.env.REACT_APP_PROXY_URL;
+
+const cache = { rates: null }
 const additionals = [
   { title: "Полный бак", price: "200₽" },
   { title: "Детское кресло", price: "200₽" },
@@ -33,11 +32,46 @@ const getDateDiff = (dateStart, dateEnd) => {
 };
 
 const AdditionalsStep = ({ props }) => {
+  const colorFilters = ["Любой", ...props.fieldValues.selectedCar.colors];
+
   const checkedColorId = props.fieldValues.colorFilter;
-  const selectedPlanId = props.fieldValues.plan;
+  const selectedRateId = props.fieldValues.rate;
   const checkedAdditionalIds = props.fieldValues.additionals;
   const startDate = props.fieldValues.dateStart;
   const endDate = props.fieldValues.dateEnd;
+
+  const [rates, setRates] = useState();
+
+  const fetchRates = async () => {
+    const response = await fetch(
+      PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/rate",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Factory-Application-Id": API_KEY,
+        },
+      }
+    );
+    const rateResponse = await response.json();
+    const rates = rateResponse.data.map((rate) => {
+      return {
+        id: rate.id,
+        price: rate.price,
+        unit: rate.rateTypeId.unit,
+        name: rate.rateTypeId.name
+      };
+    });
+    setRates(rates);
+    cache["rates"] = rates;
+  };
+
+  useEffect(() => {
+    if (cache["rates"] === null) {
+      fetchRates();
+    } else {
+      setRates(cache["rates"]);
+    }
+  }, []);
 
   const onColorCheck = (event, id) => {
     event.preventDefault();
@@ -45,10 +79,10 @@ const AdditionalsStep = ({ props }) => {
     props.addInfoItem({ title: "Цвет", value: colorFilters[id] });
   };
 
-  const onPlanSelect = (event, id) => {
+  const onRateSelect = (event, id) => {
     event.preventDefault();
-    props.setField("plan", id);
-    props.addInfoItem({ title: "Тариф", value: plans[id].title });
+    props.setField("rate", id);
+    props.addInfoItem({ title: "Тариф", value: rates[id].title });
   };
 
   const onAdditionalClick = (event, id) => {
@@ -165,23 +199,23 @@ const AdditionalsStep = ({ props }) => {
       </div>
       <h3 className="step__title">Тариф</h3>
       <div className="filters vertical">
-        {plans.map((plan, id) => {
-          if (id === selectedPlanId) {
+        {rates && rates.map((rate, id) => {
+          if (id === selectedRateId) {
             return (
               <label
                 className="checked"
                 key={id}
-                onClick={(event) => onPlanSelect(event, id)}
+                onClick={(event) => onRateSelect(event, id)}
               >
                 <input type="radio" defaultChecked={true}></input>
-                {plan.title + ", " + plan.price}
+                {rate.name + ", " + rate.price + "₽/" + rate.unit}
               </label>
             );
           } else {
             return (
-              <label key={id} onClick={(event) => onPlanSelect(event, id)}>
+              <label key={id} onClick={(event) => onRateSelect(event, id)}>
                 <input type="radio"></input>
-                {plan.title + ", " + plan.price}
+                {rate.name + ", " + rate.price + "₽/" + rate.unit}
               </label>
             );
           }
