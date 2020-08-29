@@ -110,7 +110,7 @@ const CarModelsStep = ({ props }) => {
                   display:
                     checkedFilterId === 0 ||
                     categories[checkedFilterId] === car.category
-                      ? "unset"
+                      ? "flex"
                       : "none",
                 }}
                 key={id}
