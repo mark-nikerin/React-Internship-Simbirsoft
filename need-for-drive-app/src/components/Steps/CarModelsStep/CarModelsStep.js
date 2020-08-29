@@ -9,7 +9,7 @@ const cache = { categories: null, cars: null };
 
 const CarModelsStep = ({ props }) => {
   const checkedFilterId = props.fieldValues.modelFilter;
-  const selectedCarId = props.fieldValues.selectedCar;
+  const selectedCarId = props.fieldValues.selectedCar.id;
 
   const [categories, setCategories] = useState();
   const [cars, setCars] = useState();
@@ -19,9 +19,9 @@ const CarModelsStep = ({ props }) => {
     props.setField("modelFilter", id);
   };
 
-  const onCarSelect = (event, id, model, minPrice, maxPrice) => {
+  const onCarSelect = (event, id, model, minPrice, maxPrice, colors) => {
     event.preventDefault();
-    props.setField("selectedCar", id);
+    props.setField("selectedCar", { id: id, colors: colors });
     props.addInfoItem({ title: "Модель", value: model });
     props.setEstimatedFinalPrice("От " + minPrice + " до " + maxPrice + " ₽");
   };
@@ -60,13 +60,13 @@ const CarModelsStep = ({ props }) => {
     const carResponse = await response.json();
     const cars = carResponse.data.map((car) => {
       return {
+        id: car.id,
         name: car.name,
-        imgUrl: "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
+        imgUrl: PROXY_URL + "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
         priceMin: car.priceMin,
         priceMax: car.priceMax,
         number: car.number,
         colors: car.colors,
-        tank: car.tank,
         category: car.categoryId.name,
       };
     });
@@ -121,7 +121,7 @@ const CarModelsStep = ({ props }) => {
             return (
               <div
                 className={
-                  id === selectedCarId ? "cars__item selected" : "cars__item"
+                  car.id === selectedCarId ? "cars__item selected" : "cars__item"
                 }
                 style={{
                   display:
@@ -132,7 +132,14 @@ const CarModelsStep = ({ props }) => {
                 }}
                 key={id}
                 onClick={(event) =>
-                  onCarSelect(event, id, car.name, car.priceMin, car.priceMax)
+                  onCarSelect(
+                    event,
+                    car.id,
+                    car.name,
+                    car.priceMin,
+                    car.priceMax,
+                    car.colors
+                  )
                 }
               >
                 <div className="title">
@@ -142,7 +149,7 @@ const CarModelsStep = ({ props }) => {
                 <img
                   crossOrigin="anonymous"
                   referrerPolicy="origin"
-                  src={PROXY_URL + car.imgUrl}
+                  src={car.imgUrl}
                   alt={car.name}
                 ></img>
               </div>
