@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "68a87fdcdc6fa8685a08fb872007a53c",
+    "revision": "b87768b326d7634b4ffb4dfafe425095",
     "url": "/React-Internship-Simbirsoft/index.html"
   },
   {
-    "revision": "c0946e41a531b2b9a26e",
+    "revision": "d6248e55da1da4581762",
     "url": "/React-Internship-Simbirsoft/static/css/main.bed010b3.chunk.css"
   },
   {
-    "revision": "1cb298ee546a73da3a55",
-    "url": "/React-Internship-Simbirsoft/static/js/2.a1873fad.chunk.js"
+    "revision": "1dad6503503d43bc34ae",
+    "url": "/React-Internship-Simbirsoft/static/js/2.e26bc715.chunk.js"
   },
   {
     "revision": "bbee919d8888a17953b5bb98359759ba",
-    "url": "/React-Internship-Simbirsoft/static/js/2.a1873fad.chunk.js.LICENSE.txt"
+    "url": "/React-Internship-Simbirsoft/static/js/2.e26bc715.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c0946e41a531b2b9a26e",
-    "url": "/React-Internship-Simbirsoft/static/js/main.917adc6c.chunk.js"
+    "revision": "d6248e55da1da4581762",
+    "url": "/React-Internship-Simbirsoft/static/js/main.2571310c.chunk.js"
   },
   {
     "revision": "29ecc82f54760c54c53e",
@@ -28,36 +28,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React-Internship-Simbirsoft/static/media/1.0f70766b.png"
   },
   {
-    "revision": "9c23a58302e982ac52c55141a95ac697",
-    "url": "/React-Internship-Simbirsoft/static/media/1.9c23a583.png"
-  },
-  {
-    "revision": "4125631c0a07a378e591ae276a618867",
-    "url": "/React-Internship-Simbirsoft/static/media/2.4125631c.png"
-  },
-  {
     "revision": "f506d8de167d3ebe0f5ddabda94a9068",
     "url": "/React-Internship-Simbirsoft/static/media/2.f506d8de.png"
-  },
-  {
-    "revision": "d2b9c74d10337537a5053dc49afbf2d7",
-    "url": "/React-Internship-Simbirsoft/static/media/3.d2b9c74d.png"
   },
   {
     "revision": "e749d54bdbe77180f3e1f15e6316112f",
     "url": "/React-Internship-Simbirsoft/static/media/3.e749d54b.png"
   },
   {
-    "revision": "492b5a6ca78e060e28ee67d2ee388ca2",
-    "url": "/React-Internship-Simbirsoft/static/media/4.492b5a6c.png"
-  },
-  {
     "revision": "9e412414de49d478e7b4f22e39af7730",
     "url": "/React-Internship-Simbirsoft/static/media/4.9e412414.png"
-  },
-  {
-    "revision": "9c23a58302e982ac52c55141a95ac697",
-    "url": "/React-Internship-Simbirsoft/static/media/5.9c23a583.png"
   },
   {
     "revision": "4125631c0a07a378e591ae276a618867",
