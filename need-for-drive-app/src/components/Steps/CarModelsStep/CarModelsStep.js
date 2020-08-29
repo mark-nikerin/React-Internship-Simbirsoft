@@ -62,11 +62,14 @@ const CarModelsStep = ({ props }) => {
       return {
         id: car.id,
         name: car.name,
-        imgUrl: PROXY_URL + "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
+        imgUrl:
+          PROXY_URL + "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
         priceMin: car.priceMin,
         priceMax: car.priceMax,
         number: car.number,
-        colors: car.colors,
+        colors: car.colors.map((color) => {
+          return color.charAt(0).toUpperCase() + color.substr(1).toLowerCase();
+        }),
         category: car.categoryId.name,
       };
     });
@@ -121,7 +124,9 @@ const CarModelsStep = ({ props }) => {
             return (
               <div
                 className={
-                  car.id === selectedCarId ? "cars__item selected" : "cars__item"
+                  car.id === selectedCarId
+                    ? "cars__item selected"
+                    : "cars__item"
                 }
                 style={{
                   display:
