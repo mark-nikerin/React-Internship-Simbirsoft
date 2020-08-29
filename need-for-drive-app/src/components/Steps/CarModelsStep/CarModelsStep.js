@@ -1,48 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../steps.css";
 import "./carModelsStep.css";
-import firstCar from "../../../assets/cars/1.png";
-import secondCar from "../../../assets/cars/2.png";
-import thirdCar from "../../../assets/cars/3.png";
-import fourthCar from "../../../assets/cars/4.png";
-import fifthCar from "../../../assets/cars/5.png";
-import sixthCar from "../../../assets/cars/6.png";
 
-const modelFilters = ["Все модели", "Эконом", "Премиум"];
-const cars = [
-  {
-    model: "ELANTRA",
-    price: "12 000 - 25 000 ₽",
-    img: `${firstCar}`,
-  },
-  {
-    model: "i30 N",
-    price: "10 000 - 32 000 ₽",
-    img: `${secondCar}`,
-  },
-  {
-    model: "CRETA",
-    price: "12 000 - 25 000 ₽",
-    img: `${thirdCar}`,
-  },
-  {
-    model: "SONATA",
-    price: "10 000 - 32 000 ₽",
-    img: `${fourthCar}`,
-  },
-  {
-    model: "i30 N",
-    price: "10 000 - 32 000 ₽",
-    img: `${fifthCar}`,
-  },
-  {
-    model: "SONATA",
-    price: "10 000 - 32 000 ₽",
-    img: `${sixthCar}`,
-  },
-];
+const API_KEY = process.env.REACT_APP_API_KEY;
+const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
-const CarModelsStep = ({props}) => {
+const CarModelsStep = ({ props }) => {
   const checkedFilterId = props.fieldValues.modelFilter;
   const selectedCarId = props.fieldValues.selectedCar;
 
@@ -54,10 +17,13 @@ const CarModelsStep = ({props}) => {
     props.setField("modelFilter", id);
   };
 
-  const onCarSelect = (event, id, model) => {
+  const onCarSelect = (event, id, model, minPrice, maxPrice) => {
     event.preventDefault();
     props.setField("selectedCar", id);
     props.addInfoItem({ title: "Модель", value: model });
+    props.setEstimatedFinalPrice("От " + minPrice + " до " + maxPrice + " ₽");
+  };
+
   const fetchCategories = async () => {
     const response = await fetch(
       PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/category",
@@ -109,46 +75,62 @@ const CarModelsStep = ({props}) => {
   return (
     <div className="step">
       <div className="filters">
-        {modelFilters.map((filter, id) => {
-          if (id === checkedFilterId) {
-            return (
-              <label
-                className="checked"
-                key={id}
-                onClick={(event) => onFilterCheck(event, id)}
-              >
-                <input type="radio" defaultChecked={true}></input>
-                {filter}
-              </label>
-            );
-          } else {
-            return (
-              <label key={id} onClick={(event) => onFilterCheck(event, id)}>
-                <input type="radio"></input>
-                {filter}
-              </label>
-            );
-          }
-        })}
+        {categories &&
+          categories.map((filter, id) => {
+            if (id === checkedFilterId) {
+              return (
+                <label
+                  className="checked"
+                  key={id}
+                  onClick={(event) => onFilterCheck(event, id)}
+                >
+                  <input type="radio" defaultChecked={true}></input>
+                  {filter}
+                </label>
+              );
+            } else {
+              return (
+                <label key={id} onClick={(event) => onFilterCheck(event, id)}>
+                  <input type="radio"></input>
+                  {filter}
+                </label>
+              );
+            }
+          })}
       </div>
       <div className="cars">
-        {cars.map((car, id) => {
-          return (
-            <div
-              className={
-                id === selectedCarId ? "cars__item selected" : "cars__item"
-              }
-              key={id}
-              onClick={(event) => onCarSelect(event, id, car.model)}
-            >
-              <div className="title">
-                <h3>{car.model}</h3>
-                <span>{car.price}</span>
+        {cars &&
+          cars.map((car, id) => {
+            return (
+              <div
+                className={
+                  id === selectedCarId ? "cars__item selected" : "cars__item"
+                }
+                style={{
+                  display:
+                    checkedFilterId === 0 ||
+                    categories[checkedFilterId] === car.category
+                      ? "unset"
+                      : "none",
+                }}
+                key={id}
+                onClick={(event) =>
+                  onCarSelect(event, id, car.name, car.priceMin, car.priceMax)
+                }
+              >
+                <div className="title">
+                  <h3>{car.name}</h3>
+                  <span>{car.priceMin + " - " + car.priceMax + " ₽"}</span>
+                </div>
+                <img
+                  crossOrigin="anonymous"
+                  referrerPolicy="origin"
+                  src={PROXY_URL + car.imgUrl}
+                  alt={car.name}
+                ></img>
               </div>
-              <img src={car.img} alt={car.model}></img>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
