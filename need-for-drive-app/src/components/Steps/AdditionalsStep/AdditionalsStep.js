@@ -82,7 +82,7 @@ const AdditionalsStep = ({ props }) => {
   const onRateSelect = (event, id) => {
     event.preventDefault();
     props.setField("rate", id);
-    props.addInfoItem({ title: "Тариф", value: rates[id].title });
+    props.addInfoItem({ title: "Тариф", value: rates[id].name });
   };
 
   const onAdditionalClick = (event, id) => {
