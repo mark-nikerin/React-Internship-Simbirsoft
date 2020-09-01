@@ -51,9 +51,9 @@ const OrderInfo = (props) => {
       >
         <h3>Цена:</h3>
         <span>
-          {props.finalPrice.exact === null
+          {props.currentStep < 3
             ? props.finalPrice.estimated
-            : props.finalPrice.exact}
+            : props.finalPrice.exact + " ₽"}
         </span>
       </div>
       <button

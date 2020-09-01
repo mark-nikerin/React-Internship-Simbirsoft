@@ -19,11 +19,7 @@ const getDateDiff = (dateStart, dateEnd) => {
   const amountDays = Math.floor(amountHours / 24);
   const remainingHours = amountHours % 24;
 
-  const days = amountDays === 0 ? "" : amountDays + "д ";
-  const hours = remainingHours === 0 ? "" : remainingHours + "ч ";
-  const minutes = remainingMinutes === 0 ? "" : remainingMinutes + "м ";
-
-  return days + hours + minutes;
+  return { days: amountDays, hours: remainingHours, minutes: remainingMinutes };
 };
 
 const AdditionalsStep = ({ props }) => {
@@ -104,9 +100,25 @@ const AdditionalsStep = ({ props }) => {
     }
 
     if (start !== null && end !== null) {
+
+      const dateDiff = getDateDiff(start, end);
+
+      const days = dateDiff.days === 0 ? "" : dateDiff.days + "д ";
+      const hours = dateDiff.hours === 0 ? "" : dateDiff.hours + "ч ";
+      const minutes = dateDiff.minutes === 0 ? "" : dateDiff.minutes + "м ";
+
+      const price = rates[selectedRateId].unit === "мин"
+                    ? ((dateDiff.days * 24 + dateDiff.hours) * 60 + dateDiff.minutes) * rates[selectedRateId].price
+                    : dateDiff.days === 0
+                      ? rates[selectedRateId].price
+                      : dateDiff.hours === 0 && dateDiff.minutes === 0
+                        ? dateDiff.days * rates[selectedRateId].price
+                        : (dateDiff.days + 1) * rates[selectedRateId].price
+
+
       props.addInfoItem({
         title: "Длительность аренды",
-        value: getDateDiff(start, end),
+        value: days + hours + minutes,
       });
     }
   };
