@@ -7,11 +7,6 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
 const cache = { rates: null }
-const additionals = [
-  { title: "Полный бак", price: "200₽" },
-  { title: "Детское кресло", price: "200₽" },
-  { title: "Правый руль", price: "1600₽" },
-];
 
 const getDateDiff = (dateStart, dateEnd) => {
   const amountMinutes = Math.abs(
@@ -34,9 +29,9 @@ const getDateDiff = (dateStart, dateEnd) => {
 const AdditionalsStep = ({ props }) => {
   const colorFilters = ["Любой", ...props.fieldValues.selectedCar.colors];
 
-  const checkedColorId = props.fieldValues.colorFilter;
-  const selectedRateId = props.fieldValues.rate;
-  const checkedAdditionalIds = props.fieldValues.additionals;
+  const checkedColorId = props.fieldValues.colorFilter.id;
+  const selectedRateId = props.fieldValues.rate.id;
+  const additionals = props.fieldValues.additionals;
   const startDate = props.fieldValues.dateStart;
   const endDate = props.fieldValues.dateEnd;
 
@@ -75,29 +70,28 @@ const AdditionalsStep = ({ props }) => {
 
   const onColorCheck = (event, id) => {
     event.preventDefault();
-    props.setField("colorFilter", id);
+    props.setField("colorFilter", {id: id, name: colorFilters[id] });
     props.addInfoItem({ title: "Цвет", value: colorFilters[id] });
   };
 
   const onRateSelect = (event, id) => {
     event.preventDefault();
-    props.setField("rate", id);
+    props.setField("rate", { id:id, rateId:rates[id].id });
     props.addInfoItem({ title: "Тариф", value: rates[id].name });
   };
 
   const onAdditionalClick = (event, id) => {
     event.preventDefault();
-    let additionalsIds = [...checkedAdditionalIds];
+    let newAdditionals = [...additionals];
+    newAdditionals[id].isActive =! newAdditionals[id].isActive;
 
-    const existingId = additionalsIds.indexOf(id);
-    if (existingId !== -1) {
-      additionalsIds.splice(existingId, 1);
+    if (!newAdditionals[id].isActive) {
       props.removeInfoItem(additionals[id].title);
     } else {
-      additionalsIds.push(id);
       props.addInfoItem({ title: additionals[id].title, value: "Да" });
     }
-    props.setField("additionals", additionalsIds);
+
+    props.setField("additionals", newAdditionals);
   };
 
   const onDateSelect = (start, end) => {
@@ -224,7 +218,7 @@ const AdditionalsStep = ({ props }) => {
       <h3 className="step__title">Доп. услуги</h3>
       <div className="filters vertical">
         {additionals.map((additional, id) => {
-          if (checkedAdditionalIds.indexOf(id) !== -1) {
+          if (additional.isActive === true) {
             return (
               <label
                 className="checked"
@@ -232,14 +226,14 @@ const AdditionalsStep = ({ props }) => {
                 onClick={(event) => onAdditionalClick(event, id)}
               >
                 <input type="checkbox" defaultChecked={true}></input>
-                {additional.title + ", " + additional.price}
+                {additional.title + ", " + additional.price + additional.unit}
               </label>
             );
           } else {
             return (
               <label key={id} onClick={(event) => onAdditionalClick(event, id)}>
                 <input type="checkbox"></input>
-                {additional.title + ", " + additional.price}
+                {additional.title + ", " + additional.price + additional.unit}
               </label>
             );
           }

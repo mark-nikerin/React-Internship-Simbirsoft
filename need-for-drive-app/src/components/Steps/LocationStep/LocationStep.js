@@ -14,11 +14,11 @@ const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
 const LocationStep = ({props}) => {
   const onCityChange = (value) => {
-    props.setField("city", value);
+    props.setField("city", { id: value.id, name: value.name});
   };
 
   const onPointChange = (value) => {
-    props.setField("point", value);
+    props.setField("point", { id: value.id, name: value.name});
   };
 
   const onCityBlur = (value) => {
@@ -55,7 +55,7 @@ const LocationStep = ({props}) => {
     );
     const cities = await response.json();
     const suggestions = cities.data.map((city) => {
-      return city.name;
+      return { id: city.id, name: city.name };
     });
     return suggestions;
   };
@@ -76,13 +76,13 @@ const LocationStep = ({props}) => {
         return point.cityId.name === cityValue;
       })
       .map((point) => {
-        return point.name + ", " + point.address;
+        return { id: point.id, name: point.name + ", " + point.address };
       });
     return suggestions;
   };
 
-  const cityValue = props.fieldValues.city;
-  const pointValue = props.fieldValues.point;
+  const cityValue = props.fieldValues.city.name;
+  const pointValue = props.fieldValues.point.name;
 
   return (
     <div className="step">

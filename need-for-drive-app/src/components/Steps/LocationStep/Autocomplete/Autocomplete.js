@@ -6,7 +6,7 @@ const Autocomplete = (props) => {
   const [suggestions, setSuggestions] = React.useState([]);
 
   const onValueChange = (value) => {
-    setValue(value);
+    setValue(value.name);
     props.onValueChange(value);
   };
 
@@ -29,7 +29,7 @@ const Autocomplete = (props) => {
           onChange={(event) => {
             event.preventDefault();
             setVisibility(true);
-            onValueChange(event.target.value);
+            onValueChange({ id: null, name: event.target.value });
           }}
           value={value}
         ></input>
@@ -53,18 +53,18 @@ const Autocomplete = (props) => {
           )}
           {suggestions &&
             suggestions.map((suggestion, id) => {
-              if (suggestion.toUpperCase().includes(value.toUpperCase())) {
+              if (suggestion.name.toUpperCase().includes(value.toUpperCase())) {
                 return (
                   <span
                     key={id}
                     onClick={(event) => {
                       event.preventDefault();
                       onValueChange(suggestion);
-                      props.onInputBlur(suggestion);
+                      props.onInputBlur(suggestion.name);
                       setVisibility(false);
                     }}
                   >
-                    {suggestion}
+                    {suggestion.name}
                   </span>
                 );
               } else return <span style={{ display: "none" }} key={id}></span>;
