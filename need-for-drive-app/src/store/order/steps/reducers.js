@@ -15,8 +15,8 @@ const defaultState = {
     modelFilter: 0,
     selectedCar: { id: null, colors: null},
     colorFilter: { id: 0, name: ""},
-    dateStart: null,
-    dateEnd: null,
+    dateStart: { formatted: null, timespan: 0},
+    dateEnd: { formatted: null, timespan: 0},
     rate: { id: 0, rateId: ""},
     additionals: [
       { title: "Полный бак", systemName:"isFullTank" , isActive: false, price: 200, unit: "₽"},
@@ -35,7 +35,7 @@ const shouldFillStep = (step, fieldValues) => {
       return fieldValues.selectedCar.id !== null;
     }
     case 3: {
-      return fieldValues.dateStart !== null && fieldValues.dateEnd !== null;
+      return fieldValues.dateStart.formatted !== null && fieldValues.dateEnd.formatted !== null;
     }
     default:
       return true;

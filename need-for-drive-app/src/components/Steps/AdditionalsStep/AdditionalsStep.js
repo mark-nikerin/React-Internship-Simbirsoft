@@ -32,8 +32,8 @@ const AdditionalsStep = ({ props }) => {
   const checkedColorId = props.fieldValues.colorFilter.id;
   const selectedRateId = props.fieldValues.rate.id;
   const additionals = props.fieldValues.additionals;
-  const startDate = props.fieldValues.dateStart;
-  const endDate = props.fieldValues.dateEnd;
+  const startDate = props.fieldValues.dateStart.formatted;
+  const endDate = props.fieldValues.dateEnd.formatted;
 
   const [rates, setRates] = useState();
 
@@ -96,11 +96,11 @@ const AdditionalsStep = ({ props }) => {
 
   const onDateSelect = (start, end) => {
     if (start !== null) {
-      props.setField("dateStart", start);
+      props.setField("dateStart", { formatted: start, timespan: new Date(start).valueOf() });
     }
 
     if (end !== null) {
-      props.setField("dateEnd", end);
+      props.setField("dateEnd", { formatted: end, timespan: new Date(end).valueOf() });
     }
 
     if (start !== null && end !== null) {
