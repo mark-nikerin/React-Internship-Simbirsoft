@@ -24,6 +24,7 @@ const CarModelsStep = ({ props }) => {
     props.setField("selectedCar", { id: id, colors: colors });
     props.addInfoItem({ title: "Модель", value: model });
     props.setEstimatedFinalPrice("От " + minPrice + " до " + maxPrice + " ₽");
+    props.setExactFinalPrice(minPrice);
   };
 
   const fetchCategories = async () => {
