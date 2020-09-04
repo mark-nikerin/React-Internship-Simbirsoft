@@ -37,6 +37,8 @@ const Steps = (props) => {
             <ConfirmOrder
               setNextStep={props.setNextStep}
               setPrevStep={props.setPrevStep}
+              order={props.fieldValues}
+              price={props.orderPrice}
             />
           </>
         );
