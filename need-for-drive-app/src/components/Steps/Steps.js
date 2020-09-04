@@ -11,8 +11,8 @@ const Steps = (props) => {
     removeInfoItem: props.removeInfoItem,
     setField: props.setField,
     fieldValues: props.fieldValues,
-    setExactFinalPrice: props.setExactFinalPrice,
-    setEstimatedFinalPrice: props.setEstimatedFinalPrice,
+    setOrderPrice: props.setOrderPrice,
+    orderPrice: props.orderPrice
   };
 
   const switchSteps = (currentStep) => {
@@ -26,14 +26,17 @@ const Steps = (props) => {
       case 4:
         return (
           <FinalStep
-            setExactFinalPrice={props.setExactFinalPrice}
-            setEstimatedFinalPrice={props.setEstimatedFinalPrice}
+            setOrderPrice={props.setOrderPrice}
+            orderPrice={props.orderPrice}
           />
         );
       case 5:
         return (
           <>
-            <FinalStep />
+            <FinalStep
+              setOrderPrice={props.setOrderPrice}
+              orderPrice={props.orderPrice}
+            />
             <ConfirmOrder
               setNextStep={props.setNextStep}
               setPrevStep={props.setPrevStep}
@@ -43,7 +46,10 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return <FinalStep />;
+        return <FinalStep
+        setOrderPrice={props.setOrderPrice}
+        orderPrice={props.orderPrice}
+      />;
       default:
         return <LocationStep props={stepProps} />;
     }
