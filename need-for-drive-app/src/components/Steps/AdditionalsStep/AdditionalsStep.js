@@ -75,13 +75,8 @@ const AdditionalsStep = ({ props }) => {
 
   const onRateSelect = async (event, id) => {
     event.preventDefault();
-
-    await props.setField("rate", { id:id, rateId:rates[id].id });
-    await props.addInfoItem({ title: "Тариф", value: rates[id].name });
-
-    const dateDiff = getDateDiff(startDate, endDate);
-    setPrice(dateDiff);
-
+    props.setField("rate", { id:id, rateId:rates[id].id });
+    props.addInfoItem({ title: "Тариф", value: rates[id].name });
   };
 
   const onAdditionalClick = (event, id) => {
@@ -91,21 +86,32 @@ const AdditionalsStep = ({ props }) => {
 
     if (!newAdditionals[id].isActive) {
       props.removeInfoItem(additionals[id].title);
+      props.setOrderPrice({ ...orderPrice, final: orderPrice.final - additionals[id].price});
     } else {
       props.addInfoItem({ title: additionals[id].title, value: "Да" });
+      props.setOrderPrice({ ...orderPrice, final: orderPrice.final + additionals[id].price});
     }
 
     props.setField("additionals", newAdditionals);
   };
 
   const setPrice = (dateDiff) => {
-    const price = rates[selectedRateId].unit === "мин"
+    let price = rates[selectedRateId].unit === "мин"
       ? ((dateDiff.days * 24 + dateDiff.hours) * 60 + dateDiff.minutes) * rates[selectedRateId].price
       : dateDiff.days === 0
         ? rates[selectedRateId].price
         : dateDiff.hours === 0 && dateDiff.minutes === 0
           ? dateDiff.days * rates[selectedRateId].price
           : (dateDiff.days + 1) * rates[selectedRateId].price
+
+    additionals.forEach((additional) => {
+      if (additional.isActive) {
+        price += additional.price;
+      }
+      else {
+        price -= additional.price;
+      }
+    });
 
     props.setOrderPrice({ ...orderPrice, final: orderPrice.min + price});
     console.log(orderPrice.final);
@@ -225,7 +231,10 @@ const AdditionalsStep = ({ props }) => {
               <label
                 className="checked"
                 key={id}
-                onClick={(event) => onRateSelect(event, id)}
+                onClick={(event) => {
+                  onRateSelect(event, id);
+                  setPrice(getDateDiff(startDate, endDate));
+                }}
               >
                 <input type="radio" defaultChecked={true}></input>
                 {rate.name + ", " + rate.price + "₽/" + rate.unit}
@@ -233,7 +242,13 @@ const AdditionalsStep = ({ props }) => {
             );
           } else {
             return (
-              <label key={id} onClick={(event) => onRateSelect(event, id)}>
+              <label
+                key={id}
+                onClick={(event) => {
+                  onRateSelect(event, id);
+                  setPrice(getDateDiff(startDate, endDate));
+                }}
+              >
                 <input type="radio"></input>
                 {rate.name + ", " + rate.price + "₽/" + rate.unit}
               </label>

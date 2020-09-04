@@ -52,7 +52,7 @@ const OrderInfo = (props) => {
         <h3>Цена:</h3>
         <span>
           {props.currentStep < 3
-            ? "От " + props.orderPrice.min + " до " + props.orderPrice.min + " ₽"
+            ? "От " + props.orderPrice.min + " до " + props.orderPrice.max + " ₽"
             : props.orderPrice.final + " ₽"}
         </span>
       </div>
