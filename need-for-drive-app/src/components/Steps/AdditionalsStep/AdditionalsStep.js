@@ -30,6 +30,7 @@ const AdditionalsStep = ({ props }) => {
   const additionals = props.fieldValues.additionals;
   const startDate = props.fieldValues.dateStart.formatted;
   const endDate = props.fieldValues.dateEnd.formatted;
+  const orderPrice = props.orderPrice;
 
   const [rates, setRates] = useState();
 
@@ -52,6 +53,8 @@ const AdditionalsStep = ({ props }) => {
         name: rate.rateTypeId.name
       };
     });
+    props.setField("rate", { id:0, rateId:rates[0].id });
+    props.addInfoItem({ title: "Тариф", value: rates[0].name });
     setRates(rates);
     cache["rates"] = rates;
   };
@@ -61,7 +64,7 @@ const AdditionalsStep = ({ props }) => {
       fetchRates();
     } else {
       setRates(cache["rates"]);
-    }
+    };
   }, []);
 
   const onColorCheck = (event, id) => {
@@ -70,10 +73,15 @@ const AdditionalsStep = ({ props }) => {
     props.addInfoItem({ title: "Цвет", value: colorFilters[id] });
   };
 
-  const onRateSelect = (event, id) => {
+  const onRateSelect = async (event, id) => {
     event.preventDefault();
-    props.setField("rate", { id:id, rateId:rates[id].id });
-    props.addInfoItem({ title: "Тариф", value: rates[id].name });
+
+    await props.setField("rate", { id:id, rateId:rates[id].id });
+    await props.addInfoItem({ title: "Тариф", value: rates[id].name });
+
+    const dateDiff = getDateDiff(startDate, endDate);
+    setPrice(dateDiff);
+
   };
 
   const onAdditionalClick = (event, id) => {
@@ -89,6 +97,19 @@ const AdditionalsStep = ({ props }) => {
 
     props.setField("additionals", newAdditionals);
   };
+
+  const setPrice = (dateDiff) => {
+    const price = rates[selectedRateId].unit === "мин"
+      ? ((dateDiff.days * 24 + dateDiff.hours) * 60 + dateDiff.minutes) * rates[selectedRateId].price
+      : dateDiff.days === 0
+        ? rates[selectedRateId].price
+        : dateDiff.hours === 0 && dateDiff.minutes === 0
+          ? dateDiff.days * rates[selectedRateId].price
+          : (dateDiff.days + 1) * rates[selectedRateId].price
+
+    props.setOrderPrice({ ...orderPrice, final: orderPrice.min + price});
+    console.log(orderPrice.final);
+  }
 
   const onDateSelect = (start, end) => {
     if (start !== null) {
@@ -107,14 +128,7 @@ const AdditionalsStep = ({ props }) => {
       const hours = dateDiff.hours === 0 ? "" : dateDiff.hours + "ч ";
       const minutes = dateDiff.minutes === 0 ? "" : dateDiff.minutes + "м ";
 
-      const price = rates[selectedRateId].unit === "мин"
-                    ? ((dateDiff.days * 24 + dateDiff.hours) * 60 + dateDiff.minutes) * rates[selectedRateId].price
-                    : dateDiff.days === 0
-                      ? rates[selectedRateId].price
-                      : dateDiff.hours === 0 && dateDiff.minutes === 0
-                        ? dateDiff.days * rates[selectedRateId].price
-                        : (dateDiff.days + 1) * rates[selectedRateId].price
-
+      setPrice(dateDiff);
 
       props.addInfoItem({
         title: "Длительность аренды",

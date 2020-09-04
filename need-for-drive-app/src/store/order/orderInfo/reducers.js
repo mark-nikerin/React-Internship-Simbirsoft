@@ -2,15 +2,15 @@ import {
   ADD_INFO_ITEM,
   REMOVE_INFO_ITEM,
   RESET_INFO_ITEMS,
-  SET_EXACT_FINAL_PRICE,
-  SET_ESTIMATED_FINAL_PRICE,
+  SET_ORDER_PRICE
 } from "./actions";
 
 const defaultState = {
   infoItems: [],
-  finalPrice: {
-    estimated: null,
-    exact: null,
+  orderPrice: {
+    min: null,
+    max: null,
+    final: null
   },
 };
 
@@ -45,23 +45,17 @@ export const orderInfoReducer = (state = defaultState, action) => {
         infoItems: newItems,
       };
     }
-    case SET_EXACT_FINAL_PRICE: {
+    case SET_ORDER_PRICE: {
       return {
         ...state,
-        finalPrice: { ...state.finalPrice, exact: action.payload }
-      };
-    }
-    case SET_ESTIMATED_FINAL_PRICE: {
-      return {
-        ...state,
-        finalPrice: { ...state.finalPrice, estimated: action.payload }
+        orderPrice: action.payload
       };
     }
     case RESET_INFO_ITEMS: {
       return {
         ...state,
         infoItems: [...defaultState.infoItems],
-        finalPrice: { ...defaultState.finalPrice },
+        orderPrice: { ...defaultState.orderPrice },
       };
     }
     default:
