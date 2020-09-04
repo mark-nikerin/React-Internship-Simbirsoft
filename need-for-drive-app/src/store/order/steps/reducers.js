@@ -10,28 +10,32 @@ const defaultState = {
   currentStep: 1,
   filledSteps: [4, 5, 6],
   fieldValues: {
-    city: "",
-    point: "",
+    city: { id: null, name: ""},
+    point: { id: null, name: ""},
     modelFilter: 0,
     selectedCar: { id: null, colors: null},
-    colorFilter: 0,
-    dateStart: null,
-    dateEnd: null,
-    plan: 0,
-    additionals: [],
+    colorFilter: { id: 0, name: ""},
+    dateStart: { formatted: null, timespan: 0},
+    dateEnd: { formatted: null, timespan: 0},
+    rate: { id: 0, rateId: ""},
+    additionals: [
+      { title: "Полный бак", systemName:"isFullTank" , isActive: false, price: 200, unit: "₽"},
+      { title: "Детское кресло", systemName:"isNeedChildChair" , isActive: false, price: 200, unit: "₽"},
+      { title: "Правый руль", systemName:"isRightWheel" , isActive: false, price: 1600, unit: "₽"},
+    ],
   },
 };
 
 const shouldFillStep = (step, fieldValues) => {
   switch (step) {
     case 1: {
-      return fieldValues.city !== "" && fieldValues.point !== "";
+      return fieldValues.city.name !== "" && fieldValues.point.name !== "";
     }
     case 2: {
       return fieldValues.selectedCar.id !== null;
     }
     case 3: {
-      return fieldValues.dateStart !== null && fieldValues.dateEnd !== null;
+      return fieldValues.dateStart.formatted !== null && fieldValues.dateEnd.formatted !== null;
     }
     default:
       return true;

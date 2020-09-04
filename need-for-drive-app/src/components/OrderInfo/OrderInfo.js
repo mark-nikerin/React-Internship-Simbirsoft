@@ -43,17 +43,17 @@ const OrderInfo = (props) => {
         className="price"
         style={{
           display:
-            props.finalPrice.exact === null &&
-            props.finalPrice.estimated === null
+            props.orderPrice.min === null &&
+            props.orderPrice.final === null
               ? "none"
               : "flex",
         }}
       >
         <h3>Цена:</h3>
         <span>
-          {props.finalPrice.exact === null
-            ? props.finalPrice.estimated
-            : props.finalPrice.exact}
+          {props.currentStep < 3
+            ? "От " + props.orderPrice.min + " до " + props.orderPrice.max + " ₽"
+            : props.orderPrice.final + " ₽"}
         </span>
       </div>
       <button
