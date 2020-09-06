@@ -39,7 +39,10 @@ const ConfirmOrder = (props) => {
       }
     );
 
-    console.log(response.json());
+    console.log(await response.json());
+
+    props.resetFields();
+    props.resetInfoItems();
   };
 
   const onConfirm = async (event) => {

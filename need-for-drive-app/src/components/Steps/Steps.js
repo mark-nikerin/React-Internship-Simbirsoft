@@ -28,6 +28,7 @@ const Steps = (props) => {
           <FinalStep
             setOrderPrice={props.setOrderPrice}
             orderPrice={props.orderPrice}
+            fieldValues={props.fieldValues}
           />
         );
       case 5:
@@ -36,12 +37,15 @@ const Steps = (props) => {
             <FinalStep
               setOrderPrice={props.setOrderPrice}
               orderPrice={props.orderPrice}
+              fieldValues={props.fieldValues}
             />
             <ConfirmOrder
               setNextStep={props.setNextStep}
               setPrevStep={props.setPrevStep}
               order={props.fieldValues}
               price={props.orderPrice}
+              resetFields={props.resetFields}
+              resetInfoItems={props.resetInfoItems}
             />
           </>
         );
@@ -49,6 +53,7 @@ const Steps = (props) => {
         return <FinalStep
         setOrderPrice={props.setOrderPrice}
         orderPrice={props.orderPrice}
+        fieldValues={props.fieldValues}
       />;
       default:
         return <LocationStep props={stepProps} />;

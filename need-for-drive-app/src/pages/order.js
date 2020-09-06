@@ -41,6 +41,8 @@ const OrderPage = (props) => {
           fieldValues={props.fieldValues}
           setOrderPrice={props.setOrderPrice}
           orderPrice ={props.orderPrice}
+          resetFields={props.resetFields}
+          resetInfoItems={props.resetInfoItems}
         />
         <OrderInfo
           currentStep={props.currentStep}

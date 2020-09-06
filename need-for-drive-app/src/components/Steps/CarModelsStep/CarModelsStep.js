@@ -19,10 +19,10 @@ const CarModelsStep = ({ props }) => {
     props.setField("modelFilter", id);
   };
 
-  const onCarSelect = (event, id, model, minPrice, maxPrice, colors) => {
+  const onCarSelect = (event, car, minPrice, maxPrice) => {
     event.preventDefault();
-    props.setField("selectedCar", { id: id, colors: colors });
-    props.addInfoItem({ title: "Модель", value: model });
+    props.setField("selectedCar", car);
+    props.addInfoItem({ title: "Модель", value: car.model });
     props.setOrderPrice({ min: minPrice, max: maxPrice, final: minPrice});
   };
 
@@ -67,6 +67,7 @@ const CarModelsStep = ({ props }) => {
         priceMin: car.priceMin,
         priceMax: car.priceMax,
         number: car.number,
+        tank: car.tank,
         colors: car.colors.map((color) => {
           return color.charAt(0).toUpperCase() + color.substr(1).toLowerCase();
         }),
@@ -139,11 +140,16 @@ const CarModelsStep = ({ props }) => {
                 onClick={(event) =>
                   onCarSelect(
                     event,
-                    car.id,
-                    car.name,
+                    {
+                      id: car.id,
+                      model: car.name,
+                      number: car.number,
+                      colors: car.colors,
+                      imgUrl: car.imgUrl,
+                      tank: car.tank
+                    },
                     car.priceMin,
-                    car.priceMax,
-                    car.colors
+                    car.priceMax
                   )
                 }
               >

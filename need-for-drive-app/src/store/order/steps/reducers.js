@@ -13,7 +13,7 @@ const defaultState = {
     city: { id: null, name: ""},
     point: { id: null, name: ""},
     modelFilter: 0,
-    selectedCar: { id: null, colors: null},
+    selectedCar: { id: null, model: null, number: null, colors: null, imgUrl: null,  tank: null },
     colorFilter: { id: 0, name: ""},
     dateStart: { formatted: null, timespan: 0},
     dateEnd: { formatted: null, timespan: 0},
