@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import LocationStep from "./LocationStep";
 import CarModelsStep from "./CarModelsStep";
 import AdditionalsStep from "./AdditionalsStep";
@@ -50,11 +51,7 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return <FinalStep
-        setOrderPrice={props.setOrderPrice}
-        orderPrice={props.orderPrice}
-        fieldValues={props.fieldValues}
-      />;
+        return <Redirect to="/order/:id" />
       default:
         return <LocationStep props={stepProps} />;
     }

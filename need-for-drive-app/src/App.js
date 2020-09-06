@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import StartPage from "./pages/start";
 import OrderPage from "./pages/order";
+import FinalStep from "./components/Steps/FinalStep"
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -21,6 +22,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={StartPage} />
             <Route path="/order" exact component={OrderPage} />
+            <Route path="/order/:id" exact component={OrderPage} />
           </Switch>
         </Provider>
       </Router>
