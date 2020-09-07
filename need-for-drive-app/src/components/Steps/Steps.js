@@ -53,6 +53,8 @@ const Steps = (props) => {
     getOrderPrice: getOrderPrice
   };
 
+  const orderId = props.orderId;
+
   const switchSteps = (currentStep) => {
     switch (currentStep) {
       case 1:
@@ -62,11 +64,11 @@ const Steps = (props) => {
       case 3:
         return <AdditionalsStep props={stepProps} />;
       case 4:
-        return <FinalStep props={stepProps} />;
+        return <FinalStep props={stepProps} orderId={orderId} />;
       case 5:
         return (
           <>
-            <FinalStep props={stepProps} />
+            <FinalStep props={stepProps} orderId={orderId} />
             <ConfirmOrder
               setNextStep={props.setNextStep}
               setPrevStep={props.setPrevStep}
@@ -78,7 +80,7 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return <FinalStep props={stepProps} orderId={props.orderId} />;
+        return <FinalStep props={stepProps} orderId={orderId} />;
       default:
         return <LocationStep props={stepProps} />;
     }

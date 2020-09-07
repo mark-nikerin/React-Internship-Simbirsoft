@@ -58,7 +58,6 @@ const OrderPage = (props) => {
           resetFields={props.resetFields}
           resetInfoItems={props.resetInfoItems}
           orderPrice={props.orderPrice}
-          orderId={orderId}
         />
       </div>
     </div>
