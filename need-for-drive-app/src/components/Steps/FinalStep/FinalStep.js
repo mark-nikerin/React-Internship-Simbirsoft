@@ -9,8 +9,17 @@ const FinalStep = ({ props, orderId }) => {
   const selectedCar = props.fieldValues.selectedCar;
   const additionals = props.fieldValues.additionals;
   const setField = props.setField;
+  const addInfoItem = props.addInfoItem;
 
   const setFieldValues = (order) => {
+    const city = order.cityId;
+    setField("city", { id: city.id, name: city.name });
+
+    const point = order.pointId;
+    setField("point", { id: point.id, name: point.name + " " + point.address });
+
+    addInfoItem("Пункт выдачи", city.name + ", " + point.address);
+
     const car = order.carId;
     setField("selectedCar", {
       id: car.id,
@@ -21,16 +30,14 @@ const FinalStep = ({ props, orderId }) => {
       tank: car.tank,
     });
 
-    const city = order.cityId;
-    setField("city", { id: city.id, name: city.name });
-
-    const point = order.pointId;
-    setField("point", { id: point.id, name: point.name + " " + point.address });
+    addInfoItem("Модель", car.name);
 
     setField("colorFilter", {
       id: null,
       name: order.color,
     });
+
+    addInfoItem("Цвет", order.color);
 
     setField("dateStart", {
       formatted: new Date(order.dateFrom).toLocaleString(),
@@ -42,6 +49,14 @@ const FinalStep = ({ props, orderId }) => {
       timespan: order.dateTo,
     });
 
+    const dateDiff = props.getDateDiff(new Date(order.dateFrom), new Date(order.dateTo));
+
+    const days = dateDiff.days === 0 ? "" : dateDiff.days + "д ";
+    const hours = dateDiff.hours === 0 ? "" : dateDiff.hours + "ч ";
+    const minutes = dateDiff.minutes === 0 ? "" : dateDiff.minutes + "м ";
+
+    props.addInfoItem("Длительность аренды", days + hours + minutes);
+
     const rate = order.rateId;
     setField("rate", {
       rateId: rate.id,
@@ -49,13 +64,18 @@ const FinalStep = ({ props, orderId }) => {
       rateName: rate.rateTypeId.name,
     });
 
+    addInfoItem("Тариф", rate.rateTypeId.name);
+
     additionals[0].isActive = order.isFullTank;
     additionals[1].isActive = order.isNeedChildChair;
     additionals[2].isActive = order.isRightWheel;
     setField("additionals", additionals);
-  };
 
-  const fillOrderInfo = () => {};
+    additionals.forEach((additional) => {
+      if (additional.isActive)
+        addInfoItem(additional.title, "Да");
+    })
+  };
 
   const fetchOrder = async (orderId) => {
     const response = await fetch(

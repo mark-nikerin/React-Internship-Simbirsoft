@@ -4,6 +4,21 @@ import CarModelsStep from "./CarModelsStep";
 import AdditionalsStep from "./AdditionalsStep";
 import FinalStep from "./FinalStep";
 import ConfirmOrder from "./ConfirmOrder";
+import moment from "moment";
+
+const getDateDiff = (dateStart, dateEnd) => {
+  const amountMinutes = Math.abs(
+    moment(dateStart).diff(moment(dateEnd), "minutes")
+  );
+
+  const amountHours = Math.floor(amountMinutes / 60);
+  const remainingMinutes = amountMinutes % 60;
+
+  const amountDays = Math.floor(amountHours / 24);
+  const remainingHours = amountHours % 24;
+
+  return { days: amountDays, hours: remainingHours, minutes: remainingMinutes };
+};
 
 const Steps = (props) => {
   const stepProps = {
@@ -13,6 +28,7 @@ const Steps = (props) => {
     fieldValues: props.fieldValues,
     setOrderPrice: props.setOrderPrice,
     orderPrice: props.orderPrice,
+    getDateDiff: getDateDiff
   };
 
   const switchSteps = (currentStep) => {

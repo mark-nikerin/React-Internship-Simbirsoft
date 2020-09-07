@@ -22,7 +22,7 @@ const CarModelsStep = ({ props }) => {
   const onCarSelect = (event, car, minPrice, maxPrice) => {
     event.preventDefault();
     props.setField("selectedCar", car);
-    props.addInfoItem({ title: "Модель", value: car.model });
+    props.addInfoItem("Модель", car.model);
     props.setOrderPrice({ min: minPrice, max: maxPrice, final: minPrice});
   };
 

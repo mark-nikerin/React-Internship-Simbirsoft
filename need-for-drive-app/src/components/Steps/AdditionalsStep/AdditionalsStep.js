@@ -8,20 +8,6 @@ const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
 const cache = { rates: null }
 
-const getDateDiff = (dateStart, dateEnd) => {
-  const amountMinutes = Math.abs(
-    moment(dateStart).diff(moment(dateEnd), "minutes")
-  );
-
-  const amountHours = Math.floor(amountMinutes / 60);
-  const remainingMinutes = amountMinutes % 60;
-
-  const amountDays = Math.floor(amountHours / 24);
-  const remainingHours = amountHours % 24;
-
-  return { days: amountDays, hours: remainingHours, minutes: remainingMinutes };
-};
-
 const AdditionalsStep = ({ props }) => {
   const colorFilters = ["Любой", ...props.fieldValues.selectedCar.colors];
 
@@ -54,7 +40,7 @@ const AdditionalsStep = ({ props }) => {
       };
     });
     props.setField("rate", { id:0, rateId:rates[0].id });
-    props.addInfoItem({ title: "Тариф", value: rates[0].name });
+    props.addInfoItem("Тариф", rates[0].name);
     setRates(rates);
     cache["rates"] = rates;
   };
@@ -70,13 +56,13 @@ const AdditionalsStep = ({ props }) => {
   const onColorCheck = (event, id) => {
     event.preventDefault();
     props.setField("colorFilter", {id: id, name: colorFilters[id] });
-    props.addInfoItem({ title: "Цвет", value: colorFilters[id] });
+    props.addInfoItem("Цвет", colorFilters[id]);
   };
 
   const onRateSelect = async (event, id) => {
     event.preventDefault();
     props.setField("rate", { id:id, rateId:rates[id].id });
-    props.addInfoItem({ title: "Тариф", value: rates[id].name });
+    props.addInfoItem("Тариф", rates[id].name);
   };
 
   const onAdditionalClick = (event, id) => {
@@ -88,7 +74,7 @@ const AdditionalsStep = ({ props }) => {
       props.removeInfoItem(additionals[id].title);
       props.setOrderPrice({ ...orderPrice, final: orderPrice.final - additionals[id].price});
     } else {
-      props.addInfoItem({ title: additionals[id].title, value: "Да" });
+      props.addInfoItem(additionals[id].title, "Да");
       props.setOrderPrice({ ...orderPrice, final: orderPrice.final + additionals[id].price});
     }
 
@@ -127,7 +113,7 @@ const AdditionalsStep = ({ props }) => {
 
     if (start !== null && end !== null) {
 
-      const dateDiff = getDateDiff(start, end);
+      const dateDiff = props.getDateDiff(start, end);
 
       const days = dateDiff.days === 0 ? "" : dateDiff.days + "д ";
       const hours = dateDiff.hours === 0 ? "" : dateDiff.hours + "ч ";
@@ -135,10 +121,7 @@ const AdditionalsStep = ({ props }) => {
 
       setPrice(dateDiff);
 
-      props.addInfoItem({
-        title: "Длительность аренды",
-        value: days + hours + minutes,
-      });
+      props.addInfoItem("Длительность аренды", days + hours + minutes);
     }
   };
 
@@ -232,7 +215,7 @@ const AdditionalsStep = ({ props }) => {
                 key={id}
                 onClick={(event) => {
                   onRateSelect(event, id);
-                  setPrice(getDateDiff(startDate, endDate));
+                  setPrice(props.getDateDiff(startDate, endDate));
                 }}
               >
                 <input type="radio" defaultChecked={true}></input>
@@ -245,7 +228,7 @@ const AdditionalsStep = ({ props }) => {
                 key={id}
                 onClick={(event) => {
                   onRateSelect(event, id);
-                  setPrice(getDateDiff(startDate, endDate));
+                  setPrice(props.getDateDiff(startDate, endDate));
                 }}
               >
                 <input type="radio"></input>
