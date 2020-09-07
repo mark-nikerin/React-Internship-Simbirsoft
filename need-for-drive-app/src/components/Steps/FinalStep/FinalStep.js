@@ -11,7 +11,7 @@ const FinalStep = ({ props, orderId }) => {
   const setField = props.setField;
   const addInfoItem = props.addInfoItem;
 
-  const setFieldValues = (order) => {
+  const fillOrderInfo = (order) => {
     const city = order.cityId;
     setField("city", { id: city.id, name: city.name });
 
@@ -75,6 +75,10 @@ const FinalStep = ({ props, orderId }) => {
       if (additional.isActive)
         addInfoItem(additional.title, "Да");
     })
+
+    const price = props.getOrderPrice(rate.rateTypeId.unit, rate.price, dateDiff, car.priceMin, additionals);
+    console.log(price);
+    props.setOrderPrice({ ...props.orderPrice, final: price });
   };
 
   const fetchOrder = async (orderId) => {
@@ -90,7 +94,7 @@ const FinalStep = ({ props, orderId }) => {
     const orderResponse = await response.json();
 
     console.log(orderResponse);
-    setFieldValues(orderResponse.data);
+    fillOrderInfo(orderResponse.data);
   };
 
   useEffect(() => {

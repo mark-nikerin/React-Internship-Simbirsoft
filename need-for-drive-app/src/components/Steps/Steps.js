@@ -20,6 +20,27 @@ const getDateDiff = (dateStart, dateEnd) => {
   return { days: amountDays, hours: remainingHours, minutes: remainingMinutes };
 };
 
+const getOrderPrice = (unit, unitPrice, dateDiff, minPrice, additionals) => {
+  let price = minPrice;
+
+  price +=
+    unit === "мин"
+      ? ((dateDiff.days * 24 + dateDiff.hours) * 60 + dateDiff.minutes) *
+        unitPrice
+      : dateDiff.days === 0
+      ? unitPrice
+      : dateDiff.hours === 0 && dateDiff.minutes === 0
+      ? dateDiff.days * unitPrice
+      : (dateDiff.days + 1) * unitPrice;
+
+  additionals.forEach((additional) => {
+        if (additional.isActive) {
+          price += additional.price;
+        }});
+
+  return price;
+};
+
 const Steps = (props) => {
   const stepProps = {
     addInfoItem: props.addInfoItem,
@@ -28,7 +49,8 @@ const Steps = (props) => {
     fieldValues: props.fieldValues,
     setOrderPrice: props.setOrderPrice,
     orderPrice: props.orderPrice,
-    getDateDiff: getDateDiff
+    getDateDiff: getDateDiff,
+    getOrderPrice: getOrderPrice
   };
 
   const switchSteps = (currentStep) => {
@@ -40,17 +62,11 @@ const Steps = (props) => {
       case 3:
         return <AdditionalsStep props={stepProps} />;
       case 4:
-        return (
-          <FinalStep
-            props={stepProps}
-          />
-        );
+        return <FinalStep props={stepProps} />;
       case 5:
         return (
           <>
-            <FinalStep
-              props={stepProps}
-            />
+            <FinalStep props={stepProps} />
             <ConfirmOrder
               setNextStep={props.setNextStep}
               setPrevStep={props.setPrevStep}
@@ -62,12 +78,7 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return (
-          <FinalStep
-            props={stepProps}
-            orderId={props.orderId}
-          />
-        );
+        return <FinalStep props={stepProps} orderId={props.orderId} />;
       default:
         return <LocationStep props={stepProps} />;
     }
