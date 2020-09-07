@@ -1,27 +1,30 @@
 import React from "react";
 import "./finalStep.css";
 import "../steps.css";
-import carImage from "../../../assets/cars/6.png";
 
-const FinalStep = () => {
+const FinalStep = (props) => {
+  const selectedCar = props.fieldValues.selectedCar;
+
   return (
     <div className="step">
       <div className="selected-car">
         <div className="selected-car__info">
-          <h1 className="info__title">Hyndai, i30 N</h1>
-          <div className="info__number">K 761 HA 73</div>
+          <h1 className="info__title">{selectedCar.model}</h1>
+          <div className="info__number">{selectedCar.number}</div>
           <div className="info__item">
             <h3>Топливо</h3>
-            <span>100%</span>
+            <span>{selectedCar.tank + " %"}</span>
           </div>
           <div className="info__item">
             <h3>Доступна с</h3>
-            <span>12.06.2019 12:00</span>
+            <span>{props.fieldValues.dateStart.formatted}</span>
           </div>
         </div>
         <img
           className="selected-car__image"
-          src={`${carImage}`}
+          crossOrigin="anonymous"
+          referrerPolicy="origin"
+          src={selectedCar.imgUrl}
           alt="car"
         ></img>
       </div>

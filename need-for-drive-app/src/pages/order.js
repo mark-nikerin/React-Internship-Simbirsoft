@@ -22,17 +22,21 @@ import {
 import "./order.css";
 
 const OrderPage = (props) => {
+  const orderId = props.match.params.id;
+  const currentStep = orderId === undefined ? props.currentStep : 6;
+
   return (
     <div className="order-page">
       <Header />
       <StepsMenu
-        currentStep={props.currentStep}
+        currentStep={currentStep}
         setStep={props.setStep}
         filledSteps={props.filledSteps}
+        orderId={orderId}
       />
       <div className="steps-body">
         <Steps
-          currentStep={props.currentStep}
+          currentStep={currentStep}
           setPrevStep={props.setPrevStep}
           setNextStep={props.setNextStep}
           addInfoItem={props.addInfoItem}
@@ -41,9 +45,11 @@ const OrderPage = (props) => {
           fieldValues={props.fieldValues}
           setOrderPrice={props.setOrderPrice}
           orderPrice ={props.orderPrice}
+          resetFields={props.resetFields}
+          resetInfoItems={props.resetInfoItems}
         />
         <OrderInfo
-          currentStep={props.currentStep}
+          currentStep={currentStep}
           setNextStep={props.setNextStep}
           setStep={props.setStep}
           infoItems={props.infoItems}
@@ -51,6 +57,7 @@ const OrderPage = (props) => {
           resetFields={props.resetFields}
           resetInfoItems={props.resetInfoItems}
           orderPrice={props.orderPrice}
+          orderId={orderId}
         />
       </div>
     </div>

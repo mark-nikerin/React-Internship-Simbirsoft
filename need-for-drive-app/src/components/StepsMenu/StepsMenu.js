@@ -13,7 +13,7 @@ const StepsMenu = (props) => {
   return (
     <React.Fragment>
       {props.currentStep === 6 ? (
-        <span className="menu-order-number">Заказ номер RU58491823</span>
+        <span className="menu-order-number">Заказ номер {props.orderId}</span>
       ) : (
         <ul className="steps-menu">
           {menuItems.map((menuItem, id) => {
