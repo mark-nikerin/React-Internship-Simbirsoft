@@ -77,7 +77,6 @@ const FinalStep = ({ props, orderId }) => {
     );
     const orderResponse = await response.json();
 
-    console.log(orderResponse);
     fillOrderInfo(orderResponse.data);
   };
 
