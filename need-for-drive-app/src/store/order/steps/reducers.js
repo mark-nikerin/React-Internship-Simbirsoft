@@ -17,7 +17,7 @@ const defaultState = {
     colorFilter: { id: 0, name: ""},
     dateStart: { formatted: null, timespan: 0},
     dateEnd: { formatted: null, timespan: 0},
-    rate: { id: 0, rateId: ""},
+    rate: { id: 0, rateId: "", price: null, rateName: ""},
     additionals: [
       { title: "Полный бак", systemName:"isFullTank" , isActive: false, price: 200, unit: "₽"},
       { title: "Детское кресло", systemName:"isNeedChildChair" , isActive: false, price: 200, unit: "₽"},

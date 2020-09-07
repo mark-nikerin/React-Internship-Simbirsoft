@@ -1,7 +1,7 @@
 export const ADD_INFO_ITEM = "ADD_INFO_ITEM";
 export const REMOVE_INFO_ITEM = "REMOVE_INFO_ITEM";
-export const RESET_INFO_ITEMS ="RESET_INFO_ITEMS";
-export const SET_ORDER_PRICE ="SET_ORDER_PRICE"
+export const RESET_INFO_ITEMS = "RESET_INFO_ITEMS";
+export const SET_ORDER_PRICE = "SET_ORDER_PRICE";
 
 
 export const addInfoItem = (info) => ({

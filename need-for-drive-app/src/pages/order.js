@@ -47,6 +47,7 @@ const OrderPage = (props) => {
           orderPrice ={props.orderPrice}
           resetFields={props.resetFields}
           resetInfoItems={props.resetInfoItems}
+          orderId={orderId}
         />
         <OrderInfo
           currentStep={currentStep}
@@ -70,7 +71,7 @@ const mapStateToProps = (state) => {
     filledSteps: state.steps.filledSteps,
     fieldValues: state.steps.fieldValues,
     infoItems: state.orderInfo.infoItems,
-    orderPrice: state.orderInfo.orderPrice,
+    orderPrice: state.orderInfo.orderPrice
   };
 };
 
@@ -83,7 +84,7 @@ const mapDispatchToProps = {
   setField,
   resetFields,
   resetInfoItems,
-  setOrderPrice,
+  setOrderPrice
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);
