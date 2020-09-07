@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import LocationStep from "./LocationStep";
 import CarModelsStep from "./CarModelsStep";
 import AdditionalsStep from "./AdditionalsStep";
@@ -13,7 +12,7 @@ const Steps = (props) => {
     setField: props.setField,
     fieldValues: props.fieldValues,
     setOrderPrice: props.setOrderPrice,
-    orderPrice: props.orderPrice
+    orderPrice: props.orderPrice,
   };
 
   const switchSteps = (currentStep) => {
@@ -27,18 +26,14 @@ const Steps = (props) => {
       case 4:
         return (
           <FinalStep
-            setOrderPrice={props.setOrderPrice}
-            orderPrice={props.orderPrice}
-            fieldValues={props.fieldValues}
+            props={stepProps}
           />
         );
       case 5:
         return (
           <>
             <FinalStep
-              setOrderPrice={props.setOrderPrice}
-              orderPrice={props.orderPrice}
-              fieldValues={props.fieldValues}
+              props={stepProps}
             />
             <ConfirmOrder
               setNextStep={props.setNextStep}
@@ -51,7 +46,12 @@ const Steps = (props) => {
           </>
         );
       case 6:
-        return <Redirect to="/order/:id" />
+        return (
+          <FinalStep
+            props={stepProps}
+            orderId={props.orderId}
+          />
+        );
       default:
         return <LocationStep props={stepProps} />;
     }

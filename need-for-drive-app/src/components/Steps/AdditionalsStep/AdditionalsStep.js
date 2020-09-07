@@ -114,7 +114,6 @@ const AdditionalsStep = ({ props }) => {
     });
 
     props.setOrderPrice({ ...orderPrice, final: orderPrice.min + price});
-    console.log(orderPrice.final);
   }
 
   const onDateSelect = (start, end) => {

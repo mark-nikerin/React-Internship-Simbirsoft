@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import "./confirmOrder.css";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -8,10 +9,7 @@ const ConfirmOrder = (props) => {
   const order = props.order;
   const price = order.price;
 
-  const onBack = (event) => {
-    event.preventDefault();
-    props.setPrevStep();
-  };
+  const [orderId, setOrderId] = React.useState(null);
 
   const postOrder = async () => {
     const response = await fetch(
@@ -19,7 +17,7 @@ const ConfirmOrder = (props) => {
       {
         method: "POST",
         headers: {
-          "Accept": "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
           "X-Api-Factory-Application-Id": API_KEY,
         },
@@ -28,8 +26,8 @@ const ConfirmOrder = (props) => {
           pointId: { id: order.point.id, name: order.point.name },
           carId: { id: order.selectedCar.id },
           color: order.colorFilter.name,
-          dateFrom: 10000,
-          dateTo: 12222,
+          dateFrom: order.dateStart.timespan,
+          dateTo: order.dateEnd.timespan,
           rateId: { id: order.rate.rateId },
           price: price,
           isFullTank: order.additionals[0].isActive,
@@ -39,10 +37,17 @@ const ConfirmOrder = (props) => {
       }
     );
 
-    console.log(await response.json());
-
     props.resetFields();
     props.resetInfoItems();
+
+    const orderResponse = await response.json();
+
+    setOrderId(orderResponse.data.id);
+  };
+
+  const onBack = (event) => {
+    event.preventDefault();
+    props.setPrevStep();
   };
 
   const onConfirm = async (event) => {
@@ -51,7 +56,7 @@ const ConfirmOrder = (props) => {
     props.setNextStep();
   };
 
-  return (
+  return orderId === null ? (
     <div className="modal visible">
       <div className="confirm-order">
         <h2>Подтвердить заказ</h2>
@@ -65,7 +70,7 @@ const ConfirmOrder = (props) => {
         </div>
       </div>
     </div>
-  );
+  ) : <Redirect to={"/order/" + orderId} />;
 };
 
 export default ConfirmOrder;
