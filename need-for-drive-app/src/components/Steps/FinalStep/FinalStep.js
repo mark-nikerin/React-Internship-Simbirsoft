@@ -8,77 +8,61 @@ const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 const FinalStep = ({ props, orderId }) => {
   const selectedCar = props.fieldValues.selectedCar;
   const additionals = props.fieldValues.additionals;
-  const setField = props.setField;
   const addInfoItem = props.addInfoItem;
+
+  const [finalOrderInfo, setFinalOrderInfo] = React.useState({
+    model: selectedCar.model,
+    number: selectedCar.number,
+    tank: selectedCar.tank,
+    imgUrl: selectedCar.imgUrl,
+    date: new Date(props.fieldValues.dateStart.timespan).toLocaleString(),
+  });
 
   const fillOrderInfo = (order) => {
     const city = order.cityId;
-    setField("city", { id: city.id, name: city.name });
-
     const point = order.pointId;
-    setField("point", { id: point.id, name: point.name + " " + point.address });
-
-    addInfoItem("Пункт выдачи", city.name + ", " + point.address);
-
     const car = order.carId;
-    setField("selectedCar", {
-      id: car.id,
-      colors: car.colors,
-      model: car.name,
-      number: car.number,
-      imgUrl: PROXY_URL + "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
-      tank: car.tank,
-    });
+    const rate = order.rateId;
 
-    addInfoItem("Модель", car.name);
+    additionals[0].isActive = order.isFullTank;
+    additionals[1].isActive = order.isNeedChildChair;
+    additionals[2].isActive = order.isRightWheel;
 
-    setField("colorFilter", {
-      id: null,
-      name: order.color,
-    });
-
-    addInfoItem("Цвет", order.color);
-
-    setField("dateStart", {
-      formatted: new Date(order.dateFrom).toLocaleString(),
-      timespan: order.dateFrom,
-    });
-
-    setField("dateEnd", {
-      formatted: new Date(order.dateTo).toLocaleString(),
-      timespan: order.dateTo,
-    });
-
-    const dateDiff = props.getDateDiff(new Date(order.dateFrom), new Date(order.dateTo));
+    const dateDiff = props.getDateDiff(
+      new Date(order.dateFrom),
+      new Date(order.dateTo)
+    );
 
     const days = dateDiff.days === 0 ? "" : dateDiff.days + "д ";
     const hours = dateDiff.hours === 0 ? "" : dateDiff.hours + "ч ";
     const minutes = dateDiff.minutes === 0 ? "" : dateDiff.minutes + "м ";
 
-    props.addInfoItem("Длительность аренды", days + hours + minutes);
+    const price = props.getOrderPrice(
+      rate.rateTypeId.unit,
+      rate.price,
+      dateDiff,
+      car.priceMin,
+      additionals
+    );
 
-    const rate = order.rateId;
-    setField("rate", {
-      rateId: rate.id,
-      price: rate.price,
-      rateName: rate.rateTypeId.name,
+    props.setOrderPrice({ ...props.orderPrice, final: price });
+
+    addInfoItem("Пункт выдачи", city.name + ", " + point.address);
+    addInfoItem("Модель", car.name);
+    addInfoItem("Цвет", order.color);
+    addInfoItem("Длительность аренды", days + hours + minutes);
+    addInfoItem("Тариф", rate.rateTypeId.name);
+    additionals.forEach((additional) => {
+      if (additional.isActive) addInfoItem(additional.title, "Да");
     });
 
-    addInfoItem("Тариф", rate.rateTypeId.name);
-
-    additionals[0].isActive = order.isFullTank;
-    additionals[1].isActive = order.isNeedChildChair;
-    additionals[2].isActive = order.isRightWheel;
-    setField("additionals", additionals);
-
-    additionals.forEach((additional) => {
-      if (additional.isActive)
-        addInfoItem(additional.title, "Да");
-    })
-
-    const price = props.getOrderPrice(rate.rateTypeId.unit, rate.price, dateDiff, car.priceMin, additionals);
-    console.log(price);
-    props.setOrderPrice({ ...props.orderPrice, final: price });
+    setFinalOrderInfo({
+      model: car.name,
+      number: car.number,
+      tank: car.tank,
+      imgUrl: PROXY_URL + "http://api-factory.simbirsoft1.com" + car.thumbnail.path,
+      date: new Date(order.dateFrom).toLocaleString()
+    });
   };
 
   const fetchOrder = async (orderId) => {
@@ -98,7 +82,6 @@ const FinalStep = ({ props, orderId }) => {
   };
 
   useEffect(() => {
-    console.log(orderId);
     if (orderId !== undefined) {
       fetchOrder(orderId);
     }
@@ -108,22 +91,22 @@ const FinalStep = ({ props, orderId }) => {
     <div className="step">
       <div className="selected-car">
         <div className="selected-car__info">
-          <h1 className="info__title">{selectedCar.model}</h1>
-          <div className="info__number">{selectedCar.number}</div>
+          <h1 className="info__title">{finalOrderInfo.model}</h1>
+          <div className="info__number">{finalOrderInfo.number}</div>
           <div className="info__item">
             <h3>Топливо</h3>
-            <span>{selectedCar.tank + " %"}</span>
+            <span>{finalOrderInfo.tank + " %"}</span>
           </div>
           <div className="info__item">
             <h3>Доступна с</h3>
-            <span>{props.fieldValues.dateStart.formatted}</span>
+            <span>{finalOrderInfo.date}</span>
           </div>
         </div>
         <img
           className="selected-car__image"
           crossOrigin="anonymous"
           referrerPolicy="origin"
-          src={selectedCar.imgUrl}
+          src={finalOrderInfo.imgUrl}
           alt="car"
         ></img>
       </div>

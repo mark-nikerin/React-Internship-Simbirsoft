@@ -38,7 +38,6 @@ const ConfirmOrder = (props) => {
     );
 
     props.resetFields();
-    props.resetInfoItems();
 
     const orderResponse = await response.json();
 

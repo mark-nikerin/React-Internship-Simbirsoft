@@ -54,6 +54,7 @@ const Steps = (props) => {
   };
 
   const orderId = props.orderId;
+  console.log("steps - " + orderId);
 
   const switchSteps = (currentStep) => {
     switch (currentStep) {
