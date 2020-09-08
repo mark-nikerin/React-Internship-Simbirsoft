@@ -1,18 +1,27 @@
-import { ADD_INFO_ITEM, REMOVE_INFO_ITEM, RESET_INFO_ITEMS} from "./actions";
-import _ from "lodash";
+import {
+  ADD_INFO_ITEM,
+  REMOVE_INFO_ITEM,
+  RESET_INFO_ITEMS,
+  SET_ORDER_PRICE
+} from "./actions";
 
 const defaultState = {
   infoItems: [],
+  orderPrice: {
+    min: null,
+    max: null,
+    final: null
+  }
 };
 
 export const orderInfoReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_INFO_ITEM: {
       let newItems = [...state.infoItems];
-      const existingItemId = _.findIndex(newItems, [
-        "title",
-        action.payload.title,
-      ]);
+      const existingItemId = newItems.findIndex(
+        (item) => item.title === action.payload.title
+      );
+
       if (existingItemId !== -1) {
         newItems[existingItemId].value = action.payload.value;
       } else {
@@ -25,7 +34,9 @@ export const orderInfoReducer = (state = defaultState, action) => {
     }
     case REMOVE_INFO_ITEM: {
       let newItems = [...state.infoItems];
-      const existingItemId = _.findIndex(newItems, ["title", action.payload]);
+      const existingItemId = newItems.findIndex(
+        (item) => item.title === action.payload
+      );
       if (existingItemId !== -1) {
         newItems.splice(existingItemId, 1);
       }
@@ -34,11 +45,17 @@ export const orderInfoReducer = (state = defaultState, action) => {
         infoItems: newItems,
       };
     }
-    case RESET_INFO_ITEMS: {
-      const newItems = [];
+    case SET_ORDER_PRICE: {
       return {
         ...state,
-        infoItems: newItems,
+        orderPrice: action.payload
+      };
+    }
+    case RESET_INFO_ITEMS: {
+      return {
+        ...state,
+        infoItems: [...defaultState.infoItems],
+        orderPrice: { ...defaultState.orderPrice },
       };
     }
     default:

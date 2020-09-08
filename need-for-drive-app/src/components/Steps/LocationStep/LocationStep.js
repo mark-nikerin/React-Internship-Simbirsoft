@@ -1,8 +1,7 @@
 import React from "react";
-import _ from "lodash";
 import Autocomplete from "./Autocomplete";
 import map from "../../../assets/map.png";
-import "./firstStep.css";
+import "./locationStep.css";
 import "../steps.css";
 import "./Autocomplete/autocomplete.css";
 
@@ -11,15 +10,15 @@ let inputInfo = { city: "", point: "" };
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
-const FirstStep = (props) => {
-  console.log(API_KEY);
+const LocationStep = ({props}) => {
   const onCityChange = (value) => {
-    props.setField("city", value);
+    props.setField("city", { id: value.id, name: value.name});
   };
 
   const onPointChange = (value) => {
-    props.setField("point", value);
+    props.setField("point", { id: value.id, name: value.name});
   };
 
   const onCityBlur = (value) => {
@@ -37,13 +36,15 @@ const FirstStep = (props) => {
 
       if (locationInfo.value !== newLocationInfoValue) {
         locationInfo.value = newLocationInfoValue;
-        props.addInfoItem(locationInfo);
+        props.addInfoItem(locationInfo.title, locationInfo.value);
       }
     }
   };
 
+
+
   const getCitySuggestions = async () => {
-    const response = await fetch(
+    const response = await fetch(PROXY_URL +
       "http://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
@@ -54,13 +55,13 @@ const FirstStep = (props) => {
     );
     const cities = await response.json();
     const suggestions = cities.data.map((city) => {
-      return city.name;
+      return { id: city.id, name: city.name };
     });
     return suggestions;
   };
 
   const getPointSuggestions = async () => {
-    const response = await fetch(
+    const response = await fetch(PROXY_URL +
       "http://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
@@ -75,13 +76,13 @@ const FirstStep = (props) => {
         return point.cityId.name === cityValue;
       })
       .map((point) => {
-        return point.name + ", " + point.address;
+        return { id: point.id, name: point.name + ", " + point.address };
       });
     return suggestions;
   };
 
-  const cityValue = _.find(props.fieldValues, { field: "city" }).value;
-  const pointValue = _.find(props.fieldValues, { field: "point" }).value;
+  const cityValue = props.fieldValues.city.name;
+  const pointValue = props.fieldValues.point.name;
 
   return (
     <div className="step">
@@ -113,4 +114,4 @@ const FirstStep = (props) => {
   );
 };
 
-export default FirstStep;
+export default LocationStep;

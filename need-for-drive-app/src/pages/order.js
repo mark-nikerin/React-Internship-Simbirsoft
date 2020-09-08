@@ -16,37 +16,48 @@ import {
   addInfoItem,
   removeInfoItem,
   resetInfoItems,
+  setOrderPrice
 } from "../store/order/orderInfo/actions";
 
 import "./order.css";
 
 const OrderPage = (props) => {
+  const orderId = props.match.params.id;
+  const currentStep = orderId === undefined ? props.currentStep : 6;
+
   return (
     <div className="order-page">
       <Header />
       <StepsMenu
-        currentStep={props.currentStep}
+        currentStep={currentStep}
         setStep={props.setStep}
         filledSteps={props.filledSteps}
+        orderId={orderId}
       />
       <div className="steps-body">
         <Steps
-          currentStep={props.currentStep}
+          currentStep={currentStep}
           setPrevStep={props.setPrevStep}
           setNextStep={props.setNextStep}
           addInfoItem={props.addInfoItem}
           removeInfoItem={props.removeInfoItem}
           setField={props.setField}
           fieldValues={props.fieldValues}
+          setOrderPrice={props.setOrderPrice}
+          orderPrice ={props.orderPrice}
+          resetFields={props.resetFields}
+          resetInfoItems={props.resetInfoItems}
+          orderId={orderId}
         />
         <OrderInfo
-          currentStep={props.currentStep}
+          currentStep={currentStep}
           setNextStep={props.setNextStep}
           setStep={props.setStep}
           infoItems={props.infoItems}
           filledSteps={props.filledSteps}
           resetFields={props.resetFields}
           resetInfoItems={props.resetInfoItems}
+          orderPrice={props.orderPrice}
         />
       </div>
     </div>
@@ -59,6 +70,7 @@ const mapStateToProps = (state) => {
     filledSteps: state.steps.filledSteps,
     fieldValues: state.steps.fieldValues,
     infoItems: state.orderInfo.infoItems,
+    orderPrice: state.orderInfo.orderPrice
   };
 };
 
@@ -71,6 +83,7 @@ const mapDispatchToProps = {
   setField,
   resetFields,
   resetInfoItems,
+  setOrderPrice
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

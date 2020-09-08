@@ -1,8 +1,13 @@
-.steps-menu { 
+.steps-menu {
+  position: fixed;
+  width: 100%;
   margin: 0;
-  padding: 8px 64px; 
+  padding: 8px 64px;
+  margin-top: 95px;
   border-top: solid 1px #eeeeee;
-  border-bottom: solid 1px #eeeeee; 
+  border-bottom: solid 1px #eeeeee;
+  background-color: white;
+  z-index: 98;
 }
 
 .steps-menu li {
@@ -13,7 +18,7 @@
   font-size: 14px;
   line-height: 16px;
   color: #999999;
-  margin-right: 11px;  
+  margin-right: 11px;
 }
 
 .steps-menu li:first-child {
@@ -47,23 +52,28 @@
 }
 
 .menu-order-number {
-  margin: 8px 0; 
-  padding: 8px 64px;
+  position: fixed;
+  width: 100%;
+  margin-top: 100px;
+  padding: 8px 0px;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  color: #121212;  
+  color: #121212;
   border-top: solid 1px #eeeeee;
-  border-bottom: solid 1px #eeeeee; 
-} 
+  border-bottom: solid 1px #eeeeee;
+  background-color: white;
+  text-align: center;
+}
 
 @media ( max-width:510px )
 {
   .steps-menu {
     padding: 8px 32px;
-  } 
+  }
 
   .menu-order-number {
+    margin-top: 95px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -72,18 +82,18 @@
 @media ( max-width: 499px )
 {
   .steps-menu {
-    padding: 8px 32px; 
+    padding: 8px 32px;
     white-space: nowrap;
     overflow: hidden;
-    overflow-x: scroll; 
-  } 
+    overflow-x: scroll;
+  }
 }
 
 
-@media ( max-width:1040px )
+@media ( max-width:1140px )
 {
   .steps-menu {
-    white-space: nowrap; 
+    white-space: nowrap;
     padding-right: 0px;
   }
 }

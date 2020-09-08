@@ -16,12 +16,10 @@ const OrderInfo = (props) => {
     if (props.filledSteps.indexOf(props.currentStep) !== -1) {
       window.scrollTo(0, 0);
       if (props.currentStep === 6) {
-        console.log(props.currentStep);
         props.setStep(1);
         props.resetFields();
         props.resetInfoItems();
-      }
-      else {
+      } else {
         props.setNextStep();
       }
     }
@@ -41,12 +39,31 @@ const OrderInfo = (props) => {
           );
         })}
       </ul>
-      <div className="price">
+      <div
+        className="price"
+        style={{
+          display:
+            props.orderPrice.min === null &&
+            props.orderPrice.final === null
+              ? "none"
+              : "flex",
+        }}
+      >
         <h3>Цена:</h3>
-        <span>От 8000 до 12000 ₽</span>
+        <span>
+          {props.currentStep < 3
+            ? "От " + props.orderPrice.min + " до " + props.orderPrice.max + " ₽"
+            : props.orderPrice.final + " ₽"}
+        </span>
       </div>
       <button
-        className={props.currentStep === 6 ? "button red" : props.filledSteps.indexOf(props.currentStep) === -1 ? "button inactive" : "button"}
+        className={
+          props.currentStep === 6
+            ? "button red"
+            : props.filledSteps.indexOf(props.currentStep) === -1
+            ? "button inactive"
+            : "button"
+        }
         onClick={(event) => onButtonClick(event)}
       >
         <span>{buttonLabels[props.currentStep - 1]}</span>

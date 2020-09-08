@@ -11,7 +11,7 @@ const Main = () => {
         <h1 className="unselectable">Каршеринг</h1>
         <h2 className="unselectable">Need for drive</h2>
         <h3 className="unselectable">Поминутная аренда авто твоего города</h3>
-        <Link to="/React-Internship-Simbirsoft/order">
+        <Link to="/order">
           <button className="button">
             <span>Забронировать</span>
           </button>
