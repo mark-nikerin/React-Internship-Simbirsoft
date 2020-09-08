@@ -38,7 +38,6 @@ const ConfirmOrder = (props) => {
     );
 
     props.resetFields();
-    props.resetInfoItems();
 
     const orderResponse = await response.json();
 
@@ -56,7 +55,7 @@ const ConfirmOrder = (props) => {
     props.setNextStep();
   };
 
-  return orderId === null ? (
+  return orderId === null || orderId === undefined ? (
     <div className="modal visible">
       <div className="confirm-order">
         <h2>Подтвердить заказ</h2>

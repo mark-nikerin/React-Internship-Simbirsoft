@@ -36,7 +36,7 @@ const LocationStep = ({props}) => {
 
       if (locationInfo.value !== newLocationInfoValue) {
         locationInfo.value = newLocationInfoValue;
-        props.addInfoItem(locationInfo);
+        props.addInfoItem(locationInfo.title, locationInfo.value);
       }
     }
   };

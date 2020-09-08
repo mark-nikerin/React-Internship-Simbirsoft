@@ -11,7 +11,7 @@ const defaultState = {
     min: null,
     max: null,
     final: null
-  },
+  }
 };
 
 export const orderInfoReducer = (state = defaultState, action) => {

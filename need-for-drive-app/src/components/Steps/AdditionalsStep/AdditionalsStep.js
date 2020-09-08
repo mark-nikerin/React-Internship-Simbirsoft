@@ -6,21 +6,7 @@ import moment from "moment";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
-const cache = { rates: null }
-
-const getDateDiff = (dateStart, dateEnd) => {
-  const amountMinutes = Math.abs(
-    moment(dateStart).diff(moment(dateEnd), "minutes")
-  );
-
-  const amountHours = Math.floor(amountMinutes / 60);
-  const remainingMinutes = amountMinutes % 60;
-
-  const amountDays = Math.floor(amountHours / 24);
-  const remainingHours = amountHours % 24;
-
-  return { days: amountDays, hours: remainingHours, minutes: remainingMinutes };
-};
+const cache = { rates: null };
 
 const AdditionalsStep = ({ props }) => {
   const colorFilters = ["Любой", ...props.fieldValues.selectedCar.colors];
@@ -50,11 +36,11 @@ const AdditionalsStep = ({ props }) => {
         id: rate.id,
         price: rate.price,
         unit: rate.rateTypeId.unit,
-        name: rate.rateTypeId.name
+        name: rate.rateTypeId.name,
       };
     });
-    props.setField("rate", { id:0, rateId:rates[0].id });
-    props.addInfoItem({ title: "Тариф", value: rates[0].name });
+    props.setField("rate", { id: 0, rateId: rates[0].id });
+    props.addInfoItem("Тариф", rates[0].name);
     setRates(rates);
     cache["rates"] = rates;
   };
@@ -64,81 +50,84 @@ const AdditionalsStep = ({ props }) => {
       fetchRates();
     } else {
       setRates(cache["rates"]);
-    };
+    }
   }, []);
 
   const onColorCheck = (event, id) => {
     event.preventDefault();
-    props.setField("colorFilter", {id: id, name: colorFilters[id] });
-    props.addInfoItem({ title: "Цвет", value: colorFilters[id] });
+    props.setField("colorFilter", { id: id, name: colorFilters[id] });
+    props.addInfoItem("Цвет", colorFilters[id]);
   };
 
   const onRateSelect = async (event, id) => {
     event.preventDefault();
-    props.setField("rate", { id:id, rateId:rates[id].id });
-    props.addInfoItem({ title: "Тариф", value: rates[id].name });
+    props.setField("rate", { id: id, rateId: rates[id].id });
+    props.addInfoItem("Тариф", rates[id].name);
+    const price = props.getOrderPrice(
+      rates[id].unit,
+      rates[id].price,
+      props.getDateDiff(startDate, endDate),
+      orderPrice.min,
+      additionals
+    );
+    props.setOrderPrice({ ...orderPrice, final: price });
   };
 
   const onAdditionalClick = (event, id) => {
     event.preventDefault();
     let newAdditionals = [...additionals];
-    newAdditionals[id].isActive =! newAdditionals[id].isActive;
+    newAdditionals[id].isActive = !newAdditionals[id].isActive;
 
     if (!newAdditionals[id].isActive) {
       props.removeInfoItem(additionals[id].title);
-      props.setOrderPrice({ ...orderPrice, final: orderPrice.final - additionals[id].price});
+      props.setOrderPrice({
+        ...orderPrice,
+        final: orderPrice.final - additionals[id].price,
+      });
     } else {
-      props.addInfoItem({ title: additionals[id].title, value: "Да" });
-      props.setOrderPrice({ ...orderPrice, final: orderPrice.final + additionals[id].price});
+      props.addInfoItem(additionals[id].title, "Да");
+      props.setOrderPrice({
+        ...orderPrice,
+        final: orderPrice.final + additionals[id].price,
+      });
     }
 
     props.setField("additionals", newAdditionals);
   };
 
-  const setPrice = (dateDiff) => {
-    let price = rates[selectedRateId].unit === "мин"
-      ? ((dateDiff.days * 24 + dateDiff.hours) * 60 + dateDiff.minutes) * rates[selectedRateId].price
-      : dateDiff.days === 0
-        ? rates[selectedRateId].price
-        : dateDiff.hours === 0 && dateDiff.minutes === 0
-          ? dateDiff.days * rates[selectedRateId].price
-          : (dateDiff.days + 1) * rates[selectedRateId].price
-
-    additionals.forEach((additional) => {
-      if (additional.isActive) {
-        price += additional.price;
-      }
-      else {
-        price -= additional.price;
-      }
-    });
-
-    props.setOrderPrice({ ...orderPrice, final: orderPrice.min + price});
-  }
-
   const onDateSelect = (start, end) => {
     if (start !== null) {
-      props.setField("dateStart", { formatted: start, timespan: new Date(start).valueOf() });
+      props.setField("dateStart", {
+        formatted: start,
+        timespan: new Date(start).valueOf(),
+      });
     }
 
     if (end !== null) {
-      props.setField("dateEnd", { formatted: end, timespan: new Date(end).valueOf() });
+      props.setField("dateEnd", {
+        formatted: end,
+        timespan: new Date(end).valueOf(),
+      });
     }
 
     if (start !== null && end !== null) {
-
-      const dateDiff = getDateDiff(start, end);
+      const dateDiff = props.getDateDiff(start, end);
 
       const days = dateDiff.days === 0 ? "" : dateDiff.days + "д ";
       const hours = dateDiff.hours === 0 ? "" : dateDiff.hours + "ч ";
       const minutes = dateDiff.minutes === 0 ? "" : dateDiff.minutes + "м ";
 
-      setPrice(dateDiff);
+      const price = props.getOrderPrice(
+        rates[selectedRateId].unit,
+        rates[selectedRateId].price,
+        dateDiff,
+        orderPrice.min,
+        additionals
+      );
 
-      props.addInfoItem({
-        title: "Длительность аренды",
-        value: days + hours + minutes,
-      });
+      props.setOrderPrice({ ...orderPrice, final: price });
+
+      props.addInfoItem("Длительность аренды", days + hours + minutes);
     }
   };
 
@@ -224,36 +213,35 @@ const AdditionalsStep = ({ props }) => {
       </div>
       <h3 className="step__title">Тариф</h3>
       <div className="filters vertical">
-        {rates && rates.map((rate, id) => {
-          if (id === selectedRateId) {
-            return (
-              <label
-                className="checked"
-                key={id}
-                onClick={(event) => {
-                  onRateSelect(event, id);
-                  setPrice(getDateDiff(startDate, endDate));
-                }}
-              >
-                <input type="radio" defaultChecked={true}></input>
-                {rate.name + ", " + rate.price + "₽/" + rate.unit}
-              </label>
-            );
-          } else {
-            return (
-              <label
-                key={id}
-                onClick={(event) => {
-                  onRateSelect(event, id);
-                  setPrice(getDateDiff(startDate, endDate));
-                }}
-              >
-                <input type="radio"></input>
-                {rate.name + ", " + rate.price + "₽/" + rate.unit}
-              </label>
-            );
-          }
-        })}
+        {rates &&
+          rates.map((rate, id) => {
+            if (id === selectedRateId) {
+              return (
+                <label
+                  className="checked"
+                  key={id}
+                  onClick={(event) => {
+                    onRateSelect(event, id);
+                  }}
+                >
+                  <input type="radio" defaultChecked={true}></input>
+                  {rate.name + ", " + rate.price + "₽/" + rate.unit}
+                </label>
+              );
+            } else {
+              return (
+                <label
+                  key={id}
+                  onClick={(event) => {
+                    onRateSelect(event, id);
+                  }}
+                >
+                  <input type="radio"></input>
+                  {rate.name + ", " + rate.price + "₽/" + rate.unit}
+                </label>
+              );
+            }
+          })}
       </div>
       <h3 className="step__title">Доп. услуги</h3>
       <div className="filters vertical">
