@@ -1,6 +1,6 @@
 import React from "react";
+import { YMaps, Map, Placemark, GeolocationControl } from "react-yandex-maps";
 import Autocomplete from "./Autocomplete";
-import map from "../../../assets/map.png";
 import "./locationStep.css";
 import "../steps.css";
 import "./Autocomplete/autocomplete.css";
@@ -12,13 +12,13 @@ let locationInfo = { title: "Пункт выдачи", value: "" };
 const API_KEY = process.env.REACT_APP_API_KEY;
 const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
-const LocationStep = ({props}) => {
+const LocationStep = ({ props }) => {
   const onCityChange = (value) => {
-    props.setField("city", { id: value.id, name: value.name});
+    props.setField("city", { id: value.id, name: value.name });
   };
 
   const onPointChange = (value) => {
-    props.setField("point", { id: value.id, name: value.name});
+    props.setField("point", { id: value.id, name: value.name });
   };
 
   const onCityBlur = (value) => {
@@ -41,11 +41,9 @@ const LocationStep = ({props}) => {
     }
   };
 
-
-
   const getCitySuggestions = async () => {
-    const response = await fetch(PROXY_URL +
-      "http://api-factory.simbirsoft1.com/api/db/city",
+    const response = await fetch(
+      PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/city",
       {
         headers: {
           "Content-Type": "application/json",
@@ -61,8 +59,8 @@ const LocationStep = ({props}) => {
   };
 
   const getPointSuggestions = async () => {
-    const response = await fetch(PROXY_URL +
-      "http://api-factory.simbirsoft1.com/api/db/point",
+    const response = await fetch(
+      PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/point",
       {
         headers: {
           "Content-Type": "application/json",
@@ -83,6 +81,29 @@ const LocationStep = ({props}) => {
 
   const cityValue = props.fieldValues.city.name;
   const pointValue = props.fieldValues.point.name;
+
+  const onLoadMap = (inst) => {
+    var location = inst.geocode("Москва");
+    console.log('ymaps  ', inst)
+// Асинхронная обработка ответа.
+    location.then(
+      function(result) {
+        // Добавление местоположения на карту.
+        console.log('location ', result)
+        const coord = result.geoObjects.get(0).geometry.getCoordinates();
+        console.log(coord);
+        result.geoObjects.options.set('preset', 'islands#redCircleIcon');
+        result.geoObjects.get(0).properties.set({
+          balloonContentBody: 'Мое местоположение'
+        });
+        inst.geoObjects.add(result.geoObjects);
+      },
+      function(err) {
+        console.log('Ошибка: ' + err)
+      },
+    )
+  }
+
 
   return (
     <div className="step">
@@ -109,7 +130,33 @@ const LocationStep = ({props}) => {
         </div>
       </div>
       <h3 className="map-title">Выбрать на карте:</h3>
-      <img className="map" src={`${map}`} alt="Карта"></img>
+      <YMaps query={{ lang: 'en_RU' }}>
+        <Map
+          defaultState={{
+            center: [55.75, 37.57],
+            zoom: 9,
+            controls: ["zoomControl", "fullscreenControl"],
+          }}
+          modules={["control.ZoomControl", "control.FullscreenControl", "geolocation", "geocode"]}
+          onLoad={(inst) => onLoadMap(inst)}
+          width={430}
+          height={430}
+        >
+          <Placemark
+            defaultGeometry={[55.75, 37.57]}
+            modules={["geoObject.addon.hint"]}
+            properties={{
+              hintContent:"Москва",
+            }}
+            options={{
+              preset: 'islands#circleIcon',
+              iconColor: '#3caa3c'
+            }}
+            onClick={(event) => { event.preventDefault(); console.log("Нажатие");}}
+          />
+          <GeolocationControl options={{ float: 'left' }} />
+        </Map>
+      </YMaps>
     </div>
   );
 };
