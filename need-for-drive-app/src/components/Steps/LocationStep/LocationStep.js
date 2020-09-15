@@ -9,10 +9,15 @@ let inputInfo = { city: "", point: "" };
 
 let locationInfo = { title: "Пункт выдачи", value: "" };
 
+const cache = { cities: null, points: null };
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 const PROXY_URL = process.env.REACT_APP_PROXY_URL;
 
 const LocationStep = ({ props }) => {
+  const [cities, setCities] = React.useState([]);
+  const [points, setPoints] = React.useState([]);
+
   const onCityChange = (value) => {
     props.setField("city", { id: value.id, name: value.name });
   };
@@ -41,7 +46,7 @@ const LocationStep = ({ props }) => {
     }
   };
 
-  const getCitySuggestions = async () => {
+  const fetchCities = async () => {
     const response = await fetch(
       PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/city",
       {
@@ -51,14 +56,15 @@ const LocationStep = ({ props }) => {
         },
       }
     );
-    const cities = await response.json();
-    const suggestions = cities.data.map((city) => {
+    const citiesResponse = await response.json();
+    const cities = citiesResponse.data.map((city) => {
       return { id: city.id, name: city.name };
     });
-    return suggestions;
+    setCities(cities);
+    cache["cities"] = cities;
   };
 
-  const getPointSuggestions = async () => {
+  const fetchPoints = async () => {
     const response = await fetch(
       PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/point",
       {
@@ -68,15 +74,16 @@ const LocationStep = ({ props }) => {
         },
       }
     );
-    const points = await response.json();
-    const suggestions = points.data
-      .filter((point) => {
-        return point.cityId.name === cityValue;
-      })
-      .map((point) => {
-        return { id: point.id, name: point.name + ", " + point.address };
-      });
-    return suggestions;
+    const pointsResponse = await response.json();
+    const points = pointsResponse.data.map((point) => {
+      return {
+        id: point.id,
+        name: point.name + ", " + point.address,
+        cityName: point.cityId.name,
+      };
+    });
+    setPoints(points);
+    cache["points"] = points;
   };
 
   const cityValue = props.fieldValues.city.name;
@@ -84,26 +91,39 @@ const LocationStep = ({ props }) => {
 
   const onLoadMap = (inst) => {
     var location = inst.geocode("Москва");
-    console.log('ymaps  ', inst)
-// Асинхронная обработка ответа.
+    console.log("ymaps  ", inst);
+    // Асинхронная обработка ответа.
     location.then(
-      function(result) {
+      function (result) {
         // Добавление местоположения на карту.
-        console.log('location ', result)
+        console.log("location ", result);
         const coord = result.geoObjects.get(0).geometry.getCoordinates();
         console.log(coord);
-        result.geoObjects.options.set('preset', 'islands#redCircleIcon');
+        result.geoObjects.options.set("preset", "islands#redCircleIcon");
         result.geoObjects.get(0).properties.set({
-          balloonContentBody: 'Мое местоположение'
+          balloonContentBody: "Мое местоположение",
         });
         inst.geoObjects.add(result.geoObjects);
       },
-      function(err) {
-        console.log('Ошибка: ' + err)
-      },
-    )
-  }
+      function (err) {
+        console.log("Ошибка: " + err);
+      }
+    );
+  };
 
+  React.useEffect(() => {
+    if (cache["cities"] === null) {
+      fetchCities();
+    } else {
+      setCities(cache["cities"]);
+    }
+
+    if (cache["points"] === null) {
+      fetchPoints();
+    } else {
+      setPoints(cache["points"]);
+    }
+  }, []);
 
   return (
     <div className="step">
@@ -115,7 +135,7 @@ const LocationStep = ({ props }) => {
             onInputBlur={onCityBlur}
             value={cityValue}
             placeholder={"Начните вводить город ..."}
-            onFetchSuggestions={getCitySuggestions}
+            suggestions={cities}
           />
         </div>
         <div className="search__item">
@@ -125,7 +145,9 @@ const LocationStep = ({ props }) => {
             onInputBlur={onPointBlur}
             value={pointValue}
             placeholder={"Начните вводить пункт ..."}
-            onFetchSuggestions={getPointSuggestions}
+            suggestions={points.filter((point) => {
+              return point.cityName === cityValue;
+            })}
           />
         </div>
       </div>
