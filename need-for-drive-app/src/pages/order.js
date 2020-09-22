@@ -22,7 +22,7 @@ import {
 import "./order.css";
 
 const OrderPage = (props) => {
-  const orderId = props.match.params.id;
+  const orderId = props.id;
   const currentStep = orderId === undefined ? props.currentStep : 6;
 
   return (
