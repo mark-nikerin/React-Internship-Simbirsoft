@@ -1,0 +1,14 @@
+.auth {
+  margin: 228px auto;
+  width: 376px;
+  height: 253px;
+}
+
+.card h1 {
+  margin: 0;
+  font-size: 17.5px;
+  line-height: 20px;
+  letter-spacing: -0.4375px;
+  font-weight: normal;
+  margin-bottom: 18px;
+}

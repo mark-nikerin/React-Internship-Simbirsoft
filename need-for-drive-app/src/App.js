@@ -18,7 +18,6 @@ const App = () => {
     <div className="main-body">
       <Provider store={store}>
         <Router>
-
           <Switch>
             <Route path="/" exact render={() =><><Sidebar /><StartPage/></>} />
             <Route path="/order" exact render={() =><><Sidebar /><OrderPage/></>} />
