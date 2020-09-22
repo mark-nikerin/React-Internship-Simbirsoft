@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Base/Card";
+import Input from "../Base/Input"
 import "./auth.css";
 import icons from "../../../assets/admin-icons.svg";
 
@@ -16,7 +17,8 @@ const Auth = () => {
         <h1>
           Вход
         </h1>
-        <div>Нормально</div>
+        <Input header={"Почта"} placeholder={"Введите почту"} />
+        <Input header={"Пароль"} placeholder={"Введите пароль"}/>
       </Card>
     </div>
   );
