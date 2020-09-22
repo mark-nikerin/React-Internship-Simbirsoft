@@ -62,6 +62,34 @@ const LocationStep = ({ props }) => {
       return json.response.GeoObjectCollection.featureMember[0].GeoObject;
     };
 
+    let pointMarks = [];
+    points.forEach(async (point) => {
+      const x = await getPlace(point.cityName + "," + point.address);
+      pointMarks.push({ ...x, pointId: point.id, cityName: point.cityName });
+    });
+    cache["pointMarks"] = pointMarks;
+    setPointMarks(pointMarks);
+  }, [points]);
+
+  React.useEffect(() => {
+    const getPlace = async (query) => {
+      const response = await fetch(
+        `https://geocode-maps.yandex.ru/1.x?apikey=${YMAPS_API_KEY}&geocode=${query}&format=json`
+      );
+      const json = await response.json();
+      return json.response.GeoObjectCollection.featureMember[0].GeoObject;
+    };
+
+    let cityMarks = [];
+    cities.forEach(async (city) => {
+      const x = await getPlace(city.name);
+      cityMarks.push({ ...x, name: city.name });
+    });
+    cache["cityMarks"] = cityMarks;
+    setCityMarks(cityMarks);
+  }, [cities]);
+
+  React.useEffect(() => {
     const fetchCities = async () => {
       const response = await fetch(
         PROXY_URL + "http://api-factory.simbirsoft1.com/api/db/city",
@@ -78,14 +106,6 @@ const LocationStep = ({ props }) => {
       });
       setCities(cities);
       cache["cities"] = cities;
-
-      let cityMarks = [];
-      cities.forEach(async (city) => {
-        const x = await getPlace(city.name);
-        cityMarks.push(x);
-      });
-      cache["cityMarks"] = cityMarks;
-      setCityMarks(cityMarks);
     };
 
     const fetchPoints = async () => {
@@ -109,31 +129,20 @@ const LocationStep = ({ props }) => {
       });
       setPoints(points);
       cache["points"] = points;
-
-      let pointMarks = [];
-      points.forEach(async (point) => {
-        const x = await getPlace(point.cityName + "," + point.address);
-        pointMarks.push(x);
-      });
-      cache["pointMarks"] = pointMarks;
-      setPointMarks(pointMarks);
     };
 
     if (cache["cities"] === null) {
       fetchCities();
     } else {
       setCities(cache["cities"]);
-      setCityMarks(cache["cityMarks"]);
     }
 
     if (cache["points"] === null) {
       fetchPoints();
     } else {
       setPoints(cache["points"]);
-      setPointMarks(cache["pointMarks"]);
     }
-    console.log("fetch");
-  }, [cities, points]);
+  }, []);
 
   return (
     <div className="step">
@@ -163,7 +172,7 @@ const LocationStep = ({ props }) => {
       </div>
       <h3 className="map-title">Выбрать на карте:</h3>
 
-      {cityMarks.length !== 0 && pointMarks.length !== 0 &&
+      {
         <YMaps
           query={{
             ns: "use-load-option",
@@ -177,20 +186,28 @@ const LocationStep = ({ props }) => {
               "geocode",
               "geoObject.addon.hint",
             ]}
-            width={430}
-            height={430}
+            width={400}
+            height={400}
             defaultState={{
               center: [55.75, 37.57],
-              zoom: 3,
+              zoom: 4,
               controls: ["zoomControl", "fullscreenControl"],
             }}
           >
-            {
-              cityMarks.map((mark) => {
+            {cityMarks
+              .filter((mark) =>
+                cityValue === "" ? true : mark.name === cityValue
+              )
+              .map((mark) => {
                 return (
                   <Placemark
                     key={mark.Point.pos}
-                    geometry={[...mark.Point.pos.split(" ", 2).reverse().map(x=>parseFloat(x))]}
+                    geometry={[
+                      ...mark.Point.pos
+                        .split(" ", 2)
+                        .reverse()
+                        .map((x) => parseFloat(x)),
+                    ]}
                     options={{
                       preset: "islands#circleIcon",
                       iconColor: "#3caa3c",
@@ -199,11 +216,19 @@ const LocationStep = ({ props }) => {
                   />
                 );
               })}
-            {
-              pointMarks.map((mark) => (
+            {pointMarks
+              .filter((mark) =>
+                cityValue === "" ? true : mark.cityName === cityValue
+              )
+              .map((mark) => (
                 <Placemark
                   key={mark.Point.pos}
-                  geometry={[...mark.Point.pos.split(" ", 2).reverse().map(x=>parseFloat(x))]}
+                  geometry={[
+                    ...mark.Point.pos
+                      .split(" ", 2)
+                      .reverse()
+                      .map((x) => parseFloat(x)),
+                  ]}
                   options={{
                     preset: "islands#circleIcon",
                     iconColor: "#000000",
