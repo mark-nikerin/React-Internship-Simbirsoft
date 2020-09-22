@@ -3,16 +3,12 @@ import React from "react";
 const Autocomplete = (props) => {
   const [visibility, setVisibility] = React.useState(false);
   const [value, setValue] = React.useState(props.value);
-  const [suggestions, setSuggestions] = React.useState([]);
+
+  const suggestions = props.suggestions;
 
   const onValueChange = (value) => {
     setValue(value.name);
     props.onValueChange(value);
-  };
-
-  const onFetchSuggestions = async () => {
-    const suggestions = await props.onFetchSuggestions();
-    setSuggestions(suggestions);
   };
 
   return (
@@ -23,7 +19,6 @@ const Autocomplete = (props) => {
           placeholder={props.placeholder}
           onFocus={(event) => {
             event.preventDefault();
-            onFetchSuggestions();
             setVisibility(true);
           }}
           onChange={(event) => {
