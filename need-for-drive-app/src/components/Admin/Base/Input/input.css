@@ -1,0 +1,33 @@
+.input {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-self: start;
+}
+
+.input input {
+  padding: 8px 12px;
+  background: #FFFFFF;
+  border: 0.5px solid #BECAD6;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 13px;
+  letter-spacing: -0.192982px;
+  color: #3D5170;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.input input:focus {
+  border: 0.5px solid #007BFF;
+  border-radius: 3px;
+}
+
+.input span {
+  margin-bottom: 8px;
+  font-size: 10.5px;
+  line-height: 12px;
+  letter-spacing: -0.18421px;
+  color: #495057;
+}

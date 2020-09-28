@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import StartPage from "./pages/start";
 import OrderPage from "./pages/order";
+import AdminPage from "./pages/admin"
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -17,11 +18,11 @@ const App = () => {
     <div className="main-body">
       <Provider store={store}>
         <Router>
-          <Sidebar />
           <Switch>
-            <Route path="/" exact component={StartPage} />
-            <Route path="/order" exact component={OrderPage} />
-            <Route path="/order/:id" exact component={OrderPage} />
+            <Route path="/" exact render={() =><><Sidebar /><StartPage/></>} />
+            <Route path="/order" exact render={() =><><Sidebar /><OrderPage/></>} />
+            <Route path="/order/:id" exact render={(props) =><><Sidebar /><OrderPage id={props.match.params.id}/></>} />
+            <Route path="/admin" exact component={AdminPage} />
           </Switch>
         </Router>
       </Provider>
