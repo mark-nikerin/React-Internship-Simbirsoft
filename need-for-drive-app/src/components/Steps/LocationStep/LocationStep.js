@@ -174,12 +174,14 @@ const LocationStep = ({ props }) => {
 
       {
         <YMaps
+          key={"ymap"}
           query={{
             ns: "use-load-option",
             apikey: YMAPS_API_KEY,
           }}
         >
           <Map
+            key={"map"}
             modules={[
               "control.ZoomControl",
               "control.FullscreenControl",
