@@ -1,0 +1,84 @@
+.admin-menu {
+  background: #ffffff;
+  box-shadow: 0px 1px 75px rgba(90, 97, 105, 0.11),
+    0px 2px 4px rgba(90, 97, 105, 0.12), 0px 7.5px 11px rgba(90, 97, 105, 0.1),
+    0px 3.5px 17.5px rgba(165, 182, 201, 0.1);
+  width: 285px;
+  height: 100vh;
+  z-index: 10;
+}
+
+.admin-menu__item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 15px 15px;
+  padding-left: 0;
+  height: 58px;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: inset 0px -1px 0px #e1e5eb;
+  box-sizing: border-box;
+  color: #3d5170;
+}
+
+.admin-menu__item {
+  fill: #cacedb;
+}
+
+.admin-menu__item:hover {
+  color: #007bff;
+  background: #fbfbfb;
+  box-shadow: inset 0px -1px 0px #e1e5eb;
+}
+
+.admin-menu__item:hover svg {
+  fill: #007bff;
+}
+
+.admin-menu__item.active {
+  color: #007bff;
+  background: #fbfbfb;
+  box-shadow: inset 0px -1px 0px #e1e5eb, inset 4px 0px 0px #007bff;
+}
+
+.admin-menu__item.active svg {
+  fill: #007bff;
+}
+
+.item__content {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  line-height: 17px;
+  letter-spacing: -0.234375px;
+}
+
+.item__content svg {
+  margin-right: 11px;
+}
+
+.admin-menu__logo {
+  height: 68px;
+  padding: 23px 50px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-bottom: solid 1px#E1E5EB;
+}
+
+.logo__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px;
+  line-height: 18px;
+  color: #3d5170;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.logo__content svg {
+  margin-right: 7px;
+  display: inline-block;
+}

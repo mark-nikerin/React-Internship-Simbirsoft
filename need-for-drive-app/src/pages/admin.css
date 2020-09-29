@@ -1,9 +1,18 @@
-.admin-page {
+.admin {
+  display: flex;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
-  background-color: #f5f6f8;
+  background-color: #E5E5E5;
   font-family: Helvetica;
   color: #3d5170;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
 }
 
 .logo {
